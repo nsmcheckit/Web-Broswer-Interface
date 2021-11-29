@@ -2,7 +2,6 @@
   "name": "nsm",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://www.steveyuowo.com/nsm-format/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -17,8 +16,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "scp": "scp -r ./build/* root@www.steveyuowo.com:/usr/local/nginx/html/nsm-format"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
