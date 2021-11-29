@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { saveAs } from "file-saver";
 
-function OutputCSV(props) {
+function OutputCSV() {
   const [multipleFiles, setMultipleFiles] = useState([]);
   const [inputPrefix, setInputPrefix] = useState("");
   const [objectPrefix, setObjectPrefix] = useState("");
@@ -36,7 +36,7 @@ function OutputCSV(props) {
   };
   return (
     <div className="app">
-      <h3>Output CSV</h3>
+      <h3>Output Tab Delimited Text Files For Wwise</h3>
       <input
         id="fileInput"
         type="file"
