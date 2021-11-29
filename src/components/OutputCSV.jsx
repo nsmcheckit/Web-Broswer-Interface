@@ -21,13 +21,11 @@ function OutputCSV() {
     let result = "Audio File" + splitSig + "Object Path\n";
     for (let i = 0; i < multipleFiles.length; i++) {
       const filename = multipleFiles[i].name;
-      const absPath =
-        inputPrefix + (inputPrefix.endsWith("/") ? "" : "/") + filename;
+      const absPath = inputPrefix + filename;
       const objectPath =
         objectPrefix +
-        (objectPrefix.endsWith("/") ? "" : "/") +
         filename.split("_").slice(0, -1).join("_") +
-        "/<Sound SFX>" +
+        "\\<Sound SFX>" +
         filename;
       result += absPath + splitSig + objectPath + "\n";
     }
