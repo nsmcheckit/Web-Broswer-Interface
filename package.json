@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "scp": "scp -r ./build/* $blog:/usr/local/nginx/html/nsm-format"
+    "scp": "scp -r ./build/* root@www.steveyuowo.com:/usr/local/nginx/html/nsm-format"
   },
   "eslintConfig": {
     "extends": [
