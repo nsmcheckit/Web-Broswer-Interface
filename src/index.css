@@ -52,3 +52,6 @@ button:hover {
   background: white;
   color: gray;
 }
+.btn-group button {
+  margin-right: 10px;
+}

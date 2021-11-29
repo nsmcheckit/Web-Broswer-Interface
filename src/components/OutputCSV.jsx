@@ -5,8 +5,20 @@ function OutputCSV(props) {
   const [multipleFiles, setMultipleFiles] = useState([]);
   const [inputPrefix, setInputPrefix] = useState("");
   const [objectPrefix, setObjectPrefix] = useState("");
-  const handleDownload = () => {
-    let result = "Audio File,Object Path\n";
+  const handleDownload = (ext) => {
+    let splitSig;
+    switch (ext) {
+      case "csv":
+        splitSig = ",";
+        break;
+      case "txt":
+        splitSig = "\t";
+        break;
+      default:
+        throw new Error("Invalid type");
+    }
+
+    let result = "Audio File" + splitSig + "Object Path\n";
     for (let i = 0; i < multipleFiles.length; i++) {
       const filename = multipleFiles[i].name;
       const absPath =
@@ -17,10 +29,10 @@ function OutputCSV(props) {
         filename.split("_").slice(0, -1).join("_") +
         "/<Sound SFX>" +
         filename;
-      result += absPath + "," + objectPath + "\n";
+      result += absPath + splitSig + objectPath + "\n";
     }
     let blob = new Blob([result], { type: "text/plain;charset=utf-8" });
-    saveAs(blob, "export.csv");
+    saveAs(blob, `export.${ext}`);
   };
   return (
     <div className="app">
@@ -39,7 +51,10 @@ function OutputCSV(props) {
       <input type="text" onChange={(e) => setObjectPrefix(e.target.value)} />
       <br />
       <br />
-      <button onClick={handleDownload}>Download</button>
+      <div className="btn-group">
+        <button onClick={() => handleDownload("csv")}>Download CSV</button>
+        <button onClick={() => handleDownload("txt")}>Download TXT</button>
+      </div>
     </div>
   );
 }
