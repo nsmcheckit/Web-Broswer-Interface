@@ -24,12 +24,23 @@ h3 {
 .app {
   padding: 20px 40px;
 }
+
+input[type="text"] {
+  width: 500px;
+}
+
+.select {
+  margin-right: 10px;
+}
+.select,
 input[type="text"] {
   padding: 4px 8px;
   border: 3px solid gray;
   color: gray;
   border-radius: 5px;
 }
+
+.select,
 input[type="text"]:focus {
   outline: none;
   border: 3px solid gray;
@@ -54,4 +65,16 @@ button:hover {
 }
 .btn-group button {
   margin-right: 10px;
+}
+
+.selector-container {
+  display: flex;
+  align-items: center;
+}
+.selector-container .plus-icon {
+  margin-left: 10px;
+}
+.live-text {
+  color: gray;
+  margin: 10px 0;
 }
