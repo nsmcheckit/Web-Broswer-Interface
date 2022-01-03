@@ -1,9 +1,5 @@
-Track,Stamp,Event
-beats20.radio,0.0,beats20.radio
-beats20.radio,28.0,beats21.radio
-mov.m,52.0,mov.m
-beats20.radio,56.0,beats21.radio
-beats20.radio,80.0,beats21.radio
-mov.m,108.0,mov.m
-beats20.radio,112.0,beats21.radio
-beats20.radio,140.0,beats21.radio
+, 出招表, SFX, FOL, EFF, Hit, FOOT
+AM_Hero301_Atk_BranchAttack_00, R, 3, 2, 1, 1, 1
+AM_Hero301_Atk_BranchAttack_01, LR, 2, 2, 1, 2, 2
+AM_Hero301_Atk_BranchAttack_02, LLR, 4, 3, 1, 2, 1
+AM_Hero301_Atk_BranchAttack_03, LLLR, 3, 3, 2, 3, 0
