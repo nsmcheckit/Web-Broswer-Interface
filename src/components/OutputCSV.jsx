@@ -8,35 +8,34 @@ const handlePrefix = (texture) => {
   return splitArray.join("_");
 };
 
-// transform {SFX: '3', FOL: '2'} to [SFX01, SFX02, SFX03, FOL01, FOL02]
-const transformPrefixTexture = (textureObj) => {
-  const trailingTextures = [];
-  for (let title in textureObj) {
-    let value = textureObj[title];
-
-    let valueNumber = 0;
-    try {
-      valueNumber = Number.parseInt(value);
-    } catch (e) {}
-
-    for (let i = 1; i <= valueNumber; i++) {
-      const valueNumberTexture = i < 10 ? `0${i}` : `${i}`;
-      trailingTextures.push(title + valueNumberTexture);
-    }
-  }
-  return trailingTextures;
-};
-
 function OutputCSV() {
   const [multipleFiles, setMultipleFiles] = useState([]);
 
-  const [audioFiles, setAudioFiles] = useState("");
+  const [audioFiles, setAudioFiles] = useState([]);
   const [sfxObjectPath, setSFXObjectPath] = useState("");
   const [effObjectPath, setEFFObjectPath] = useState("");
   const [folObjectPath, setFOLObjectPath] = useState("");
   const [hitObjectPath, setHITObjectPath] = useState("");
 
   const handleData = (result) => {
+    let audioFilesTextures = [];
+    for(const file of audioFiles) {
+      const filename = file.name;
+      const filenameSplits = filename.split('_');
+
+      let number = 0;
+      try {
+        number = Number.parseInt(filenameSplits[filenameSplits.length - 1]);
+      }catch(e) {}
+
+      audioFilesTextures.push({
+        filename, 
+        symbol: filenameSplits[1],
+        keyword: filenameSplits[filenameSplits.length - 2],
+        number: number < 10 ? `0${number}`: `${number}`,
+      });
+    }
+
     const lines = result.split("\n");
 
     const data = lines
@@ -98,12 +97,22 @@ function OutputCSV() {
       }
       return "";
     };
-
-    const outputData = HLine.map((hdata) => ({
-      AudioFile: audioFiles,
-      ObjectPath:
-        getObjectPath(hdata) + hdata + "\\" + audioFiles.split("\\").pop(),
-    }));
+    const outputData = HLine.map((hdata) => {
+      const splits = hdata.split('_');
+      const filteredAudioFiles = audioFilesTextures.filter(audioFile => 
+        audioFile.symbol + audioFile.number ===  splits[0]
+        && splits[splits.length - 1] === audioFile.keyword 
+      )
+      const audioFileTexture = filteredAudioFiles.length > 0 ? filteredAudioFiles[0].filename: '';
+      const filename = audioFileTexture.split("\\").pop();
+      const filenameSplits = filename.split('_')
+      const secondLast = '<Random Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_')
+      return {
+        AudioFile: audioFileTexture,
+        ObjectPath:
+          getObjectPath(hdata) + hdata + "\\" + secondLast + "\\" + filename,
+      }
+    });
 
     const outputText =
       "AudioFile, ObjectPath\n" +
@@ -138,10 +147,12 @@ function OutputCSV() {
       />
       <br />
       <br />
+      请输入Audio Files路径: &nbsp;&nbsp;
       <input
-        type="text"
-        onChange={(e) => setAudioFiles(e.target.value)}
-        placeholder="请输入Audio Files路径: "
+        id="fileInput"
+        type="file"
+        multiple
+        onChange={(e) => setAudioFiles(e.target.files)}
       />
       <br />
       <br />
