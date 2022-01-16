@@ -8,6 +8,34 @@ const handlePrefix = (texture) => {
   return splitArray.join("_");
 };
 
+const alphabetMap = {
+  "A": "01",
+  "B": "02",
+  "C": "03",
+  "D": "04",
+  "E": "05",
+  "F": "06",
+  "G": "07",
+  "H": "08",
+  "I": "09",
+  "J": "10",
+  "K": "11",
+  "L": "12",
+  "M": "13",
+  "N": "14",
+  "O": "15",
+  "P": "16",
+  "Q": "17",
+  "R": "18",
+  "S": "19",
+  "T": "20",
+  "U": "21",
+  "V": "22",
+  "W": "23",
+  "X": "24",
+  "Y": "25",
+  "Z": "26",
+}
 function OutputCSV() {
   const [multipleFiles, setMultipleFiles] = useState([]);
 
@@ -33,6 +61,7 @@ function OutputCSV() {
         symbol: filenameSplits[1],
         keyword: filenameSplits[filenameSplits.length - 2],
         number: number < 10 ? `0${number}`: `${number}`,
+        prefix: filenameSplits[0],
       });
     }
 
@@ -100,7 +129,7 @@ function OutputCSV() {
     const outputData = HLine.map((hdata) => {
       const splits = hdata.split('_');
       const filteredAudioFiles = audioFilesTextures.filter(audioFile => 
-        audioFile.symbol + audioFile.number ===  splits[0]
+        audioFile.symbol + alphabetMap[audioFile.prefix] ===  splits[0]
         && splits[splits.length - 1] === audioFile.keyword 
       )
       const audioFileTexture = filteredAudioFiles.length > 0 ? filteredAudioFiles[0].filename: '';
