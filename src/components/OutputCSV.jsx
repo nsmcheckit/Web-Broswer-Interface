@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { saveAs } from "file-saver";
+import { flattenDeep } from "lodash";
 
 // AM_Hero301_Atk_BranchAttack_00 => Hero301_Atk_BranchAttack_00
 const handlePrefix = (texture) => {
@@ -48,10 +49,11 @@ function OutputCSV() {
   const handleData = (result) => {
     let audioFilesTextures = [];
     for(const file of audioFiles) {
-      const filename = file.name;
+      const filenameSplit = file.name.split('.');
+      const filename = filenameSplit.slice(0, filenameSplit.length - 1).join('.')
       const filenameSplits = filename.split('_');
 
-      let number = 0;
+      let number = -1;
       try {
         number = Number.parseInt(filenameSplits[filenameSplits.length - 1]);
       }catch(e) {}
@@ -59,8 +61,8 @@ function OutputCSV() {
       audioFilesTextures.push({
         filename, 
         symbol: filenameSplits[1],
-        keyword: filenameSplits[filenameSplits.length - 2],
-        number: number < 10 ? `0${number}`: `${number}`,
+        keyword: isNaN(number) ? filenameSplits[filenameSplits.length - 1] :  filenameSplits[filenameSplits.length - 2],
+        number: isNaN(number) ? NaN: (number < 10 ? `0${number}`: `${number}`),
         prefix: filenameSplits[0],
       });
     }
@@ -126,23 +128,38 @@ function OutputCSV() {
       }
       return "";
     };
-    const outputData = HLine.map((hdata) => {
+    const outputDatas = HLine.map((hdata) => {
       const splits = hdata.split('_');
       const filteredAudioFiles = audioFilesTextures.filter(audioFile => 
+        // SFX 01 
         audioFile.symbol + alphabetMap[audioFile.prefix] ===  splits[0]
         && splits[splits.length - 1] === audioFile.keyword 
       )
-      const audioFileTexture = filteredAudioFiles.length > 0 ? filteredAudioFiles[0].filename: '';
-      const filename = audioFileTexture.split("\\").pop();
-      const filenameSplits = filename.split('_')
-      const secondLast = '<Random Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_')
-      return {
-        AudioFile: audioFileTexture,
-        ObjectPath:
-          getObjectPath(hdata) + hdata + "\\" + secondLast + "\\" + filename,
+
+      const ans = []
+      for(let i = 0; i < filteredAudioFiles.length; i++) {
+        const audioFileTexture = filteredAudioFiles[i].filename
+        const filename = audioFileTexture.split("\\").pop(); 
+        const filenameSplits = filename.split('_')
+        const secondLast = '<Random Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_')
+        ans.push({
+          AudioFile: audioFileTexture,
+          ObjectPath:
+            getObjectPath(hdata) + hdata + 
+              (audioFileTexture.number !== -1 ? ("\\" + secondLast): '')
+              + "\\" + filename,
+        })
       }
+      return ans.length === 0 ? [
+        {
+          AudioFile: '',
+          ObjectPath:
+            getObjectPath(hdata) + hdata + "\\<Random Container>\\",
+        }
+      ]: ans
     });
 
+    const outputData = flattenDeep(outputDatas);
     const outputText =
       "AudioFile, ObjectPath\n" +
       outputData
