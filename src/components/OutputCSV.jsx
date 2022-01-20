@@ -14,6 +14,7 @@ function OutputCSV() {
   const [folObjectPath, setFOLObjectPath] = useState("");
   const [hitObjectPath, setHITObjectPath] = useState("");
   const [animMontagePath, setAnimMontagePath] = useState("");
+  const [audioFilesFolder, setAuidoFilesFolder] = useState("");
 
   const handleData = (result) => {
     let audioFilesTextures = [];
@@ -66,7 +67,7 @@ function OutputCSV() {
         const filenameSplits = filename.split('_')
         const secondLast = '<Random Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_')
         ans.push({
-          AudioFile: audioFileTexture,
+          AudioFile: `${audioFilesFolder}\\${audioFileTexture}.wav`,
           ObjectPath:
             getObjectPath(hdata) + hdata + 
               (audioFileTexture.number !== -1 ? ("\\" + secondLast): '')
@@ -163,6 +164,14 @@ function OutputCSV() {
         type="file"
         multiple
         onChange={(e) => setMultipleFiles(e.target.files)}
+      />
+      <br />
+      <br />
+      
+      <input
+        type="text"
+        onChange={(e) => setAuidoFilesFolder(e.target.value)}
+        placeholder="请输入Audio Files文件夹路径: "
       />
       <br />
       <br />
