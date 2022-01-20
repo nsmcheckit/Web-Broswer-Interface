@@ -70,7 +70,7 @@ function OutputCSV() {
           AudioFile: `${audioFilesFolder}\\${audioFileTexture}.wav`,
           ObjectPath:
             getObjectPath(hdata) + hdata + 
-              (audioFileTexture.number !== -1 ? ("\\" + secondLast): '')
+              (!isNaN(filteredAudioFiles[i].number) ? ("\\" + secondLast): '')
               + "\\" + filename,
         })
       }
@@ -85,9 +85,17 @@ function OutputCSV() {
 
     const outputData = flattenDeep(outputDatas);
     const outputText =
-      "AudioFile, ObjectPath\n" +
-      outputData
-        .map((item) => `${item.AudioFile}, ${item.ObjectPath}`)
+      "AudioFile, ObjectPath, Object Type, Switch Assignation\n" +
+      flattenDeep(outputData
+        .map((item) => {
+          if(item.ObjectPath.includes('<Random Container>')) {
+            const firstLine = `${item.AudioFile}, ${item.ObjectPath}, Sound SFX,`
+            const objPathArr = item.ObjectPath.split('\\');
+            const secondLine = `${item.AudioFile}, ${objPathArr.slice(0, objPathArr.length - 1).join('\\')}, Sound SFX, <Switch Group:Sound_Style>`
+            return [firstLine, secondLine];
+          }
+          return `${item.AudioFile}, ${item.ObjectPath}, Sound SFX, <Switch Group:Sound_Style>`
+        }))
         .join("\n");
 
     let blob = new Blob([outputText], { type: "text/plain;charset=utf-8" });
@@ -110,8 +118,6 @@ function OutputCSV() {
   const handleOutputData = (data) => {
     const nowDate = getNowDate();
     const HLine = getHLine(data);
-    // console.log({nowDate, animMontagePath, data})
-    
     const HLineMap = {};
     const HLineObject = HLine.map(line => ({
       NotifyTrackName: `Audio_${line.split(/\d+/)[0]}`,
