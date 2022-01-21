@@ -1,42 +1,10 @@
 import { useState } from "react";
 import { saveAs } from "file-saver";
 import { flattenDeep } from "lodash";
+import { getNowDate } from "../utils/time";
+import { getHLine } from "../utils/HLine";
+import { alphabetMap } from "../const/alphabet";
 
-// AM_Hero301_Atk_BranchAttack_00 => Hero301_Atk_BranchAttack_00
-const handlePrefix = (texture) => {
-  const splitArray = texture.split("_");
-  splitArray.shift();
-  return splitArray.join("_");
-};
-
-const alphabetMap = {
-  "A": "01",
-  "B": "02",
-  "C": "03",
-  "D": "04",
-  "E": "05",
-  "F": "06",
-  "G": "07",
-  "H": "08",
-  "I": "09",
-  "J": "10",
-  "K": "11",
-  "L": "12",
-  "M": "13",
-  "N": "14",
-  "O": "15",
-  "P": "16",
-  "Q": "17",
-  "R": "18",
-  "S": "19",
-  "T": "20",
-  "U": "21",
-  "V": "22",
-  "W": "23",
-  "X": "24",
-  "Y": "25",
-  "Z": "26",
-}
 function OutputCSV() {
   const [multipleFiles, setMultipleFiles] = useState([]);
 
@@ -45,6 +13,8 @@ function OutputCSV() {
   const [effObjectPath, setEFFObjectPath] = useState("");
   const [folObjectPath, setFOLObjectPath] = useState("");
   const [hitObjectPath, setHITObjectPath] = useState("");
+  const [animMontagePath, setAnimMontagePath] = useState("");
+  const [audioFilesFolder, setAuidoFilesFolder] = useState("");
 
   const handleData = (result) => {
     let audioFilesTextures = [];
@@ -67,54 +37,6 @@ function OutputCSV() {
       });
     }
 
-    const lines = result.split("\n");
-
-    const data = lines
-      .map((line) => line.split(",").map((item) => item.trim()))
-      .filter((line) => line.length > 2);
-    const titles = data.shift();
-
-    // Signals Data Structure
-    // ex: {title: 'SFX', columnIndex: 2}
-    const prefixSignals = titles
-      .map((title, columnIndex) => ({ title, columnIndex }))
-      .filter((obj) => obj.columnIndex > 1 && obj.title !== "");
-
-    const dataSignals = prefixSignals.map((signal) => {
-      const { title, columnIndex } = signal;
-      return {
-        title,
-        data: data.map((line) => ({
-          value: line[columnIndex],
-          trailingTexture: handlePrefix(line[0]) + "_" + line[1],
-        })),
-      };
-    });
-
-    const dataTextureObjs = dataSignals.map((signal) => {
-      const { title, data } = signal;
-      return {
-        title,
-        data: data.map(({ value, trailingTexture }) => {
-          let valueNumber = 0;
-          try {
-            valueNumber = Number.parseInt(value);
-          } catch (err) {}
-
-          const textures = [];
-          for (let i = 1; i <= valueNumber; i++) {
-            const valueNumberTexture = i < 10 ? `0${i}` : `${i}`;
-            textures.push(title + valueNumberTexture + "_" + trailingTexture);
-          }
-          return textures;
-        }),
-      };
-    });
-
-    const HLine = dataTextureObjs
-      .reduce((prev, cur) => [...prev, ...cur.data], [])
-      .reduce((prev, cur) => [...prev, ...cur], []);
-
     const paths = {
       SFX: sfxObjectPath,
       FOL: folObjectPath,
@@ -128,6 +50,8 @@ function OutputCSV() {
       }
       return "";
     };
+
+    const HLine = getHLine(result);
     const outputDatas = HLine.map((hdata) => {
       const splits = hdata.split('_');
       const filteredAudioFiles = audioFilesTextures.filter(audioFile => 
@@ -143,10 +67,10 @@ function OutputCSV() {
         const filenameSplits = filename.split('_')
         const secondLast = '<Random Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_')
         ans.push({
-          AudioFile: audioFileTexture,
+          AudioFile: `${audioFilesFolder}\\${audioFileTexture}.wav`,
           ObjectPath:
             getObjectPath(hdata) + hdata + 
-              (audioFileTexture.number !== -1 ? ("\\" + secondLast): '')
+              (!isNaN(filteredAudioFiles[i].number) ? ("\\" + secondLast): '')
               + "\\" + filename,
         })
       }
@@ -161,15 +85,23 @@ function OutputCSV() {
 
     const outputData = flattenDeep(outputDatas);
     const outputText =
-      "AudioFile, ObjectPath\n" +
-      outputData
-        .map((item) => `${item.AudioFile}, ${item.ObjectPath}`)
+      "AudioFile, ObjectPath, Object Type, Switch Assignation\n" +
+      flattenDeep(outputData
+        .map((item) => {
+          if(item.ObjectPath.includes('<Random Container>')) {
+            const firstLine = `${item.AudioFile}, ${item.ObjectPath}, Sound SFX,`
+            const objPathArr = item.ObjectPath.split('\\');
+            const secondLine = `${item.AudioFile}, ${objPathArr.slice(0, objPathArr.length - 1).join('\\')}, Sound SFX, <Switch Group:Sound_Style>`
+            return [firstLine, secondLine];
+          }
+          return `${item.AudioFile}, ${item.ObjectPath}, Sound SFX, <Switch Group:Sound_Style>`
+        }))
         .join("\n");
 
     let blob = new Blob([outputText], { type: "text/plain;charset=utf-8" });
     saveAs(blob, `export.csv`);
   };
-  const handleDownload = (ext) => {
+  const handleOutputCsv = (ext) => {
     if (multipleFiles.length === 0) {
       alert("No files selected");
       return;
@@ -182,6 +114,54 @@ function OutputCSV() {
     };
     reader.readAsText(file);
   };
+
+  const handleOutputData = (data) => {
+    const nowDate = getNowDate();
+    const HLine = getHLine(data);
+    const HLineMap = {};
+    const HLineObject = HLine.map(line => ({
+      NotifyTrackName: `Audio_${line.split(/\d+/)[0]}`,
+      AudioEventName: line,
+    }))
+    HLineObject.forEach(obj => HLineMap[obj.NotifyTrackName] 
+        ? HLineMap[obj.NotifyTrackName].push(obj.AudioEventName)
+        : HLineMap[obj.NotifyTrackName] = [obj.AudioEventName]);
+    
+    const NotifyTrack = [];
+    for(const NotifyTrackName in HLineMap) {
+      const AudioEventNames = HLineMap[NotifyTrackName];
+      NotifyTrack.push({
+        NotifyTrackName,
+        AudioEventParam: AudioEventNames.map(x => ({AudioEventName: x}))
+      })
+    }
+
+    const Data = {
+      AnimMontagePath: animMontagePath,
+      NotifyTrack,
+    }
+
+    const outputJson = {
+      Time: nowDate,
+      Data,
+    }
+    
+    let blob = new Blob([JSON.stringify(outputJson)], { type: "text/plain;charset=utf-8" });
+    saveAs(blob, `export.json`);
+  }
+  const handleOutputJson = (ext) => {
+    if (multipleFiles.length === 0) {
+      alert("No files selected");
+      return;
+    }
+    const file = multipleFiles[0];
+    let reader = new FileReader();
+    reader.onload = function (e) {
+      const data = e.target.result;
+      handleOutputData(data);
+    };
+    reader.readAsText(file);
+  }
   return (
     <div className="app">
       <h3>Output Csv</h3>
@@ -190,6 +170,14 @@ function OutputCSV() {
         type="file"
         multiple
         onChange={(e) => setMultipleFiles(e.target.files)}
+      />
+      <br />
+      <br />
+      
+      <input
+        type="text"
+        onChange={(e) => setAuidoFilesFolder(e.target.value)}
+        placeholder="请输入Audio Files文件夹路径: "
       />
       <br />
       <br />
@@ -230,8 +218,14 @@ function OutputCSV() {
       />
       <br />
       <br />
+      <input
+        type="text"
+        onChange={(e) => setAnimMontagePath(e.target.value)}
+        placeholder="请输入Anim Montage Path路径: "
+      />
       <div className="line">
-        <button onClick={handleDownload}>Submit</button>
+        <button style={{marginRight: '20px'}} onClick={handleOutputCsv}>Output Csv</button>
+        <button onClick={handleOutputJson}>Output Json</button>
       </div>
     </div>
   );
