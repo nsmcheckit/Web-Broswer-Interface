@@ -172,11 +172,23 @@ function OutputCSV() {
       })
     }
 
-    const Data = {
-      AnimMontagePath: animMontagePath,
-      NotifyTrack,
-    }
 
+    const Data = data.split('\n')
+      .slice(0, data.split('\n').length - 1)
+      .map(line => line.split(',')[0])
+      .filter(x => x && x.length > 0)
+      .map(anim => ({
+        AnimMontagePath: `Animation Montage'${animMontagePath}/${anim}.${anim}'`,
+        NotifyTrack: NotifyTrack.map(x => ({
+          ...x,
+          AudioEventParam: x.AudioEventParam.filter(y => y
+            .AudioEventName.includes(
+              anim.split('_')
+              .slice(1)
+              .join('_')))
+        })),
+      }))
+    
     const outputJson = {
       Time: nowDate,
       Data,
