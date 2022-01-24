@@ -30,10 +30,11 @@ function OutputCSV() {
 
       audioFilesTextures.push({
         filename, 
-        symbol: filenameSplits[1],
-        keyword: isNaN(number) ? filenameSplits[filenameSplits.length - 1] :  filenameSplits[filenameSplits.length - 2],
+        red: filenameSplits[1],
+        name: isNaN(number) ? filenameSplits[filenameSplits.length - 1] :  filenameSplits[filenameSplits.length - 2],
         number: isNaN(number) ? NaN: (number < 10 ? `0${number}`: `${number}`),
-        prefix: filenameSplits[0],
+        purple: filenameSplits[2],
+        green: filenameSplits[3],
       });
     }
 
@@ -56,8 +57,8 @@ function OutputCSV() {
       const splits = hdata.split('_');
       const filteredAudioFiles = audioFilesTextures.filter(audioFile => 
         // SFX 01 
-        audioFile.symbol + alphabetMap[audioFile.prefix] ===  splits[0]
-        && splits[splits.length - 1] === audioFile.keyword 
+        audioFile.green + alphabetMap[audioFile.purple] ===  splits[0]
+        && audioFile.red === splits[splits.length - 1]
       )
 
       const ans = []
@@ -84,18 +85,53 @@ function OutputCSV() {
     });
 
     const outputData = flattenDeep(outputDatas);
+    // keep unique
+    const bitmap = {};
+    let whitespace = undefined;
     const outputText =
       "AudioFile, ObjectPath, Object Type, Switch Assignation\n" +
-      flattenDeep(outputData
+      flattenDeep(
+        flattenDeep(outputData
         .map((item) => {
           if(item.ObjectPath.includes('<Random Container>')) {
             const firstLine = `${item.AudioFile}, ${item.ObjectPath}, Sound SFX,`
             const objPathArr = item.ObjectPath.split('\\');
-            const secondLine = `${item.AudioFile}, ${objPathArr.slice(0, objPathArr.length - 1).join('\\')}, Sound SFX, <Switch Group:Sound_Style>`
+            const secondLine = `${item.AudioFile}, ${objPathArr.slice(0, objPathArr.length - 1).join('\\')}, , <Switch Group:Sound_Style>`
             return [firstLine, secondLine];
           }
-          return `${item.AudioFile}, ${item.ObjectPath}, Sound SFX, <Switch Group:Sound_Style>`
+          return `${item.AudioFile}, ${item.ObjectPath}, , <Switch Group:Sound_Style>`
         }))
+        .filter((item) => {
+          if(item.includes('<Switch Group:Sound_Style>')) {
+            const key = item.split(',')[1].trim();
+            if(bitmap[key]) return false;
+            bitmap[key] = true;
+            return true;
+          }
+          return true;
+        })
+        // whitespace
+        .map((line) => {
+          const splits = line.split(',');
+          let compareWhitespace = undefined;
+          if(splits[0].trim().length > 0) {
+            const sectionWord = splits[1].split(',').find(word => word.includes('<Random Container>'))
+            if(sectionWord) {
+              const randomContainerWord = sectionWord.split('\\').find(word => word.includes('<Random Container>'));
+              compareWhitespace = randomContainerWord;
+            }
+          }
+          if(splits[0].trim().length === 0 && whitespace !== undefined) {
+            whitespace = undefined;
+            return [',,,', line];
+          } else if(whitespace !== compareWhitespace) {
+            whitespace = compareWhitespace;
+            return [',,,', line];
+          } else {
+            return line;
+          }
+        })
+      )
         .join("\n");
 
     let blob = new Blob([outputText], { type: "text/plain;charset=utf-8" });
