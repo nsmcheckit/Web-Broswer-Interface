@@ -7,7 +7,6 @@ import { alphabetMap } from "../const/alphabet";
 
 function OutputCSV() {
   const [multipleFiles, setMultipleFiles] = useState([]);
-
   const [audioFiles, setAudioFiles] = useState([]);
   const [sfxObjectPath, setSFXObjectPath] = useState("");
   const [effObjectPath, setEFFObjectPath] = useState("");
@@ -93,13 +92,23 @@ function OutputCSV() {
       flattenDeep(
         flattenDeep(outputData
         .map((item) => {
+          //AudioFilepopwav:路径去除.wav
+            //artist:YM、ZY、LZY
+            const AudioFilepopwav = item.AudioFile.split(".")[0];
+            
           if(item.ObjectPath.includes('<Random Container>')) {
             const firstLine = `${item.AudioFile}, ${item.ObjectPath}, Sound SFX,`
             const objPathArr = item.ObjectPath.split('\\');
-            const secondLine = `${item.AudioFile}, ${objPathArr.slice(0, objPathArr.length - 1).join('\\')}, , <Switch Group:Sound_Style>`
+            const artist = AudioFilepopwav.split("_").slice(-2)[0];
+            // if (isNaN (Number((AudioFilepopwav.slice(-1)))))
+            //     artist=AudioFilepopwav.split("_").slice(-1);
+            // else
+            //     artist=AudioFilepopwav.split("_").slice(-2);
+            const secondLine = `, ${objPathArr.slice(0, objPathArr.length - 1).join('\\')}, ,<Switch Group:Sound_Style>${artist}`
             return [firstLine, secondLine];
           }
-          return `${item.AudioFile}, ${item.ObjectPath}, , <Switch Group:Sound_Style>`
+          const artist = AudioFilepopwav.split("_").slice(-1)[0];
+          return `${item.AudioFile}, ${item.ObjectPath},Sound SFX,<Switch Group:Sound_Style>${artist}`
         }))
         .filter((item) => {
           if(item.includes('<Switch Group:Sound_Style>')) {
@@ -124,9 +133,9 @@ function OutputCSV() {
           if(splits[0].trim().length === 0 && whitespace !== undefined) {
             whitespace = undefined;
             return [',,,', line];
-          } else if(whitespace !== compareWhitespace) {
-            whitespace = compareWhitespace;
-            return [',,,', line];
+          // } else if(whitespace !== compareWhitespace) {
+          //   whitespace = compareWhitespace;
+          //   return [',,,', line];
           } else {
             return line;
           }
@@ -134,7 +143,7 @@ function OutputCSV() {
       )
         .join("\n");
 
-    let blob = new Blob([outputText], { type: "text/plain;charset=utf-8" });
+    let blob = new Blob(["\ufeff"+outputText], { type: "text/plain;charset=utf-8" });
     saveAs(blob, `export.csv`);
   };
   const handleOutputCsv = (ext) => {
@@ -210,18 +219,43 @@ function OutputCSV() {
     };
     reader.readAsText(file);
   }
+
+  
+
+//   function Copy(str) {
+//     var save = function (e) {
+//         //设置需要复制模板的内容
+//         e.clipboardData.setData('text/plain',str);
+//         //阻止默认行为
+//         e.preventDefault();
+//     }
+//     // h5监听copy事件，调用save函数保存到模板中
+//     document.addEventListener('copy',save);
+//     // 调用右键复制功能
+//     document.execCommand('copy');
+//     //移除copy事件
+//     document.removeEventListener('copy',save);
+//     alert("复制成功");
+//     //console.log(Copy);
+// }
   return (
     <div className="app">
-      <h3>Output Csv</h3>
+      <h3>aXe音频批量导入工具<img src='public/outbox.png'/></h3>
+      <body bgcolor="#F0E68C">
+      <br />
+      请选择CSV文件:&nbsp;&nbsp;
       <input
         id="fileInput"
         type="file"
         multiple
         onChange={(e) => setMultipleFiles(e.target.files)}
       />
+      <h align="right">step1</h>
       <br />
       <br />
-      
+      </body>
+      <body bgcolor="#FFD700">
+      <br />
       <input
         type="text"
         onChange={(e) => setAuidoFilesFolder(e.target.value)}
@@ -229,7 +263,9 @@ function OutputCSV() {
       />
       <br />
       <br />
-      请输入Audio Files路径: &nbsp;&nbsp;
+      请全选音频文件:&nbsp;&nbsp;
+      
+
       <input
         id="fileInput"
         type="file"
@@ -238,32 +274,43 @@ function OutputCSV() {
       />
       <br />
       <br />
+      </body>
+      <body bgcolor="#DAA520">
+      <br />
+      <h>请输入SFX Object Path路径:&nbsp;&nbsp;
       <input
         type="text"
         onChange={(e) => setSFXObjectPath(e.target.value)}
-        placeholder="请输入SFX Object Path路径: "
+        placeholder=""
       />
+      </h>
       <br />
       <br />
+      <h>请输入FOL Object Path路径:&nbsp;&nbsp;
       <input
         type="text"
         onChange={(e) => setFOLObjectPath(e.target.value)}
-        placeholder="请输入FOL Object Path路径: "
+        placeholder=""
       />
+      </h>
       <br />
       <br />
+      <h>请输入EFF Object Path路径:&nbsp;&nbsp;
       <input
         type="text"
         onChange={(e) => setEFFObjectPath(e.target.value)}
-        placeholder="请输入EFF Object Path路径: "
+        placeholder=""
       />
+      </h>
       <br />
       <br />
+      <h>请输入HIT Object Path路径:&nbsp;&nbsp;
       <input
         type="text"
         onChange={(e) => setHITObjectPath(e.target.value)}
-        placeholder="请输入HIT Object Path路径: "
+        placeholder=""
       />
+      </h>
       <br />
       <br />
       <input
@@ -271,10 +318,28 @@ function OutputCSV() {
         onChange={(e) => setAnimMontagePath(e.target.value)}
         placeholder="请输入Anim Montage Path路径: "
       />
+      <br />
+      <br />
       <div className="line">
         <button style={{marginRight: '20px'}} onClick={handleOutputCsv}>Output Csv</button>
         <button onClick={handleOutputJson}>Output Json</button>
+      
+      <br />
+      <br />
+      <br />
+      <br />
       </div>
+      </body>
+      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Physical Folder')}>Physical Folder</button>
+      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Virtual Folder')}>Virtual Folder</button>
+      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Actor-Mixer')}>Actor-Mixer</button>
+      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Random Container')}>Random Container</button>
+      <p/>
+      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Sequence Container')}>Sequence Container</button>
+      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Blend Container')}>Blend Container</button>
+      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Sound SFX')}>Sound SFX</button>
+      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Audio Bus')}>Audio Bus</button>
+      <p/>
     </div>
   );
 }
