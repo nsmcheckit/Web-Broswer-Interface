@@ -174,6 +174,8 @@ function OutputCSV() {
     
     const NotifyTrack = [];
     for(const NotifyTrackName in HLineMap) {
+      const upperCaseNotifyTrackName = NotifyTrackName.toUpperCase()
+      if(upperCaseNotifyTrackName.includes('HIT') || upperCaseNotifyTrackName.includes("FOOT")) continue;
       const AudioEventNames = HLineMap[NotifyTrackName];
       NotifyTrack.push({
         NotifyTrackName,
@@ -181,8 +183,7 @@ function OutputCSV() {
       })
     }
 
-
-    const Data = data.split('\n')
+    const _Data = data.split('\n')
       .slice(0, data.split('\n').length - 1)
       .map(line => line.split(',')[0])
       .filter(x => x && x.length > 0)
@@ -198,6 +199,19 @@ function OutputCSV() {
         })),
       }))
     
+    const Data = _Data.map(x => ({
+      AnimMontagePath: x.AnimMontagePath,
+      NotifyTrack: [
+        ...x.NotifyTrack,
+        {
+          NotifyTrackName: 'Audio_Test',
+          AudioEventParam: [{
+            AudioEventName: x.AnimMontagePath.split('.')[1].slice(0, x.AnimMontagePath.split('.')[1].length - 1)
+          }]
+        }
+      ]
+    }))
+
     const outputJson = {
       Time: nowDate,
       Data,
