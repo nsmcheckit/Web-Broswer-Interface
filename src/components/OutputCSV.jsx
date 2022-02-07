@@ -174,6 +174,8 @@ function OutputCSV() {
     
     const NotifyTrack = [];
     for(const NotifyTrackName in HLineMap) {
+      const upperCaseNotifyTrackName = NotifyTrackName.toUpperCase()
+      if(upperCaseNotifyTrackName.includes('HIT') || upperCaseNotifyTrackName.includes("FOOT")) continue;
       const AudioEventNames = HLineMap[NotifyTrackName];
       NotifyTrack.push({
         NotifyTrackName,
@@ -181,8 +183,7 @@ function OutputCSV() {
       })
     }
 
-
-    const Data = data.split('\n')
+    const _Data = data.split('\n')
       .slice(0, data.split('\n').length - 1)
       .map(line => line.split(',')[0])
       .filter(x => x && x.length > 0)
@@ -198,6 +199,19 @@ function OutputCSV() {
         })),
       }))
     
+    const Data = _Data.map(x => ({
+      AnimMontagePath: x.AnimMontagePath,
+      NotifyTrack: [
+        ...x.NotifyTrack,
+        {
+          NotifyTrackName: 'Audio_Test',
+          AudioEventParam: [{
+            AudioEventName: x.AnimMontagePath.split('.')[1].slice(0, x.AnimMontagePath.split('.')[1].length - 1)
+          }]
+        }
+      ]
+    }))
+
     const outputJson = {
       Time: nowDate,
       Data,
@@ -220,7 +234,151 @@ function OutputCSV() {
     reader.readAsText(file);
   }
 
+  function handleDataTxt(result) {
+    let audioFilesTextures = [];
+    for(const file of audioFiles) {
+      const filenameSplit = file.name.split('.');
+      const filename = filenameSplit.slice(0, filenameSplit.length - 1).join('.')
+      const filenameSplits = filename.split('_');
+
+      let number = -1;
+      try {
+        number = Number.parseInt(filenameSplits[filenameSplits.length - 1]);
+      }catch(e) {}
+
+      audioFilesTextures.push({
+        filename, 
+        red: filenameSplits[1],
+        name: isNaN(number) ? filenameSplits[filenameSplits.length - 1] :  filenameSplits[filenameSplits.length - 2],
+        number: isNaN(number) ? NaN: (number < 10 ? `0${number}`: `${number}`),
+        purple: filenameSplits[2],
+        green: filenameSplits[3],
+      });
+    }
+
+    const paths = {
+      SFX: sfxObjectPath,
+      FOL: folObjectPath,
+      EFF: effObjectPath,
+      HIT: hitObjectPath,
+    };
+
+    const getObjectPath = (text) => {
+      for (const key in paths) {
+        if (text.toUpperCase().includes(key.toUpperCase())) return paths[key];
+      }
+      return "";
+    };
+
+    const HLine = getHLine(result);
+    const outputDatas = HLine.map((hdata) => {
+      const splits = hdata.split('_');
+      const filteredAudioFiles = audioFilesTextures.filter(audioFile => 
+        // SFX 01 
+        audioFile.green + alphabetMap[audioFile.purple] ===  splits[0]
+        && audioFile.red === splits[splits.length - 1]
+      )
+
+      const ans = []
+      for(let i = 0; i < filteredAudioFiles.length; i++) {
+        const audioFileTexture = filteredAudioFiles[i].filename
+        const filename = audioFileTexture.split("\\").pop(); 
+        const filenameSplits = filename.split('_')
+        const secondLast = '<Random Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_')
+        ans.push({
+          AudioFile: `${audioFilesFolder}\\${audioFileTexture}.wav`,
+          ObjectPath:
+            getObjectPath(hdata) + hdata + 
+              (!isNaN(filteredAudioFiles[i].number) ? ("\\" + secondLast): '')
+              + "\\" + filename,
+        })
+      }
+      return ans.length === 0 ? [
+        {
+          AudioFile: '',
+          ObjectPath:
+            getObjectPath(hdata) + hdata + "\\<Random Container>\\",
+        }
+      ]: ans
+    });
+
+    const outputData = flattenDeep(outputDatas);
+    // keep unique
+    const bitmap = {};
+    let whitespace = undefined;
+    const outputText =
+      "AudioFile\tObjectPath\tObject Type\tSwitch Assignation\n" +
+      flattenDeep(
+        flattenDeep(outputData
+        .map((item) => {
+          //AudioFilepopwav:路径去除.wav
+            //artist:YM、ZY、LZY
+            const AudioFilepopwav = item.AudioFile.split(".")[0];
+            
+          if(item.ObjectPath.includes('<Random Container>')) {
+            const firstLine = `${item.AudioFile}\t${item.ObjectPath}\tSound SFX\t`
+            const objPathArr = item.ObjectPath.split('\\');
+            const artist = AudioFilepopwav.split("_").slice(-2)[0];
+            // if (isNaN (Number((AudioFilepopwav.slice(-1)))))
+            //     artist=AudioFilepopwav.split("_").slice(-1);
+            // else
+            //     artist=AudioFilepopwav.split("_").slice(-2);
+            const secondLine = `\t${objPathArr.slice(0, objPathArr.length - 1).join('\\')}\t \t<Switch Group:Sound_Style>${artist}`
+            return [firstLine, secondLine];
+          }
+          const artist = AudioFilepopwav.split("_").slice(-1)[0];
+          return `${item.AudioFile}\t ${item.ObjectPath}\tSound SFX\t<Switch Group:Sound_Style>${artist}`
+        }))
+        .filter((item) => {
+          if(item.includes('<Switch Group:Sound_Style>')) {
+            const key = item.split('\t')[1].trim();
+            if(bitmap[key]) return false;
+            bitmap[key] = true;
+            return true;
+          }
+          return true;
+        })
+        // whitespace
+        .map((line) => {
+          const splits = line.split('\t');
+          let compareWhitespace = undefined;
+          if(splits[0].trim().length > 0) {
+            const sectionWord = splits[1].split('\t').find(word => word.includes('<Random Container>'))
+            if(sectionWord) {
+              const randomContainerWord = sectionWord.split('\\').find(word => word.includes('<Random Container>'));
+              compareWhitespace = randomContainerWord;
+            }
+          }
+          if(splits[0].trim().length === 0 && whitespace !== undefined) {
+            whitespace = undefined;
+            return ['\t\t\t', line];
+          // } else if(whitespace !== compareWhitespace) {
+          //   whitespace = compareWhitespace;
+          //   return [',,,', line];
+          } else {
+            return line;
+          }
+        })
+      )
+        .join("\n");
+
+    let blob = new Blob(["\ufeff"+outputText], { type: "text/plain;charset=utf-8" });
+    saveAs(blob, `export.txt`);
+  }
   
+  function handleOutputTxt() {
+    if (multipleFiles.length === 0) {
+      alert("No files selected");
+      return;
+    }
+    const file = multipleFiles[0];
+    let reader = new FileReader();
+    reader.onload = function (e) {
+      const data = e.target.result;
+      handleDataTxt(data);
+    };
+    reader.readAsText(file);
+  }
 
 //   function Copy(str) {
 //     var save = function (e) {
@@ -322,7 +480,8 @@ function OutputCSV() {
       <br />
       <div className="line">
         <button style={{marginRight: '20px'}} onClick={handleOutputCsv}>Output Csv</button>
-        <button onClick={handleOutputJson}>Output Json</button>
+        <button style={{marginRight: '20px'}} onClick={handleOutputJson}>Output Json</button>
+        <button onClick={handleOutputTxt}>Output txt</button>
       
       <br />
       <br />
