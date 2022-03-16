@@ -15,16 +15,19 @@ export const getHLine = (result) => {
     .map((title, columnIndex) => ({ title, columnIndex }))
     .filter((obj) => obj.columnIndex > 1 && obj.title !== "");
 
+  /*
+  trailingTexture:SFX01_Hero301_Atk_NormalAttack_01_L
+  */
   const dataSignals = prefixSignals.map((signal) => {
     const { title, columnIndex } = signal;
-    return {
-      title,
-      data: data.map((line) => ({
-        value: line[columnIndex],
-        trailingTexture: handlePrefix(line[0]) + "_" + line[1],
-      })),
+      return {
+        title,
+        data: data.map((line) => ({
+          value: line[columnIndex],
+          trailingTexture: handlePrefix(line[0]) + "_" + line[1],
+        })),
     };
-  });
+    });
 
   const dataTextureObjs = dataSignals.map((signal) => {
     const { title, data } = signal;

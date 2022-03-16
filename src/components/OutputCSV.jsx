@@ -66,10 +66,19 @@ function OutputCSV() {
         const filename = audioFileTexture.split("\\").pop(); 
         const filenameSplits = filename.split('_')
         const secondLast = '<Random Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_')
+        //secondLast：<Random Container>Hero301_L_A_SFX_whoosh_lzy
+        //blend container:Hero301_PR_A_SFX_ZY
+        //Hero301_Q_B_SFX_whoosh_ZY
+     
+        const blendLast = '<Blend Container>' + filenameSplits.slice(0, 4).join('_') 
+        + '_' 
+        + (!isNaN(filteredAudioFiles[i].number) ? secondLast.split("_").slice(-1) : filenameSplits.slice(-1))
+       
         ans.push({
           AudioFile: `${audioFilesFolder}\\${audioFileTexture}.wav`,
           ObjectPath:
-            getObjectPath(hdata) + hdata + 
+            getObjectPath(hdata) + hdata + "\\" + 
+            blendLast +
               (!isNaN(filteredAudioFiles[i].number) ? ("\\" + secondLast): '')
               + "\\" + filename,
         })
@@ -104,14 +113,22 @@ function OutputCSV() {
             //     artist=AudioFilepopwav.split("_").slice(-1);
             // else
             //     artist=AudioFilepopwav.split("_").slice(-2);
-            const secondLine = `, ${objPathArr.slice(0, objPathArr.length - 1).join('\\')}, ,<Switch Group:Sound_Style>${artist}`
+            const secondLine = `, ${objPathArr.slice(0, objPathArr.length - 2).join('\\')}, ,<State Group:Test_SoundStyle>${artist}`
             return [firstLine, secondLine];
           }
+          else{
+            const firstLine = `${item.AudioFile}, ${item.ObjectPath}, Sound SFX,`
+            const objPathArr = item.ObjectPath.split('\\');
+            const artist = AudioFilepopwav.split("_").slice(-1)[0];
+            const secondLine = `, ${objPathArr.slice(0, objPathArr.length - 1).join('\\')}, ,<State Group:Test_SoundStyle>${artist}`
+            return [firstLine, secondLine];
+          }
+  
           const artist = AudioFilepopwav.split("_").slice(-1)[0];
-          return `${item.AudioFile}, ${item.ObjectPath},Sound SFX,<Switch Group:Sound_Style>${artist}`
+          return `${item.AudioFile}, ${item.ObjectPath},Sound SFX,<State Group:Test_SoundStyle>${artist}`
         }))
         .filter((item) => {
-          if(item.includes('<Switch Group:Sound_Style>')) {
+          if(item.includes('<State Group:Test_SoundStyle>')) {
             const key = item.split(',')[1].trim();
             if(bitmap[key]) return false;
             bitmap[key] = true;
@@ -166,8 +183,10 @@ function OutputCSV() {
     const HLineMap = {};
     const HLineObject = HLine.map(line => ({
       NotifyTrackName: `Audio_${line.split(/\d+/)[0]}`,
-      AudioEventName: line,
+      AudioEventName: line.includes("Hit") ? line.slice(0,-1):line,
     }))
+    
+   
     HLineObject.forEach(obj => HLineMap[obj.NotifyTrackName] 
         ? HLineMap[obj.NotifyTrackName].push(obj.AudioEventName)
         : HLineMap[obj.NotifyTrackName] = [obj.AudioEventName]);
@@ -182,7 +201,19 @@ function OutputCSV() {
         AudioEventParam: AudioEventNames.map(x => ({AudioEventName: x}))
       })
     }
+    //AudioEventName: "SFX01_Hero301_Atk_Parry_PR"
 
+    /*
+    anim:
+    AM_Hero301_Atk_Parry
+    AM_Hero301_Atk_BranchAttack_00
+    AM_Hero304_Hit_Smash
+
+    AudioEventName: 
+    SFX01_Hero301_Atk_Parry_PR
+    SFX01_Hero301_Atk_BranchAttack_00_PR
+    SFX01_Hero304_Hit_Smash
+    */
     const _Data = data.split('\n')
       .slice(0, data.split('\n').length - 1)
       .map(line => line.split(',')[0])
@@ -191,8 +222,20 @@ function OutputCSV() {
         AnimMontagePath: `Animation Montage'${animMontagePath}/${anim}.${anim}'`,
         NotifyTrack: NotifyTrack.map(x => ({
           ...x,
-          AudioEventParam: x.AudioEventParam.filter(y => y
-            .AudioEventName.includes(
+          AudioEventParam:   
+          anim.includes("Hit") ? 
+            x.AudioEventParam
+            .filter(y => (y
+            .AudioEventName.split('_').slice(1).join('_'))//SFX01_Hero304_Hit_Smash -> Hero304_Hit_Smash
+              ==(
+              anim.split('_')
+              .slice(1)
+              .join('_')))
+            :
+            x.AudioEventParam
+            .filter(y => (y
+            .AudioEventName.split('_').slice(1,-1).join('_'))//SFX01_Hero301_Atk_BranchAttack_00_PR->Hero301_Atk_BranchAttack_00
+              ==(
               anim.split('_')
               .slice(1)
               .join('_')))
@@ -204,7 +247,7 @@ function OutputCSV() {
       NotifyTrack: [
         ...x.NotifyTrack,
         {
-          NotifyTrackName: 'Audio_Test',
+          NotifyTrackName: 'Audio_TEST',
           AudioEventParam: [{
             AudioEventName: x.AnimMontagePath.split('.')[1].slice(0, x.AnimMontagePath.split('.')[1].length - 1)
           }]
@@ -285,10 +328,14 @@ function OutputCSV() {
         const filename = audioFileTexture.split("\\").pop(); 
         const filenameSplits = filename.split('_')
         const secondLast = '<Random Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_')
+        const blendLast = '<Blend Container>' + filenameSplits.slice(0, 4).join('_') 
+        + '_' 
+        + (!isNaN(filteredAudioFiles[i].number) ? secondLast.split("_").slice(-1) : filenameSplits.slice(-1))
         ans.push({
           AudioFile: `${audioFilesFolder}\\${audioFileTexture}.wav`,
           ObjectPath:
-            getObjectPath(hdata) + hdata + 
+            getObjectPath(hdata) + hdata + "\\" +
+            blendLast +
               (!isNaN(filteredAudioFiles[i].number) ? ("\\" + secondLast): '')
               + "\\" + filename,
         })
@@ -301,7 +348,6 @@ function OutputCSV() {
         }
       ]: ans
     });
-
     const outputData = flattenDeep(outputDatas);
     // keep unique
     const bitmap = {};
@@ -323,14 +369,22 @@ function OutputCSV() {
             //     artist=AudioFilepopwav.split("_").slice(-1);
             // else
             //     artist=AudioFilepopwav.split("_").slice(-2);
-            const secondLine = `\t${objPathArr.slice(0, objPathArr.length - 1).join('\\')}\t \t<Switch Group:Sound_Style>${artist}`
+            const secondLine = `\t${objPathArr.slice(0, objPathArr.length - 2).join('\\')}\t \t<State Group:Test_SoundStyle>${artist}`
             return [firstLine, secondLine];
           }
+          else{
+            const firstLine = `${item.AudioFile}\t${item.ObjectPath}\tSound SFX\t`
+            const objPathArr = item.ObjectPath.split('\\');
+            const artist = AudioFilepopwav.split("_").slice(-1)[0];
+            const secondLine = `\t${objPathArr.slice(0, objPathArr.length - 1).join('\\')}\t\t<State Group:Test_SoundStyle>${artist}`
+            return [firstLine, secondLine];
+          }
+          
           const artist = AudioFilepopwav.split("_").slice(-1)[0];
-          return `${item.AudioFile}\t ${item.ObjectPath}\tSound SFX\t<Switch Group:Sound_Style>${artist}`
+          return `${item.AudioFile}\t ${item.ObjectPath}\tSound SFX\t<State Group:Test_SoundStyle>${artist}`
         }))
         .filter((item) => {
-          if(item.includes('<Switch Group:Sound_Style>')) {
+          if(item.includes('<State Group:Test_SoundStyle>')) {
             const key = item.split('\t')[1].trim();
             if(bitmap[key]) return false;
             bitmap[key] = true;
@@ -398,9 +452,10 @@ function OutputCSV() {
 // }
   return (
     <div className="app">
-      <h3>aXe音频批量导入工具<img src='public/outbox.png'/></h3>
+      <h3>aXe音频批量导入工具 <img src='outbox.png' alt="" width="30" height="30"/></h3>
       <body bgcolor="#F0E68C">
       <br />
+      <img src='paper.png' alt="" width="30" height="30"/>
       请选择CSV文件:&nbsp;&nbsp;
       <input
         id="fileInput"
@@ -408,19 +463,19 @@ function OutputCSV() {
         multiple
         onChange={(e) => setMultipleFiles(e.target.files)}
       />
-      <h align="right">step1</h>
       <br />
       <br />
       </body>
       <body bgcolor="#FFD700">
       <br />
+      请输入Audio Files文件夹路径:&nbsp;&nbsp;
       <input
         type="text"
         onChange={(e) => setAuidoFilesFolder(e.target.value)}
-        placeholder="请输入Audio Files文件夹路径: "
       />
       <br />
       <br />
+      <img src='folder.png' alt="" width="30" height="30"/>
       请全选音频文件:&nbsp;&nbsp;
       
 
@@ -439,8 +494,9 @@ function OutputCSV() {
       <input
         type="text"
         onChange={(e) => setSFXObjectPath(e.target.value)}
-        placeholder=""
+        defaultValue=""
       />
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>SFX_Hero301\\<Switch Container>')}>默认值</button>
       </h>
       <br />
       <br />
@@ -448,8 +504,9 @@ function OutputCSV() {
       <input
         type="text"
         onChange={(e) => setFOLObjectPath(e.target.value)}
-        placeholder=""
+        defaultValue=""
       />
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>FOL_Hero301\\<Switch Container>')}>默认值</button>
       </h>
       <br />
       <br />
@@ -457,8 +514,9 @@ function OutputCSV() {
       <input
         type="text"
         onChange={(e) => setEFFObjectPath(e.target.value)}
-        placeholder=""
+        defaultValue=""
       />
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>EFF_Hero301\\<Switch Container>')}>默认值</button>
       </h>
       <br />
       <br />
@@ -466,16 +524,19 @@ function OutputCSV() {
       <input
         type="text"
         onChange={(e) => setHITObjectPath(e.target.value)}
-        placeholder=""
+        defaultValue=""
       />
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>HIT_Hero301\\<Switch Container>')}>默认值</button>
       </h>
       <br />
       <br />
+      请输入AnimMontagePath路径:&nbsp;&nbsp;
       <input
         type="text"
         onChange={(e) => setAnimMontagePath(e.target.value)}
-        placeholder="请输入Anim Montage Path路径: "
+        defaultValue=""
       />
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('/Game/Axe/Core/Characters/Hero301/MTG_Hero301')}>默认值</button>
       <br />
       <br />
       <div className="line">
@@ -491,12 +552,13 @@ function OutputCSV() {
       </body>
       <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Physical Folder')}>Physical Folder</button>
       <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Virtual Folder')}>Virtual Folder</button>
-      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Actor-Mixer')}>Actor-Mixer</button>
-      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Random Container')}>Random Container</button>
+      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('<Actor-Mixer>')}>Actor-Mixer</button>
+      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('<Random Container>')}>Random Container</button>
+      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('<Switch Container>')}>Switch Container</button>
       <p/>
-      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Sequence Container')}>Sequence Container</button>
-      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Blend Container')}>Blend Container</button>
-      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Sound SFX')}>Sound SFX</button>
+      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('<Sequence Container>')}>Sequence Container</button>
+      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('<Blend Container>')}>Blend Container</button>
+      <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('<Sound SFX>')}>Sound SFX</button>
       <button style={{marginRight: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('Audio Bus')}>Audio Bus</button>
       <p/>
     </div>
