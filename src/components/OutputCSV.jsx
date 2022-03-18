@@ -14,6 +14,7 @@ function OutputCSV() {
   const [hitObjectPath, setHITObjectPath] = useState("");
   const [animMontagePath, setAnimMontagePath] = useState("");
   const [audioFilesFolder, setAuidoFilesFolder] = useState("");
+  const [attachName,setAttachName] = useState("");
 
   const handleData = (result) => {
     let audioFilesTextures = [];
@@ -190,15 +191,18 @@ function OutputCSV() {
     HLineObject.forEach(obj => HLineMap[obj.NotifyTrackName] 
         ? HLineMap[obj.NotifyTrackName].push(obj.AudioEventName)
         : HLineMap[obj.NotifyTrackName] = [obj.AudioEventName]);
-    
+
     const NotifyTrack = [];
     for(const NotifyTrackName in HLineMap) {
       const upperCaseNotifyTrackName = NotifyTrackName.toUpperCase()
       if(upperCaseNotifyTrackName.includes('HIT') || upperCaseNotifyTrackName.includes("FOOT")) continue;
       const AudioEventNames = HLineMap[NotifyTrackName];
+      
       NotifyTrack.push({
         NotifyTrackName,
-        AudioEventParam: AudioEventNames.map(x => ({AudioEventName: x}))
+        AudioEventParam: NotifyTrackName === 'Audio_SFX' ? 
+        AudioEventNames.map(x => ({AudioEventName: x,AttachName:attachName})) 
+        : AudioEventNames.map(x => ({AudioEventName: x,AttachName:""}))//加入AttachName
       })
     }
     //AudioEventName: "SFX01_Hero301_Atk_Parry_PR"
@@ -238,10 +242,12 @@ function OutputCSV() {
               ==(
               anim.split('_')
               .slice(1)
-              .join('_')))
+              .join('_'))),
         })),
       }))
-    
+    //_Data[0]["NotifyTrack"]["AudioEventParam"][0]["AttachName"] = "123";
+    //console.log(_Data);
+      
     const Data = _Data.map(x => ({
       AnimMontagePath: x.AnimMontagePath,
       NotifyTrack: [
@@ -490,6 +496,9 @@ function OutputCSV() {
       </body>
       <body bgcolor="#DAA520">
       <br />
+      For Wwise:
+      <br />
+      <br />
       <h>请输入SFX Object Path路径:&nbsp;&nbsp;
       <input
         type="text"
@@ -530,6 +539,9 @@ function OutputCSV() {
       </h>
       <br />
       <br />
+      For UE:
+      <br />
+      <br />
       请输入AnimMontagePath路径:&nbsp;&nbsp;
       <input
         type="text"
@@ -537,6 +549,15 @@ function OutputCSV() {
         defaultValue=""
       />
       <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('/Game/Axe/Core/Characters/Hero301/MTG_Hero301')}>默认值</button>
+      <br />
+      <br />
+      请输入SFX AttachName的值:&nbsp;&nbsp;
+      <input
+        type="text"
+        onChange={(e) => setAttachName(e.target.value)}
+        defaultValue=""
+      />
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('WeaponSocket')}>默认值</button>
       <br />
       <br />
       <div className="line">
