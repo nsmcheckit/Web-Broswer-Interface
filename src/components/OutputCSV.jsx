@@ -15,6 +15,7 @@ function OutputCSV() {
   const [animMontagePath, setAnimMontagePath] = useState("");
   const [audioFilesFolder, setAuidoFilesFolder] = useState("");
   const [attachName,setAttachName] = useState("");
+  const [designerName,setDesignerName] = useState("");
 
   const handleData = (result) => {
     let audioFilesTextures = [];
@@ -28,14 +29,15 @@ function OutputCSV() {
         number = Number.parseInt(filenameSplits[filenameSplits.length - 1]);
       }catch(e) {}
 
+      //DAW导出的文件名
       audioFilesTextures.push({
-        filename, 
-        red: filenameSplits[1],
-        name: isNaN(number) ? filenameSplits[filenameSplits.length - 1] :  filenameSplits[filenameSplits.length - 2],
-        number: isNaN(number) ? NaN: (number < 10 ? `0${number}`: `${number}`),
-        purple: filenameSplits[2],
-        green: filenameSplits[3],
-      });
+        filename,
+        type:filenameSplits[0].slice(0,-2),//类型SFX，FOL，EFF，FOOT
+        lay:filenameSplits[0].slice(-2),//段位：‘SFX01’中的‘01’
+        match:isNaN(number) ? filenameSplits.slice(2).join("_") : filenameSplits.slice(2,-1).join("_"),//需要匹配的地方，有xxx的时候，需优化
+        red:isNaN(number) ? filenameSplits[filenameSplits.length - 1]:filenameSplits[filenameSplits.length - 2],//出招表（有出招表的和伪出招表）
+        number: isNaN(filenameSplits.slice(-1)) ? NaN: (number < 10 ? `0${number}`: `${number}`),
+      });  
     }
 
     const paths = {
@@ -52,29 +54,41 @@ function OutputCSV() {
       return "";
     };
 
+    //文件名和Switch Container一一对应
     const HLine = getHLine(result);
     const outputDatas = HLine.map((hdata) => {
-      const splits = hdata.split('_');
+      const splits = hdata.split('_');//hdata:Switch Container的名字
       const filteredAudioFiles = audioFilesTextures.filter(audioFile => 
         // SFX 01 
+        /*
         audioFile.green + alphabetMap[audioFile.purple] ===  splits[0]
         && audioFile.red === splits[splits.length - 1]
-      )
+        */
+        audioFile.type + audioFile.lay === splits[0]
+        && audioFile.match === splits.slice(1).join("_")
 
+      )
+      /*
+      设置Object Path层级
+      audioFileTexture:SFX01_xxx_Hero301_Atk_Parry_PR_01 
+      filename:SFX01_xxx_Hero301_Atk_Parry_PR_ZYM_01 
+      secondLast:<Random Container>SFX01_xxx_Hero301_Atk_Parry_PR_ZYM
+      blendLast:<Random Container>SFX01_xxx_Hero301_Atk_Parry_PR_ZYM
+      */
       const ans = []
       for(let i = 0; i < filteredAudioFiles.length; i++) {
         const audioFileTexture = filteredAudioFiles[i].filename
-        const filename = audioFileTexture.split("\\").pop(); 
+        const filename = isNaN(audioFileTexture.split("\\").pop().split("_").slice(-1)) ? 
+        audioFileTexture.split("\\").pop() + "_" + designerName 
+        :
+        audioFileTexture.split("\\").pop().split("_").slice(0,-1).join("_")
+        + "_" + designerName + "_"
+        + audioFileTexture.split("\\").pop().split("_").slice(-1).join("_"); 
+        //audioFileTexture.split("\\").pop(); 
         const filenameSplits = filename.split('_')
         const secondLast = '<Random Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_')
-        //secondLast：<Random Container>Hero301_L_A_SFX_whoosh_lzy
-        //blend container:Hero301_PR_A_SFX_ZY
-        //Hero301_Q_B_SFX_whoosh_ZY
-     
-        const blendLast = '<Blend Container>' + filenameSplits.slice(0, 4).join('_') 
-        + '_' 
-        + (!isNaN(filteredAudioFiles[i].number) ? secondLast.split("_").slice(-1) : filenameSplits.slice(-1))
-       
+        const blendLast = '<Blend Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_') 
+
         ans.push({
           AudioFile: `${audioFilesFolder}\\${audioFileTexture}.wav`,
           ObjectPath:
@@ -102,31 +116,22 @@ function OutputCSV() {
       flattenDeep(
         flattenDeep(outputData
         .map((item) => {
-          //AudioFilepopwav:路径去除.wav
+          //AudioFilepopwav:路径去除.wav + designerName
             //artist:YM、ZY、LZY
-            const AudioFilepopwav = item.AudioFile.split(".")[0];
-            
           if(item.ObjectPath.includes('<Random Container>')) {
             const firstLine = `${item.AudioFile}, ${item.ObjectPath}, Sound SFX,`
             const objPathArr = item.ObjectPath.split('\\');
-            const artist = AudioFilepopwav.split("_").slice(-2)[0];
-            // if (isNaN (Number((AudioFilepopwav.slice(-1)))))
-            //     artist=AudioFilepopwav.split("_").slice(-1);
-            // else
-            //     artist=AudioFilepopwav.split("_").slice(-2);
+            const artist = designerName;
             const secondLine = `, ${objPathArr.slice(0, objPathArr.length - 2).join('\\')}, ,<State Group:Test_SoundStyle>${artist}`
             return [firstLine, secondLine];
           }
           else{
             const firstLine = `${item.AudioFile}, ${item.ObjectPath}, Sound SFX,`
             const objPathArr = item.ObjectPath.split('\\');
-            const artist = AudioFilepopwav.split("_").slice(-1)[0];
+            const artist = designerName;
             const secondLine = `, ${objPathArr.slice(0, objPathArr.length - 1).join('\\')}, ,<State Group:Test_SoundStyle>${artist}`
             return [firstLine, secondLine];
           }
-  
-          const artist = AudioFilepopwav.split("_").slice(-1)[0];
-          return `${item.AudioFile}, ${item.ObjectPath},Sound SFX,<State Group:Test_SoundStyle>${artist}`
         }))
         .filter((item) => {
           if(item.includes('<State Group:Test_SoundStyle>')) {
@@ -151,9 +156,6 @@ function OutputCSV() {
           if(splits[0].trim().length === 0 && whitespace !== undefined) {
             whitespace = undefined;
             return [',,,', line];
-          // } else if(whitespace !== compareWhitespace) {
-          //   whitespace = compareWhitespace;
-          //   return [',,,', line];
           } else {
             return line;
           }
@@ -231,7 +233,7 @@ function OutputCSV() {
             x.AudioEventParam
             .filter(y => (y
             .AudioEventName.split('_').slice(1).join('_'))//SFX01_Hero304_Hit_Smash -> Hero304_Hit_Smash
-              ==(
+              ===(
               anim.split('_')
               .slice(1)
               .join('_')))
@@ -239,14 +241,12 @@ function OutputCSV() {
             x.AudioEventParam
             .filter(y => (y
             .AudioEventName.split('_').slice(1,-1).join('_'))//SFX01_Hero301_Atk_BranchAttack_00_PR->Hero301_Atk_BranchAttack_00
-              ==(
+              ===(
               anim.split('_')
               .slice(1)
               .join('_'))),
         })),
       }))
-    //_Data[0]["NotifyTrack"]["AudioEventParam"][0]["AttachName"] = "123";
-    //console.log(_Data);
       
     const Data = _Data.map(x => ({
       AnimMontagePath: x.AnimMontagePath,
@@ -493,8 +493,20 @@ function OutputCSV() {
       />
       <br />
       <br />
+      请输入音效设计师名字:&nbsp;&nbsp;
+      <input
+        type="text"
+        onChange={(e) => setDesignerName(e.target.value)}
+        defaultValue=""
+      />
+      <button style={{marginLeft: '2px'}} className="btn" onClick={()=>navigator.clipboard.writeText('ZYM')}>ZYM</button>
+      <button style={{marginLeft: '2px'}} className="btn" onClick={()=>navigator.clipboard.writeText('ZY')}>ZY</button>
+      <button style={{marginLeft: '2px'}} className="btn" onClick={()=>navigator.clipboard.writeText('LZY')}>LZY</button>
+      <br />
+      <br />
       </body>
       <body bgcolor="#DAA520">
+  
       <br />
       For Wwise:
       <br />

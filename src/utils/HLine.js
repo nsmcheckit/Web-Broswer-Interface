@@ -16,7 +16,9 @@ export const getHLine = (result) => {
     .filter((obj) => obj.columnIndex > 1 && obj.title !== "");
 
   /*
-  trailingTexture:SFX01_Hero301_Atk_NormalAttack_01_L
+  trailingTexture:
+  有出招表：SFX01_Hero301_Atk_NormalAttack_01_L
+  无出招表：SFX01_Captain_Common_Dead
   */
   const dataSignals = prefixSignals.map((signal) => {
     const { title, columnIndex } = signal;
@@ -24,7 +26,7 @@ export const getHLine = (result) => {
         title,
         data: data.map((line) => ({
           value: line[columnIndex],
-          trailingTexture: handlePrefix(line[0]) + "_" + line[1],
+          trailingTexture: line[1] === "" ? handlePrefix(line[0]) : handlePrefix(line[0]) + "_" + line[1],
         })),
     };
     });
