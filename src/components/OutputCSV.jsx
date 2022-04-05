@@ -14,9 +14,11 @@ function OutputCSV() {
   const [hitObjectPath, setHITObjectPath] = useState("");
   const [animMontagePath, setAnimMontagePath] = useState("");
   const [audioFilesFolder, setAuidoFilesFolder] = useState("");
-  const [attachName,setAttachName] = useState("");
+  const [attachName,setAttachName] = useState("");//UE中AttachName
+  const [sfxAkEventPath,setsfxAkEventPath] = useState("");
   const [designerName,setDesignerName] = useState("");
 
+  //output CSV
   const handleData = (result) => {
     let audioFilesTextures = [];
     for(const file of audioFiles) {
@@ -180,34 +182,43 @@ function OutputCSV() {
     reader.readAsText(file);
   };
 
+  //Json
   const handleOutputData = (data) => {
     const nowDate = getNowDate();
     const HLine = getHLine(data);
     const HLineMap = {};
     const HLineObject = HLine.map(line => ({
       NotifyTrackName: `Audio_${line.split(/\d+/)[0]}`,
-      AudioEventName: line.includes("Hit") ? line.slice(0,-1):line,
+      //AudioEventName: (line.includes("Hit") && (line.includes("Hero")))? line.slice(0,-1):line,//包括Hit并且包括Hero，因为在这种情况下没有出招表且有多余下划线
+      AudioEventName: line,
     }))
     
-   
     HLineObject.forEach(obj => HLineMap[obj.NotifyTrackName] 
         ? HLineMap[obj.NotifyTrackName].push(obj.AudioEventName)
         : HLineMap[obj.NotifyTrackName] = [obj.AudioEventName]);
-
+    
+    console.log(HLineObject);
     const NotifyTrack = [];
     for(const NotifyTrackName in HLineMap) {
+      
       const upperCaseNotifyTrackName = NotifyTrackName.toUpperCase()
       if(upperCaseNotifyTrackName.includes('HIT') || upperCaseNotifyTrackName.includes("FOOT")) continue;
       const AudioEventNames = HLineMap[NotifyTrackName];
       
+      
       NotifyTrack.push({
         NotifyTrackName,
         AudioEventParam: NotifyTrackName === 'Audio_SFX' ? 
-        AudioEventNames.map(x => ({AudioEventName: x,AttachName:attachName})) 
-        : AudioEventNames.map(x => ({AudioEventName: x,AttachName:""}))//加入AttachName
+        AudioEventNames.map(x => ({AudioEventName: x,AttachName: attachName,AkEventPath: sfxAkEventPath + x + "." + x,})) 
+        : AudioEventNames.map(x => ({AudioEventName: x,AttachName:"",AkEventPath:"",}))//加入AttachName
       })
     }
-    //AudioEventName: "SFX01_Hero301_Atk_Parry_PR"
+    
+    /*
+    AudioEventName: 
+    "SFX01_Hero301_Atk_Parry_PR"
+    "SFX01_Captain_Common_Dead"
+    */
 
     /*
     anim:
@@ -215,13 +226,21 @@ function OutputCSV() {
     AM_Hero301_Atk_BranchAttack_00
     AM_Hero304_Hit_Smash
 
+    AM_Captain_Common_Dead
+
+    AM_Captain_Common_Hit_ExRise
+
     AudioEventName: 
     SFX01_Hero301_Atk_Parry_PR
     SFX01_Hero301_Atk_BranchAttack_00_PR
     SFX01_Hero304_Hit_Smash
+
+    SFX01_Captain_Common_Dead
+
+    SFX01_Captain_Common_Hit_ExRise
     */
     const _Data = data.split('\n')
-      .slice(0, data.split('\n').length - 1)
+      .slice(0, data.split('\n').length)//length - 1 ??
       .map(line => line.split(',')[0])
       .filter(x => x && x.length > 0)
       .map(anim => ({
@@ -229,10 +248,10 @@ function OutputCSV() {
         NotifyTrack: NotifyTrack.map(x => ({
           ...x,
           AudioEventParam:   
-          anim.includes("Hit") ? 
+          (anim.includes("Hit") || !(anim.includes("Hero"))) ? //是Hit或不是主角？（这两个都没出招表）
             x.AudioEventParam
             .filter(y => (y
-            .AudioEventName.split('_').slice(1).join('_'))//SFX01_Hero304_Hit_Smash -> Hero304_Hit_Smash
+            .AudioEventName.split('_').slice(1).join('_'))//SFX01_Hero304_Hit_Smash -> Hero304_Hit_Smash, SFX01_Captain_Common_Dead -> Captain_Common_Dead
               ===(
               anim.split('_')
               .slice(1)
@@ -244,7 +263,7 @@ function OutputCSV() {
               ===(
               anim.split('_')
               .slice(1)
-              .join('_'))),
+              .join('_')))
         })),
       }))
       
@@ -260,7 +279,7 @@ function OutputCSV() {
         }
       ]
     }))
-
+    console.log(Data);
     const outputJson = {
       Time: nowDate,
       Data,
@@ -283,6 +302,7 @@ function OutputCSV() {
     reader.readAsText(file);
   }
 
+  //TXT
   function handleDataTxt(result) {
     let audioFilesTextures = [];
     for(const file of audioFiles) {
@@ -295,15 +315,16 @@ function OutputCSV() {
         number = Number.parseInt(filenameSplits[filenameSplits.length - 1]);
       }catch(e) {}
 
-      audioFilesTextures.push({
-        filename, 
-        red: filenameSplits[1],
-        name: isNaN(number) ? filenameSplits[filenameSplits.length - 1] :  filenameSplits[filenameSplits.length - 2],
-        number: isNaN(number) ? NaN: (number < 10 ? `0${number}`: `${number}`),
-        purple: filenameSplits[2],
-        green: filenameSplits[3],
-      });
-    }
+    //DAW导出的文件名
+    audioFilesTextures.push({
+      filename,
+      type:filenameSplits[0].slice(0,-2),//类型SFX，FOL，EFF，FOOT
+      lay:filenameSplits[0].slice(-2),//段位：‘SFX01’中的‘01’
+      match:isNaN(number) ? filenameSplits.slice(2).join("_") : filenameSplits.slice(2,-1).join("_"),//需要匹配的地方，有xxx的时候，需优化
+      red:isNaN(number) ? filenameSplits[filenameSplits.length - 1]:filenameSplits[filenameSplits.length - 2],//出招表（有出招表的和伪出招表）
+      number: isNaN(filenameSplits.slice(-1)) ? NaN: (number < 10 ? `0${number}`: `${number}`),
+    });  
+  }
 
     const paths = {
       SFX: sfxObjectPath,
@@ -324,23 +345,28 @@ function OutputCSV() {
       const splits = hdata.split('_');
       const filteredAudioFiles = audioFilesTextures.filter(audioFile => 
         // SFX 01 
-        audioFile.green + alphabetMap[audioFile.purple] ===  splits[0]
-        && audioFile.red === splits[splits.length - 1]
+        audioFile.type + audioFile.lay === splits[0]
+        && audioFile.match === splits.slice(1).join("_")
       )
 
       const ans = []
       for(let i = 0; i < filteredAudioFiles.length; i++) {
         const audioFileTexture = filteredAudioFiles[i].filename
-        const filename = audioFileTexture.split("\\").pop(); 
+        const filename = isNaN(audioFileTexture.split("\\").pop().split("_").slice(-1)) ? 
+        audioFileTexture.split("\\").pop() + "_" + designerName 
+        :
+        audioFileTexture.split("\\").pop().split("_").slice(0,-1).join("_")
+        + "_" + designerName + "_"
+        + audioFileTexture.split("\\").pop().split("_").slice(-1).join("_"); 
+        //audioFileTexture.split("\\").pop(); 
         const filenameSplits = filename.split('_')
         const secondLast = '<Random Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_')
-        const blendLast = '<Blend Container>' + filenameSplits.slice(0, 4).join('_') 
-        + '_' 
-        + (!isNaN(filteredAudioFiles[i].number) ? secondLast.split("_").slice(-1) : filenameSplits.slice(-1))
+        const blendLast = '<Blend Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_') 
+
         ans.push({
           AudioFile: `${audioFilesFolder}\\${audioFileTexture}.wav`,
           ObjectPath:
-            getObjectPath(hdata) + hdata + "\\" +
+            getObjectPath(hdata) + hdata + "\\" + 
             blendLast +
               (!isNaN(filteredAudioFiles[i].number) ? ("\\" + secondLast): '')
               + "\\" + filename,
@@ -370,7 +396,7 @@ function OutputCSV() {
           if(item.ObjectPath.includes('<Random Container>')) {
             const firstLine = `${item.AudioFile}\t${item.ObjectPath}\tSound SFX\t`
             const objPathArr = item.ObjectPath.split('\\');
-            const artist = AudioFilepopwav.split("_").slice(-2)[0];
+            const artist = designerName;
             // if (isNaN (Number((AudioFilepopwav.slice(-1)))))
             //     artist=AudioFilepopwav.split("_").slice(-1);
             // else
@@ -381,7 +407,7 @@ function OutputCSV() {
           else{
             const firstLine = `${item.AudioFile}\t${item.ObjectPath}\tSound SFX\t`
             const objPathArr = item.ObjectPath.split('\\');
-            const artist = AudioFilepopwav.split("_").slice(-1)[0];
+            const artist = designerName;
             const secondLine = `\t${objPathArr.slice(0, objPathArr.length - 1).join('\\')}\t\t<State Group:Test_SoundStyle>${artist}`
             return [firstLine, secondLine];
           }
@@ -570,6 +596,15 @@ function OutputCSV() {
         defaultValue=""
       />
       <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('WeaponSocket')}>默认值</button>
+      <br />
+      <br />
+      请输入SFX AkEventPath的值:&nbsp;&nbsp;
+      <input
+        type="text"
+        onChange={(e) => setsfxAkEventPath(e.target.value)}
+        defaultValue=""
+      />
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('/game/WwiseAudio/Events/Fight/Hero301/SFX_Hero301/')}>默认值</button>
       <br />
       <br />
       <div className="line">
