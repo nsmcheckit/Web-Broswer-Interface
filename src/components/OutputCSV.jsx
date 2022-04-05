@@ -197,7 +197,7 @@ function OutputCSV() {
         ? HLineMap[obj.NotifyTrackName].push(obj.AudioEventName)
         : HLineMap[obj.NotifyTrackName] = [obj.AudioEventName]);
     
-    console.log(HLineObject);
+    //console.log(HLineObject);
     const NotifyTrack = [];
     for(const NotifyTrackName in HLineMap) {
       
@@ -279,7 +279,7 @@ function OutputCSV() {
         }
       ]
     }))
-    console.log(Data);
+    //console.log(Data);
     const outputJson = {
       Time: nowDate,
       Data,
