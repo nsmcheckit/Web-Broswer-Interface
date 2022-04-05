@@ -14,8 +14,10 @@ function OutputCSV() {
   const [hitObjectPath, setHITObjectPath] = useState("");
   const [animMontagePath, setAnimMontagePath] = useState("");
   const [audioFilesFolder, setAuidoFilesFolder] = useState("");
-  const [attachName,setAttachName] = useState("");//UE中AttachName
+  const [sfxAttachName,setSfxAttachName] = useState("");//UE中AttachName
+  const [folAttachName,setFolAttachName] = useState("");
   const [sfxAkEventPath,setsfxAkEventPath] = useState("");
+  const [folAkEventPath,setFolAkEventPath] = useState("");
   const [designerName,setDesignerName] = useState("");
 
   //output CSV
@@ -208,9 +210,26 @@ function OutputCSV() {
       
       NotifyTrack.push({
         NotifyTrackName,
-        AudioEventParam: NotifyTrackName === 'Audio_SFX' ? 
-        AudioEventNames.map(x => ({AudioEventName: x,AttachName: attachName,AkEventPath: sfxAkEventPath + x + "." + x,})) 
-        : AudioEventNames.map(x => ({AudioEventName: x,AttachName:"",AkEventPath:"",}))//加入AttachName
+        AudioEventParam: 
+        /*
+        ()=>
+        {
+          if (NotifyTrackName === 'Audio_SFX'){
+            return AudioEventNames.map(x => ({AudioEventName: x,AttachName: sfxAttachName,AkEventPath: sfxAkEventPath + x + "." + x,}));
+          }
+          else if (NotifyTrackName === 'Audio_FOL'){
+            return AudioEventNames.map(x => ({AudioEventName: x,AttachName: folAttachName,AkEventPath: folAkEventPath + x + "." + x,}));
+          }
+          
+          return AudioEventNames.map(x => ({AudioEventName: x,AttachName:"",AkEventPath:"",}));
+        }
+        */
+        NotifyTrackName === 'Audio_SFX' ? 
+        AudioEventNames.map(x => ({AudioEventName: x,AttachName: sfxAttachName,AkEventPath: sfxAkEventPath + x + "." + x,})) 
+        : (NotifyTrackName === 'Audio_FOL' ?
+        AudioEventNames.map(x => ({AudioEventName: x,AttachName: folAttachName,AkEventPath: folAkEventPath + x + "." + x,}))
+        : 
+        AudioEventNames.map(x => ({AudioEventName: x,AttachName:"",AkEventPath:"",})))//加入AttachName
       })
     }
     
@@ -580,31 +599,41 @@ function OutputCSV() {
       For UE:
       <br />
       <br />
-      请输入AnimMontagePath路径:&nbsp;&nbsp;
+      AnimMontagePath:&nbsp;&nbsp;
       <input
-        type="text"
+        type="liltext"
         onChange={(e) => setAnimMontagePath(e.target.value)}
         defaultValue=""
       />
       <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('/Game/Axe/Core/Characters/Hero301/MTG_Hero301')}>默认值</button>
       <br />
       <br />
-      请输入SFX AttachName的值:&nbsp;&nbsp;
+      SFX AttachName:&nbsp;&nbsp;
       <input
-        type="text"
-        onChange={(e) => setAttachName(e.target.value)}
+        onChange={(e) => setSfxAttachName(e.target.value)}
+        defaultValue=""
+      />
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('WeaponSocket')}>默认值</button>
+      &nbsp;&nbsp;FOL AttachName:&nbsp;&nbsp;
+      <input
+        onChange={(e) => setFolAttachName(e.target.value)}
         defaultValue=""
       />
       <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('WeaponSocket')}>默认值</button>
       <br />
       <br />
-      请输入SFX AkEventPath的值:&nbsp;&nbsp;
+      SFX AkEventPath:&nbsp;&nbsp;
       <input
-        type="text"
         onChange={(e) => setsfxAkEventPath(e.target.value)}
         defaultValue=""
       />
       <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('/game/WwiseAudio/Events/Fight/Hero301/SFX_Hero301/')}>默认值</button>
+      &nbsp;&nbsp;FOL AkEventPath:&nbsp;&nbsp;
+      <input
+        onChange={(e) => setFolAkEventPath(e.target.value)}
+        defaultValue=""
+      />
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('/game/WwiseAudio/Events/Fight/Hero301/FOL_Hero301/')}>默认值</button>
       <br />
       <br />
       <div className="line">

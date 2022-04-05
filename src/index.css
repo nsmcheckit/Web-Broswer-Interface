@@ -29,6 +29,10 @@ input[type="text"] {
   width: 500px;
 }
 
+input[type="liltext"] {
+  width: 580px;
+}
+
 .select {
   margin-right: 10px;
 }
