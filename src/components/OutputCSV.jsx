@@ -16,6 +16,16 @@ function OncheckBox(e)
             }
           }
 
+function OncheckBox2(e)
+          {
+            if(document.getElementById('noTestType').checked){
+              console.log(1);
+            }
+            else{
+              console.log(0);
+            }
+          }
+
 function countNum(arr,item){
     let num = 0;
     for(let i = 0; i < arr.length; i++){
@@ -413,8 +423,9 @@ function OutputCSV() {
               .join('_')))
         })),
       }))
-
-    const Data = _Data.map(x => ({
+    const Data = [];
+    if(document.getElementById('noTestType').checked){
+    Data = _Data.map(x => ({
       AnimMontagePath: x.AnimMontagePath,
       NotifyTrack: [
         ...x.NotifyTrack,
@@ -425,7 +436,10 @@ function OutputCSV() {
           }]
         }
       ]
-    }))
+    }))}
+    else{
+    Data = _Data;
+    }
     //console.log(Data);
     const outputJson = {
       Time: nowDate,
@@ -838,6 +852,13 @@ function OutputCSV() {
       <br />
       <br />
       For UE:
+      <label>
+        <input 
+          type="checkbox"
+          id = 'noTestType'
+          onClick={(e)=>OncheckBox2(e)}
+          />no Audio_TEST
+      </label>
       <br />
       <br />
       AnimMontagePath:&nbsp;&nbsp;
