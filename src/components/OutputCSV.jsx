@@ -4,6 +4,27 @@ import { flattenDeep } from "lodash";
 import { getNowDate } from "../utils/time";
 import { getHLine } from "../utils/HLine";
 import { alphabetMap } from "../const/alphabet";
+import { numberArr } from "../const/number";
+
+function OncheckBox(e)
+          {
+            if(document.getElementById('simpleType').checked){
+              console.log(1);
+            }
+            else{
+              console.log(0);
+            }
+          }
+
+function countNum(arr,item){
+    let num = 0;
+    for(let i = 0; i < arr.length; i++){
+      if (arr[i]===(item)){
+        num++;
+      }
+    }
+    return num;
+}
 
 function OutputCSV() {
   const [multipleFiles, setMultipleFiles] = useState([]);
@@ -16,8 +37,10 @@ function OutputCSV() {
   const [audioFilesFolder, setAuidoFilesFolder] = useState("");
   const [sfxAttachName,setSfxAttachName] = useState("");//UE中AttachName
   const [folAttachName,setFolAttachName] = useState("");
+  const [effAttachName,setEffAttachName] = useState("");
   const [sfxAkEventPath,setsfxAkEventPath] = useState("");
   const [folAkEventPath,setFolAkEventPath] = useState("");
+  const [effAkEventPath,setEffAkEventPath] = useState("");
   const [designerName,setDesignerName] = useState("");
 
   //output CSV
@@ -60,6 +83,33 @@ function OutputCSV() {
 
     //文件名和Switch Container一一对应
     const HLine = getHLine(result);
+    const matchArr = []; //简易版匹配
+    const outputMatchArr = HLine.map((hdata) => {
+      const splits = hdata.split('_');
+      const filteredAudioFiles = audioFilesTextures.filter(audioFile => 
+        audioFile.type + audioFile.lay === splits[0]
+        && audioFile.match === splits.slice(1).join("_")
+
+      )
+      for(let i = 0; i < filteredAudioFiles.length; i++){
+        const audioFileTexture = filteredAudioFiles[i].filename
+        const filename = isNaN(audioFileTexture.split("\\").pop().split("_").slice(-1)) ? 
+        audioFileTexture.split("\\").pop() + "_" + designerName 
+        :
+        audioFileTexture.split("\\").pop().split("_").slice(0,-1).join("_")
+        + "_" + designerName + "_"
+        + audioFileTexture.split("\\").pop().split("_").slice(-1).join("_"); 
+        const filenameSplits = filename.split('_')
+        const simpleSecondLastWithNum = filenameSplits
+        .filter((item)=> item!=="")
+        .slice(0, ).join('_');
+        const simpleMatch = simpleSecondLastWithNum.split("_").slice(0,1).join("_") + "_" +simpleSecondLastWithNum.split("_").slice(2,).join("_");//除去xxx
+        matchArr.push(simpleMatch);
+      }
+      });
+      //console.log(matchArr);
+    
+    
     const outputDatas = HLine.map((hdata) => {
       const splits = hdata.split('_');//hdata:Switch Container的名字
       const filteredAudioFiles = audioFilesTextures.filter(audioFile => 
@@ -81,18 +131,76 @@ function OutputCSV() {
       */
       const ans = []
       for(let i = 0; i < filteredAudioFiles.length; i++) {
+
+        //以下是普通版内容
         const audioFileTexture = filteredAudioFiles[i].filename
-        const filename = isNaN(audioFileTexture.split("\\").pop().split("_").slice(-1)) ? 
+        let filename = isNaN(audioFileTexture.split("\\").pop().split("_").slice(-1)) ? 
         audioFileTexture.split("\\").pop() + "_" + designerName 
         :
         audioFileTexture.split("\\").pop().split("_").slice(0,-1).join("_")
         + "_" + designerName + "_"
         + audioFileTexture.split("\\").pop().split("_").slice(-1).join("_"); 
-        //audioFileTexture.split("\\").pop(); 
+        if(designerName === ""){
+          isNaN(audioFileTexture.split("\\").pop().split("_").slice(-1)) ? 
+          filename = filename.slice(0,-1)
+          :
+          filename = filename.replace("__","_")
+        }
         const filenameSplits = filename.split('_')
-        const secondLast = '<Random Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_')
-        const blendLast = '<Blend Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_') 
+        const secondLast = isNaN(audioFileTexture.split("\\").pop().split("_").slice(-1)) ? 
+        '<Random Container>' + filenameSplits.slice(0,).join('_')
+        :
+        '<Random Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_')
+        const blendLast = (secondLast.split("_").slice(0,1).join("_")
+        + "_" +
+        secondLast.split("_").slice(2).join("_")).replace('<Random Container>','<Blend Container>');
 
+        //以下是简约版内容
+        const simpleFilename = audioFileTexture;
+        const simpleObjectPath = getObjectPath(hdata).split("\\").slice(0,-1).join("\\");//简约版simpleObjectPath，去掉最后的容器，有时是<Random Container>
+        const simpleObjectPathSlice = getObjectPath(hdata).split("\\").slice(-1);//简约版simpleObjectPath去掉的部分
+        /////////////////
+        const simpleSecondLast = isNaN(audioFileTexture.split("\\").pop().split("_").slice(-1)) ? 
+        filenameSplits
+        .filter((item)=> (item!=="") && (!numberArr.includes(item)))
+        .slice(0, ).join('_')
+        :
+        filenameSplits
+        .filter((item)=> (item!=="") && (!numberArr.includes(item)))
+        .slice(0, filenameSplits.length - 1).join('_');
+        /////////////////
+        const simpleBlendLast = '<Blend Container>' 
+        +simpleSecondLast.split("_").slice(0,1).join("_")
+        + "_" +
+        simpleSecondLast.split("_").slice(2).join("_");
+        console.log(filenameSplits);
+        //console.log(simpleSecondLast);
+        /////////////////
+        const simpleSecondLastWithNum = filenameSplits
+        .filter((item)=> item!=="")
+        .slice(0, ).join('_')
+        /////////////////
+        const simpleMatch = simpleSecondLastWithNum.split("_").slice(0,1).join("_") + "_" +simpleSecondLastWithNum.split("_").slice(2,).join("_");//除去xxx
+        console.log(matchArr)
+        console.log(simpleMatch)
+        if(document.getElementById('simpleType').checked){
+          ans.push({
+            AudioFile: `${audioFilesFolder}\\${audioFileTexture}.wav`,
+            ObjectPath: countNum(matchArr,simpleMatch) > 1 ?
+            simpleObjectPath 
+            + "\\"
+            + simpleBlendLast
+            + "\\" + simpleObjectPathSlice 
+            + simpleSecondLast
+            + "\\" + simpleFilename
+            :
+            simpleObjectPath 
+            + "\\" + simpleObjectPathSlice 
+            + simpleSecondLast
+            + "\\" + simpleFilename
+          })
+        }
+        else{
         ans.push({
           AudioFile: `${audioFilesFolder}\\${audioFileTexture}.wav`,
           ObjectPath:
@@ -101,12 +209,13 @@ function OutputCSV() {
               (!isNaN(filteredAudioFiles[i].number) ? ("\\" + secondLast): '')
               + "\\" + filename,
         })
+        
+      }
       }
       return ans.length === 0 ? [
         {
           AudioFile: '',
-          ObjectPath:
-            getObjectPath(hdata) + hdata + "\\<Random Container>\\",
+          ObjectPath: getObjectPath(hdata) + hdata + "\\<Random Container>\\",
         }
       ]: ans
     });
@@ -126,15 +235,32 @@ function OutputCSV() {
             const firstLine = `${item.AudioFile}, ${item.ObjectPath}, Sound SFX,`
             const objPathArr = item.ObjectPath.split('\\');
             const artist = designerName;
-            const secondLine = `, ${objPathArr.slice(0, objPathArr.length - 2).join('\\')}, ,<State Group:Test_SoundStyle>${artist}`
-            return [firstLine, secondLine];
+            const secondLine = artist === ""?
+            `, ${objPathArr.slice(0, objPathArr.length - 2).join('\\')}, ,`
+            :
+            `, ${objPathArr.slice(0, objPathArr.length - 2).join('\\')}, ,<State Group:Test_SoundStyle>${artist}`
+            if(document.getElementById('simpleType').checked){
+              return [firstLine];
+            }
+            else{
+              return [firstLine, secondLine];
+            }
           }
           else{
             const firstLine = `${item.AudioFile}, ${item.ObjectPath}, Sound SFX,`
             const objPathArr = item.ObjectPath.split('\\');
             const artist = designerName;
-            const secondLine = `, ${objPathArr.slice(0, objPathArr.length - 1).join('\\')}, ,<State Group:Test_SoundStyle>${artist}`
-            return [firstLine, secondLine];
+            const secondLine = 
+            artist === ""?
+            `, ${objPathArr.slice(0, objPathArr.length - 1).join('\\')}, ,`
+            :
+            `, ${objPathArr.slice(0, objPathArr.length - 1).join('\\')}, ,<State Group:Test_SoundStyle>${artist}`
+            if(document.getElementById('simpleType').checked){
+              return [firstLine];
+            }
+            else{
+              return [firstLine, secondLine];
+            }
           }
         }))
         .filter((item) => {
@@ -228,8 +354,10 @@ function OutputCSV() {
         AudioEventNames.map(x => ({AudioEventName: x,AttachName: sfxAttachName,AkEventPath: sfxAkEventPath + x + "." + x,})) 
         : (NotifyTrackName === 'Audio_FOL' ?
         AudioEventNames.map(x => ({AudioEventName: x,AttachName: folAttachName,AkEventPath: folAkEventPath + x + "." + x,}))
-        : 
-        AudioEventNames.map(x => ({AudioEventName: x,AttachName:"",AkEventPath:"",})))//加入AttachName
+        : (NotifyTrackName === 'Audio_EFF' ? 
+        AudioEventNames.map(x => ({AudioEventName: x,AttachName: effAttachName,AkEventPath: effAkEventPath + x + "." + x,}))
+        :
+        AudioEventNames.map(x => ({AudioEventName: x,AttachName:"",AkEventPath:"",}))))//加入AttachName
       })
     }
     
@@ -285,7 +413,7 @@ function OutputCSV() {
               .join('_')))
         })),
       }))
-      
+
     const Data = _Data.map(x => ({
       AnimMontagePath: x.AnimMontagePath,
       NotifyTrack: [
@@ -360,6 +488,33 @@ function OutputCSV() {
     };
 
     const HLine = getHLine(result);
+    const matchArr = []; //简易版匹配
+    const outputMatchArr = HLine.map((hdata) => {
+      const splits = hdata.split('_');
+      const filteredAudioFiles = audioFilesTextures.filter(audioFile => 
+        audioFile.type + audioFile.lay === splits[0]
+        && audioFile.match === splits.slice(1).join("_")
+
+      )
+      for(let i = 0; i < filteredAudioFiles.length; i++){
+        const audioFileTexture = filteredAudioFiles[i].filename
+        const filename = isNaN(audioFileTexture.split("\\").pop().split("_").slice(-1)) ? 
+        audioFileTexture.split("\\").pop() + "_" + designerName 
+        :
+        audioFileTexture.split("\\").pop().split("_").slice(0,-1).join("_")
+        + "_" + designerName + "_"
+        + audioFileTexture.split("\\").pop().split("_").slice(-1).join("_"); 
+        const filenameSplits = filename.split('_')
+        const simpleSecondLastWithNum = filenameSplits
+        .filter((item)=> item!=="")
+        .slice(0, ).join('_');
+        const simpleMatch = simpleSecondLastWithNum.split("_").slice(0,1).join("_") + "_" +simpleSecondLastWithNum.split("_").slice(2,).join("_");//除去xxx
+        matchArr.push(simpleMatch);
+      }
+      });
+      //console.log(matchArr);
+
+
     const outputDatas = HLine.map((hdata) => {
       const splits = hdata.split('_');
       const filteredAudioFiles = audioFilesTextures.filter(audioFile => 
@@ -370,18 +525,76 @@ function OutputCSV() {
 
       const ans = []
       for(let i = 0; i < filteredAudioFiles.length; i++) {
+
+        //以下是普通版内容
         const audioFileTexture = filteredAudioFiles[i].filename
-        const filename = isNaN(audioFileTexture.split("\\").pop().split("_").slice(-1)) ? 
+        let filename = isNaN(audioFileTexture.split("\\").pop().split("_").slice(-1)) ? 
         audioFileTexture.split("\\").pop() + "_" + designerName 
         :
         audioFileTexture.split("\\").pop().split("_").slice(0,-1).join("_")
         + "_" + designerName + "_"
         + audioFileTexture.split("\\").pop().split("_").slice(-1).join("_"); 
-        //audioFileTexture.split("\\").pop(); 
+        if(designerName === ""){
+          isNaN(audioFileTexture.split("\\").pop().split("_").slice(-1)) ? 
+          filename = filename.slice(0,-1)
+          :
+          filename = filename.replace("__","_")
+        }
         const filenameSplits = filename.split('_')
-        const secondLast = '<Random Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_')
-        const blendLast = '<Blend Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_') 
+        const secondLast = isNaN(audioFileTexture.split("\\").pop().split("_").slice(-1)) ? 
+        '<Random Container>' + filenameSplits.slice(0,).join('_')
+        :
+        '<Random Container>' + filenameSplits.slice(0, filenameSplits.length - 1).join('_')
+        const blendLast = (secondLast.split("_").slice(0,1).join("_")
+        + "_" +
+        secondLast.split("_").slice(2).join("_")).replace('<Random Container>','<Blend Container>');
 
+        //以下是简约版内容
+        const simpleFilename = audioFileTexture;
+        const simpleObjectPath = getObjectPath(hdata).split("\\").slice(0,-1).join("\\");//简约版simpleObjectPath，去掉最后的容器，有时是<Random Container>
+        const simpleObjectPathSlice = getObjectPath(hdata).split("\\").slice(-1);//简约版simpleObjectPath去掉的部分
+        /////////////////
+        const simpleSecondLast = isNaN(audioFileTexture.split("\\").pop().split("_").slice(-1)) ? 
+        filenameSplits
+        .filter((item)=> (item!=="") && (!numberArr.includes(item)))
+        .slice(0, ).join('_')
+        :
+        filenameSplits
+        .filter((item)=> (item!=="") && (!numberArr.includes(item)))
+        .slice(0, filenameSplits.length - 1).join('_');
+        /////////////////
+        const simpleBlendLast = '<Blend Container>' 
+        +simpleSecondLast.split("_").slice(0,1).join("_")
+        + "_" +
+        simpleSecondLast.split("_").slice(2).join("_");
+        console.log(filenameSplits);
+        //console.log(simpleSecondLast);
+        /////////////////
+        const simpleSecondLastWithNum = filenameSplits
+        .filter((item)=> item!=="")
+        .slice(0, ).join('_')
+        /////////////////
+        const simpleMatch = simpleSecondLastWithNum.split("_").slice(0,1).join("_") + "_" +simpleSecondLastWithNum.split("_").slice(2,).join("_");//除去xxx
+        console.log(matchArr)
+        console.log(simpleMatch)
+        if(document.getElementById('simpleType').checked){
+          ans.push({
+            AudioFile: `${audioFilesFolder}\\${audioFileTexture}.wav`,
+            ObjectPath: countNum(matchArr,simpleMatch) > 1 ?
+            simpleObjectPath 
+            + "\\"
+            + simpleBlendLast
+            + "\\" + simpleObjectPathSlice 
+            + simpleSecondLast
+            + "\\" + simpleFilename
+            :
+            simpleObjectPath 
+            + "\\" + simpleObjectPathSlice 
+            + simpleSecondLast
+            + "\\" + simpleFilename
+          })
+        }
+        else{
         ans.push({
           AudioFile: `${audioFilesFolder}\\${audioFileTexture}.wav`,
           ObjectPath:
@@ -390,49 +603,59 @@ function OutputCSV() {
               (!isNaN(filteredAudioFiles[i].number) ? ("\\" + secondLast): '')
               + "\\" + filename,
         })
+        
+      }
       }
       return ans.length === 0 ? [
         {
           AudioFile: '',
-          ObjectPath:
-            getObjectPath(hdata) + hdata + "\\<Random Container>\\",
+          ObjectPath: getObjectPath(hdata) + hdata + "\\<Random Container>\\",
         }
       ]: ans
     });
+
     const outputData = flattenDeep(outputDatas);
     // keep unique
     const bitmap = {};
     let whitespace = undefined;
     const outputText =
-      "AudioFile\tObjectPath\tObject Type\tSwitch Assignation\n" +
+      "AudioFile\tObjectPath\t Object Type\tSwitch Assignation\n" +
       flattenDeep(
         flattenDeep(outputData
         .map((item) => {
-          //AudioFilepopwav:路径去除.wav
+          //AudioFilepopwav:路径去除.wav + designerName
             //artist:YM、ZY、LZY
-            const AudioFilepopwav = item.AudioFile.split(".")[0];
-            
           if(item.ObjectPath.includes('<Random Container>')) {
             const firstLine = `${item.AudioFile}\t${item.ObjectPath}\tSound SFX\t`
             const objPathArr = item.ObjectPath.split('\\');
             const artist = designerName;
-            // if (isNaN (Number((AudioFilepopwav.slice(-1)))))
-            //     artist=AudioFilepopwav.split("_").slice(-1);
-            // else
-            //     artist=AudioFilepopwav.split("_").slice(-2);
-            const secondLine = `\t${objPathArr.slice(0, objPathArr.length - 2).join('\\')}\t \t<State Group:Test_SoundStyle>${artist}`
-            return [firstLine, secondLine];
+            const secondLine = artist === ""?
+            `\t${objPathArr.slice(0, objPathArr.length - 2).join('\\')}\t\t`
+            :
+            `\t${objPathArr.slice(0, objPathArr.length - 2).join('\\')}\t\t<State Group:Test_SoundStyle>${artist}`
+            if(document.getElementById('simpleType').checked){
+              return [firstLine];
+            }
+            else{
+              return [firstLine, secondLine];
+            }
           }
           else{
             const firstLine = `${item.AudioFile}\t${item.ObjectPath}\tSound SFX\t`
             const objPathArr = item.ObjectPath.split('\\');
             const artist = designerName;
-            const secondLine = `\t${objPathArr.slice(0, objPathArr.length - 1).join('\\')}\t\t<State Group:Test_SoundStyle>${artist}`
-            return [firstLine, secondLine];
+            const secondLine = 
+            artist === ""?
+            `\t${objPathArr.slice(0, objPathArr.length - 1).join('\\')}\t\t`
+            :
+            `\t${objPathArr.slice(0, objPathArr.length - 1).join('\\')}\t\t<State Group:Test_SoundStyle>${artist}`
+            if(document.getElementById('simpleType').checked){
+              return [firstLine];
+            }
+            else{
+              return [firstLine, secondLine];
+            }
           }
-          
-          const artist = AudioFilepopwav.split("_").slice(-1)[0];
-          return `${item.AudioFile}\t ${item.ObjectPath}\tSound SFX\t<State Group:Test_SoundStyle>${artist}`
         }))
         .filter((item) => {
           if(item.includes('<State Group:Test_SoundStyle>')) {
@@ -457,9 +680,6 @@ function OutputCSV() {
           if(splits[0].trim().length === 0 && whitespace !== undefined) {
             whitespace = undefined;
             return ['\t\t\t', line];
-          // } else if(whitespace !== compareWhitespace) {
-          //   whitespace = compareWhitespace;
-          //   return [',,,', line];
           } else {
             return line;
           }
@@ -554,6 +774,13 @@ function OutputCSV() {
   
       <br />
       For Wwise:
+      <label>
+        <input 
+          type="checkbox"
+          id = 'simpleType'
+          onClick={(e)=>OncheckBox(e)}
+          />简约版
+      </label>
       <br />
       <br />
       <h>请输入SFX Object Path路径:&nbsp;&nbsp;
@@ -562,7 +789,11 @@ function OutputCSV() {
         onChange={(e) => setSFXObjectPath(e.target.value)}
         defaultValue=""
       />
-      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>SFX_Hero301\\<Switch Container>')}>默认值</button>
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=> document.getElementById('simpleType').checked ?
+        navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>SFX_Hero301\\<Random Container>')
+        :
+        navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>SFX_Hero301\\<Switch Container>')
+        }>默认值</button>
       </h>
       <br />
       <br />
@@ -572,7 +803,11 @@ function OutputCSV() {
         onChange={(e) => setFOLObjectPath(e.target.value)}
         defaultValue=""
       />
-      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>FOL_Hero301\\<Switch Container>')}>默认值</button>
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=> document.getElementById('simpleType').checked ?
+        navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>FOL_Hero301\\<Random Container>')
+        :
+        navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>FOL_Hero301\\<Switch Container>')
+        }>默认值</button>
       </h>
       <br />
       <br />
@@ -582,7 +817,10 @@ function OutputCSV() {
         onChange={(e) => setEFFObjectPath(e.target.value)}
         defaultValue=""
       />
-      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>EFF_Hero301\\<Switch Container>')}>默认值</button>
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=> document.getElementById('simpleType').checked ?
+        navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>EFF_Hero301\\<Random Container>')
+        :
+        navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>EFF_Hero301\\<Switch Container>')}>默认值</button>
       </h>
       <br />
       <br />
@@ -592,7 +830,10 @@ function OutputCSV() {
         onChange={(e) => setHITObjectPath(e.target.value)}
         defaultValue=""
       />
-      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>HIT_Hero301\\<Switch Container>')}>默认值</button>
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>()=> document.getElementById('simpleType').checked ?
+        navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>HIT_Hero301\\<Random Container>')
+        :
+        navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>HIT_Hero301\\<Switch Container>')}>默认值</button>
       </h>
       <br />
       <br />
@@ -620,6 +861,12 @@ function OutputCSV() {
         defaultValue=""
       />
       <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('WeaponSocket')}>默认值</button>
+      &nbsp;&nbsp;EFF AttachName:&nbsp;&nbsp;
+      <input
+        onChange={(e) => setEffAttachName(e.target.value)}
+        defaultValue=""
+      />
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('WeaponSocket')}>默认值</button>
       <br />
       <br />
       SFX AkEventPath:&nbsp;&nbsp;
@@ -634,6 +881,12 @@ function OutputCSV() {
         defaultValue=""
       />
       <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('/game/WwiseAudio/Events/Fight/Hero301/FOL_Hero301/')}>默认值</button>
+      &nbsp;&nbsp;EFF AkEventPath:&nbsp;&nbsp;
+      <input
+        onChange={(e) => setEffAkEventPath(e.target.value)}
+        defaultValue=""
+      />
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>navigator.clipboard.writeText('/game/WwiseAudio/Events/Fight/Hero301/EFF_Hero301/')}>默认值</button>
       <br />
       <br />
       <div className="line">
