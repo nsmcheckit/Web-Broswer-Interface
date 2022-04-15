@@ -36,6 +36,22 @@ function countNum(arr,item){
     return num;
 }
 
+function fixMatchArr(matchArr){
+  const newMatchArr = [...matchArr];
+  for(let i = 0; i < newMatchArr.length; i++){
+    if(countNum(newMatchArr,newMatchArr[i]) > 1){
+      matchArr.push(matchArr[i].split("_").slice(0,-1).join("_"));
+      matchArr.push(matchArr[i].split("_").slice(0,-1).join("_") + "_" + "01");
+      matchArr.push(matchArr[i].split("_").slice(0,-1).join("_") + "_" + "02");
+      matchArr.push(matchArr[i].split("_").slice(0,-1).join("_") + "_" + "03");
+      matchArr.push(matchArr[i].split("_").slice(0,-1).join("_") + "_" + "04");
+      matchArr.push(matchArr[i].split("_").slice(0,-1).join("_") + "_" + "05");
+      matchArr.push(matchArr[i].split("_").slice(0,-1).join("_") + "_" + "06");
+    }
+  }
+  return matchArr;
+}
+
 function OutputCSV() {
   const [multipleFiles, setMultipleFiles] = useState([]);
   const [audioFiles, setAudioFiles] = useState([]);
@@ -117,7 +133,7 @@ function OutputCSV() {
         matchArr.push(simpleMatch);
       }
       });
-      //console.log(matchArr);
+      fixMatchArr(matchArr);
     
     
     const outputDatas = HLine.map((hdata) => {
@@ -183,16 +199,14 @@ function OutputCSV() {
         +simpleSecondLast.split("_").slice(0,1).join("_")
         + "_" +
         simpleSecondLast.split("_").slice(2).join("_");
-        console.log(filenameSplits);
-        //console.log(simpleSecondLast);
         /////////////////
         const simpleSecondLastWithNum = filenameSplits
         .filter((item)=> item!=="")
         .slice(0, ).join('_')
         /////////////////
         const simpleMatch = simpleSecondLastWithNum.split("_").slice(0,1).join("_") + "_" +simpleSecondLastWithNum.split("_").slice(2,).join("_");//除去xxx
-        console.log(matchArr)
-        console.log(simpleMatch)
+        //console.log(matchArr)
+        //console.log(fixMatchArr(matchArr))
         if(document.getElementById('simpleType').checked){
           ans.push({
             AudioFile: `${audioFilesFolder}\\${audioFileTexture}.wav`,
@@ -526,6 +540,7 @@ function OutputCSV() {
         matchArr.push(simpleMatch);
       }
       });
+      fixMatchArr(matchArr);
       //console.log(matchArr);
 
 
@@ -581,7 +596,7 @@ function OutputCSV() {
         +simpleSecondLast.split("_").slice(0,1).join("_")
         + "_" +
         simpleSecondLast.split("_").slice(2).join("_");
-        console.log(filenameSplits);
+        //console.log(filenameSplits);
         //console.log(simpleSecondLast);
         /////////////////
         const simpleSecondLastWithNum = filenameSplits
@@ -589,8 +604,8 @@ function OutputCSV() {
         .slice(0, ).join('_')
         /////////////////
         const simpleMatch = simpleSecondLastWithNum.split("_").slice(0,1).join("_") + "_" +simpleSecondLastWithNum.split("_").slice(2,).join("_");//除去xxx
-        console.log(matchArr)
-        console.log(simpleMatch)
+        //console.log(matchArr)
+        //console.log(simpleMatch)
         if(document.getElementById('simpleType').checked){
           ans.push({
             AudioFile: `${audioFilesFolder}\\${audioFileTexture}.wav`,
@@ -844,7 +859,7 @@ function OutputCSV() {
         onChange={(e) => setHITObjectPath(e.target.value)}
         defaultValue=""
       />
-      <button style={{marginLeft: '20px'}} className="btn" onClick={()=>()=> document.getElementById('simpleType').checked ?
+      <button style={{marginLeft: '20px'}} className="btn" onClick={()=> document.getElementById('simpleType').checked ?
         navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>HIT_Hero301\\<Random Container>')
         :
         navigator.clipboard.writeText('\\Actor-Mixer Hierarchy\\Hero\\<Actor-Mixer>Hero301\\<Actor-Mixer>HIT_Hero301\\<Switch Container>')}>默认值</button>
