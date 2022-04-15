@@ -423,23 +423,23 @@ function OutputCSV() {
               .join('_')))
         })),
       }))
-    const Data = [];
+    let Data = [];
     if(document.getElementById('noTestType').checked){
-    Data = _Data.map(x => ({
-      AnimMontagePath: x.AnimMontagePath,
-      NotifyTrack: [
-        ...x.NotifyTrack,
-        {
-          NotifyTrackName: 'Audio_TEST',
-          AudioEventParam: [{
-            AudioEventName: x.AnimMontagePath.split('.')[1].slice(0, x.AnimMontagePath.split('.')[1].length - 1)
-          }]
-        }
-      ]
-    }))}
+      Data = _Data;
+  }
     else{
-    Data = _Data;
-    }
+      Data = _Data.map(x => ({
+        AnimMontagePath: x.AnimMontagePath,
+        NotifyTrack: [
+          ...x.NotifyTrack,
+          {
+            NotifyTrackName: 'Audio_TEST',
+            AudioEventParam: [{
+              AudioEventName: x.AnimMontagePath.split('.')[1].slice(0, x.AnimMontagePath.split('.')[1].length - 1)
+            }]
+          }
+        ]
+      }))}
     //console.log(Data);
     const outputJson = {
       Time: nowDate,
