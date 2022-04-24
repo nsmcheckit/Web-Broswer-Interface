@@ -206,7 +206,7 @@ function OutputCSV() {
         /////////////////
         const simpleMatch = simpleSecondLastWithNum.split("_").slice(0,1).join("_") + "_" +simpleSecondLastWithNum.split("_").slice(2,).join("_");//除去xxx
         //console.log(matchArr)
-        //console.log(fixMatchArr(matchArr))
+        //console.log(simpleSecondLast)
         if(document.getElementById('simpleType').checked){
           ans.push({
             AudioFile: `${audioFilesFolder}\\${audioFileTexture}.wav`,
@@ -220,7 +220,7 @@ function OutputCSV() {
             :
             simpleObjectPath 
             + "\\" + simpleObjectPathSlice 
-            + simpleSecondLast
+            + simpleSecondLast.split("_").slice(0,1).join("_")+ "_" +simpleSecondLast.split("_").slice(2).join("_")
             + "\\" + simpleFilename
           })
         }
@@ -619,7 +619,7 @@ function OutputCSV() {
             :
             simpleObjectPath 
             + "\\" + simpleObjectPathSlice 
-            + simpleSecondLast
+            + simpleSecondLast.split("_").slice(0,1).join("_")+ "_" +simpleSecondLast.split("_").slice(2).join("_")
             + "\\" + simpleFilename
           })
         }
