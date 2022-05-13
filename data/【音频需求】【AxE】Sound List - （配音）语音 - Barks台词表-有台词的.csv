@@ -1,0 +1,74 @@
+﻿"Measurement
+Format:wav
+Channel:mono
+SR:48kHz BR:24bit
+Loudness: -16LUFS(M)
+Mic Distance: 40-60cm",,,,,,"We listed 3 lines for every action for random
+slightly different Tone is welcome",,,,,,,,,,,,,,,,,,,,,,,,,
+"Batches
+（批次）","Progress
+（整合进度",WwiseEvent,"No.
+(序号）","Type
+（语音类型）","Action
+（模块/触发条件）","Speaker
+（角色名）",TechnicalName,"Emotion
+（情绪/语气）","Randomization
+(TakeCount)","Dialogue (CN)
+（台词）","Emotion (JP)
+（情绪/语气）","Dialogue (JP)
+（台词）","Audio File Name
+（文件命名）","Note
+（备注）","Casting (JP)
+（选角）","Status(JP)
+（录制状态）",,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Enter_Stage,52,Bark,Enter_Stage,龙夜,Hero301,（庄重，宣告的）,1,让宏大的意志，见证我们的战斗。,（気持ちを込めて）,クンルンよ、我らに加護を,Dia_Hero301_Bark_Enter_Stage_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Enter_Stage,53,Bark,Enter_Stage,龙夜,Hero301,（庄重，宣告的）,1,让宏大的意志，见证我们的战斗。,（気持ちを込めて）,クンルンよ、我らに加護を,Dia_Hero301_Bark_Enter_Stage_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Enter_Stage,54,Bark,Enter_Stage,龙夜,Hero301,（庄重，宣告的）,1,让宏大的意志，见证我们的战斗。,（気持ちを込めて）,クンルンよ、我らに加護を,Dia_Hero301_Bark_Enter_Stage_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Get_Hurt,55,Bark,Get_Hurt,龙夜,Hero301,（痛苦）,1,呜！,（低いダメージ時）,く、おう、ん、きゃ。。。など,Dia_Hero301_Bark_Get_Hurt_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Get_Hurt,56,Bark,Get_Hurt,龙夜,Hero301,（痛苦）,1,呜！,（低いダメージ時）,く、おう、ん、きゃ。。。など,Dia_Hero301_Bark_Get_Hurt_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Get_Hurt,57,Bark,Get_Hurt,龙夜,Hero301,（痛苦）,1,呜！,（低いダメージ時）,く、おう、ん、きゃ。。。など,Dia_Hero301_Bark_Get_Hurt_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_FallOnGroundGetHurt,58,Bark,FallOnGroundGetHurt,龙夜,Hero301,（痛苦，挣扎的）,1,是我大意了……,（高いダメージ時、とても痛そうな感じ）,ああ、うあ、うがぁ、いや。。。など,Dia_Hero301_Bark_FallOnGroundGetHurt_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_FallOnGroundGetHurt,59,Bark,FallOnGroundGetHurt,龙夜,Hero301,（痛苦，挣扎的）,1,是我大意了……,（高いダメージ時、とても痛そうな感じ）,ああ、うあ、うがぁ、いや。。。など,Dia_Hero301_Bark_FallOnGroundGetHurt_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_FallOnGroundGetHurt,60,Bark,FallOnGroundGetHurt,龙夜,Hero301,（痛苦，挣扎的）,1,是我大意了……,（高いダメージ時、とても痛そうな感じ）,ああ、うあ、うがぁ、いや。。。など,Dia_Hero301_Bark_FallOnGroundGetHurt_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Stand_Up,61,Bark,Stand_Up,龙夜,Hero301,（坚毅的）,1,不能放弃。,（力強く）,まだ,Dia_Hero301_Bark_Stand_Up_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Stand_Up,62,Bark,Stand_Up,龙夜,Hero301,（坚毅的）,1,不能放弃。,（力強く）,まだ,Dia_Hero301_Bark_Stand_Up_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Stand_Up,63,Bark,Stand_Up,龙夜,Hero301,（坚毅的）,1,不能放弃。,（力強く）,まだ,Dia_Hero301_Bark_Stand_Up_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Enter_Stage_in_Relay,64,Bark,Enter_Stage_in_Relay,龙夜,Hero301,（若换出）/你好好歇着吧,1,抱歉,（仲間交代、普通感情）,交代！ / 少し休んで！,Dia_Hero301_Bark_Enter_Stage_in_Relay_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Enter_Stage_in_Relay,65,Bark,Enter_Stage_in_Relay,龙夜,Hero301,（若换出）/你好好歇着吧,1,抱歉,（仲間交代、普通感情）,交代！ / 少し休んで！,Dia_Hero301_Bark_Enter_Stage_in_Relay_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Enter_Stage_in_Relay,66,Bark,Enter_Stage_in_Relay,龙夜,Hero301,（若换出）/你好好歇着吧,1,抱歉,（仲間交代、普通感情）,交代！ / 少し休んで！,Dia_Hero301_Bark_Enter_Stage_in_Relay_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Lack of strength,67,Bark,Lack of strength,龙夜,Hero301,（坚持，痛苦的）,1,如果在这里倒下的话……,（劣戦中）,ここで倒れるわけには。。。,Dia_Hero301_Bark_Lack of strength_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Lack of strength,68,Bark,Lack of strength,龙夜,Hero301,（坚持，痛苦的）,1,如果在这里倒下的话……,（劣戦中）,ここで倒れるわけには。。。,Dia_Hero301_Bark_Lack of strength_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Lack of strength,69,Bark,Lack of strength,龙夜,Hero301,（坚持，痛苦的）,1,如果在这里倒下的话……,（劣戦中）,ここで倒れるわけには。。。,Dia_Hero301_Bark_Lack of strength_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Strength recovered,70,Bark,Strength recovered,龙夜,Hero301,（自信，勇敢的）,1,绝不会认输。,（力強く）,絶対負けない,Dia_Hero301_Bark_Strength recovered_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Strength recovered,71,Bark,Strength recovered,龙夜,Hero301,（自信，勇敢的）,1,绝不会认输。,（力強く）,絶対負けない,Dia_Hero301_Bark_Strength recovered_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Strength recovered,72,Bark,Strength recovered,龙夜,Hero301,（自信，勇敢的）,1,绝不会认输。,（力強く）,絶対負けない,Dia_Hero301_Bark_Strength recovered_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Dodg move suceed,73,Bark,Dodg move suceed,龙夜,Hero301,（骄傲，振奋）,1,昆仑在守护着我！,（調子いい）,見切った,Dia_Hero301_Bark_Dodg move suceed_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Dodg move suceed,74,Bark,Dodg move suceed,龙夜,Hero301,（骄傲，振奋）,1,昆仑在守护着我！,（調子いい）,見切った,Dia_Hero301_Bark_Dodg move suceed_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Dodg move suceed,75,Bark,Dodg move suceed,龙夜,Hero301,（骄傲，振奋）,1,昆仑在守护着我！,（調子いい）,見切った,Dia_Hero301_Bark_Dodg move suceed_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Normal_Attack,76,Bark,Normal_Attack,龙夜,Hero301,（短促，有力）,1,嘿呀！,（通常攻撃、力強く）,て、た、は、へ。。。など,Dia_Hero301_Bark_Normal_Attack_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Normal_Attack,77,Bark,Normal_Attack,龙夜,Hero301,（短促，有力）,1,嘿呀！,（通常攻撃、力強く）,て、た、は、へ。。。など,Dia_Hero301_Bark_Normal_Attack_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Normal_Attack,78,Bark,Normal_Attack,龙夜,Hero301,（短促，有力）,1,嘿呀！,（通常攻撃、力強く）,て、た、は、へ。。。など,Dia_Hero301_Bark_Normal_Attack_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Skill Attack1,79,Bark,Skill Attack1，jump chop,龙夜,Hero301,（激昂）,1,跪下！,（ワザ攻撃、力強く）,そこ,Dia_Hero301_Bark_Skill Attack1_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Skill Attack1,80,Bark,Skill Attack1，jump chop,龙夜,Hero301,（激昂）,1,跪下！,（ワザ攻撃、力強く）,そこ,Dia_Hero301_Bark_Skill Attack1_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Skill Attack1,81,Bark,Skill Attack1，jump chop,龙夜,Hero301,（激昂）,1,跪下！,（ワザ攻撃、力強く）,そこ,Dia_Hero301_Bark_Skill Attack1_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Skill Attack2,82,Bark,Skill Attack2，rotate kick,龙夜,Hero301,（激昂）,1,闪开！,（ワザ攻撃、力強く）,退きなさい！（どきなさい）,Dia_Hero301_Bark_Skill Attack2_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Skill Attack2,83,Bark,Skill Attack2，rotate kick,龙夜,Hero301,（激昂）,1,闪开！,（ワザ攻撃、力強く）,退きなさい！（どきなさい）,Dia_Hero301_Bark_Skill Attack2_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Skill Attack2,84,Bark,Skill Attack2，rotate kick,龙夜,Hero301,（激昂）,1,闪开！,（ワザ攻撃、力強く）,退きなさい！（どきなさい）,Dia_Hero301_Bark_Skill Attack2_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Skill Attack3,85,Bark,Skill Attack3，kick up,龙夜,Hero301,（激昂）,1,我才不管你是谁！,（ワザ攻撃、力強く）,倒れて！,Dia_Hero301_Bark_Skill Attack3_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Skill Attack3,86,Bark,Skill Attack3，kick up,龙夜,Hero301,（激昂）,1,我才不管你是谁！,（ワザ攻撃、力強く）,倒れて！,Dia_Hero301_Bark_Skill Attack3_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Skill Attack3,87,Bark,Skill Attack3，kick up,龙夜,Hero301,（激昂）,1,我才不管你是谁！,（ワザ攻撃、力強く）,倒れて！,Dia_Hero301_Bark_Skill Attack3_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Ultimate_Attack,88,Bark,Ultimate_Attack,龙夜,Hero301,（宣告，热血）,1,接下吧，这就是昆仑的力量——！,（必殺技、力強く）,クンルンよ、私に力を,Dia_Hero301_Bark_Ultimate_Attack_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Ultimate_Attack,89,Bark,Ultimate_Attack,龙夜,Hero301,（宣告，热血）,1,接下吧，这就是昆仑的力量——！,（必殺技、力強く）,クンルンよ、私に力を,Dia_Hero301_Bark_Ultimate_Attack_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Ultimate_Attack,90,Bark,Ultimate_Attack,龙夜,Hero301,（宣告，热血）,1,接下吧，这就是昆仑的力量——！,（必殺技、力強く）,クンルンよ、私に力を,Dia_Hero301_Bark_Ultimate_Attack_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Special Attack,91,Bark,Special Attack，throw weapon,龙夜,Hero301,（坚定的）,1,别想逃！,（ワザ攻撃、力強く）,逃がさない！,Dia_Hero301_Bark_Special Attack_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Special Attack,92,Bark,Special Attack，throw weapon,龙夜,Hero301,（坚定的）,1,别想逃！,（ワザ攻撃、力強く）,逃がさない！,Dia_Hero301_Bark_Special Attack_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Special Attack,93,Bark,Special Attack，throw weapon,龙夜,Hero301,（坚定的）,1,别想逃！,（ワザ攻撃、力強く）,逃がさない！,Dia_Hero301_Bark_Special Attack_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Pursue_and_Attack,94,Bark,Pursue_and_Attack,龙夜,Hero301,（坚定，热血）,1,还没完呢！,（追撃開始、力強く）,まだ終わってない！,Dia_Hero301_Bark_Pursue_and_Attack_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Pursue_and_Attack,95,Bark,Pursue_and_Attack,龙夜,Hero301,（坚定，热血）,1,还没完呢！,（追撃開始、力強く）,まだ終わってない！,Dia_Hero301_Bark_Pursue_and_Attack_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Pursue_and_Attack,96,Bark,Pursue_and_Attack,龙夜,Hero301,（坚定，热血）,1,还没完呢！,（追撃開始、力強く）,まだ終わってない！,Dia_Hero301_Bark_Pursue_and_Attack_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Block action,97,Bark,Block action,龙夜,Hero301,,1,哼。,（カウンター開始）,フン,Dia_Hero301_Bark_Block action_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Block action,98,Bark,Block action,龙夜,Hero301,,1,哼。,（カウンター開始）,フン,Dia_Hero301_Bark_Block action_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Block action,99,Bark,Block action,龙夜,Hero301,,1,哼。,（カウンター開始）,フン,Dia_Hero301_Bark_Block action_03,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Block succeed,100,Bark,Block succeed,龙夜,Hero301,（轻蔑）,1,雕虫小技。,（カウンター成功、少しい見下すな感じ）,こんなものか？,Dia_Hero301_Bark_Block succeed_01,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Block succeed,101,Bark,Block succeed,龙夜,Hero301,（轻蔑）,1,雕虫小技。,（カウンター成功、少しい見下すな感じ）,こんなものか？,Dia_Hero301_Bark_Block succeed_02,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Bark_Block succeed,102,Bark,Block succeed,龙夜,Hero301,（轻蔑）,1,雕虫小技。,（カウンター成功、少しい見下すな感じ）,こんなものか？,Dia_Hero301_Bark_Block succeed_03,,,,,,,,,,,,,,,,,,

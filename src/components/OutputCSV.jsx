@@ -5,6 +5,8 @@ import { getNowDate } from "../utils/time";
 import { getHLine } from "../utils/HLine";
 import { alphabetMap } from "../const/alphabet";
 import { numberArr } from "../const/number";
+import {BrowserRouter as Router, Route, Link, Routes} from "react-router-dom";
+import Dialogue from "../Dialogue";
 
 function OncheckBox(e)
           {
@@ -752,7 +754,10 @@ function OutputCSV() {
 // }
   return (
     <div className="app">
-      <h3>aXe音频批量导入工具 <img src='outbox.png' alt="" width="30" height="30"/></h3>
+      <div>
+      <a href ="dialogue">Dialogue Mode</a>
+      </div>
+      <h3>aXe音效批量导入工具 <img src='outbox.png' alt="" width="30" height="30"/></h3>
       <body bgcolor="#F0E68C">
       <br />
       <img src='paper.png' alt="" width="30" height="30"/>

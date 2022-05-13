@@ -1,13 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { render } from 'react-snapshot';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Dialogue from './Dialogue';
+import {BrowserRouter as Router, Route, Link, Routes} from "react-router-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+render(
+    <React.StrictMode>
+    <Router>
+      <Routes>
+        <Route exact path="/dialogue" element={<Dialogue />}></Route>
+        <Route exact path="/nomal" element={<App />}></Route>
+      </Routes>
+      <a href ="dialogue">Dialogue Mode</a>
+      <a href ="nomal">Nomal Mode</a>             
+    </Router>
+    </React.StrictMode>,
   document.getElementById('root')
 );
 

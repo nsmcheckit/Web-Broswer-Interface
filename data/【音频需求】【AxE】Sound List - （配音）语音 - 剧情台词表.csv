@@ -1,0 +1,57 @@
+﻿"Measurement
+Format:wav
+Channel:mono
+SR:48kHz BR:24bit
+Loudness: -16LUFS(M)
+Mic Distance: 40-60cm",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Batches
+（批次）",Stat,WwiseEvent,"No.
+(序号）","Type
+（语音类型）","Action
+（模块/触发条件）","Speaker
+（角色名）",TechnicalName,"Emotion
+（情绪/语气）","Dialogue (CN)
+（台词）","Emotion
+（情绪/语气）",Dialogue (JP),"Audio File Name
+（文件命名）","Note
+（备注）","Casting
+（选角）","Status(JP)
+（录制状态）",,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Story_MayVersion_01,1,Story,game openning,龙夜,Hero301,惊讶于荒凉，感动于广阔，比平时的情绪激动一些。,你们的世界，原来如此荒凉……与广阔。,少し驚いた感じ,あなたたちの世界はこんなに荒れ果て、広いのね。,Dia_Hero301_Story_MayVersion_01.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Story_MayVersion_02,2,Story,game openning,龙夜,Hero301,并没有苛责的意思，惆怅，失落居多。,就因为这样，你们才想夺取我的故乡？,落ち込む感じ,だから私の故郷を奪おうとしたの？,Dia_Hero301_Story_MayVersion_02.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero101_Story_MayVersion_03,3,Story,game openning,凯尔,Hero101,不满的，对自我夸饰的情绪居多。,哼，我和那些人可不一样。,少し不満な感じ,ったく！俺をあんな奴らと一緒にしないでくれ。,Dia_Hero101_Story_MayVersion_03.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero101_Story_MayVersion_04,4,Story,game openning,凯尔,Hero101,自豪的，自我主张的表达,我们在找的，是历史的真相。,自信満々,俺たち探しているのは歴史の真実なんだよ。,Dia_Hero101_Story_MayVersion_04.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero101_Story_MayVersion_05,5,Story,conversation on the road,凯尔,Hero101,向往，渴望他人认同，带着热意的,过去何人创建，何人毁灭，何人留下的这些遗迹，你不想知道吗？,憧れ、他人に認められ,過去に誰が作って誰が滅ぼし、誰がこの遺跡を残したのか、お前は知りたくないのか？,Dia_Hero101_Story_MayVersion_05.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Story_MayVersion_06,6,Story,conversation on the road,龙夜,Hero301,和男主的话形成温差，似乎没有兴趣,我只想见到我的族人平安。,冷たい感じ,私はただ…妹と家族が無事であるのを確かめたいだけよ。,Dia_Hero301_Story_MayVersion_06.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Mob_0100_Story_MayVersion_07,7,Story,Street fight start,帝国士兵,Mob_0100,呼喊同伴，并且警戒的,发现他们了！,警戒態勢に入る,見つけたぞ！,Dia_Mob_0100_Story_MayVersion_07.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Mob_0100_Story_MayVersion_08,8,Story,Street fight start,帝国士兵,Mob_0100,有一定紧张感，也带有仇恨心,是那个叛徒和昆仑一族的女人！,敵に対して緊張、少し怒る,あの裏切り者とクンルン一族の女だ！,Dia_Mob_0100_Story_MayVersion_08.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Story_MayVersion_09,9,Story,in fighting,龙夜,Hero301,总体不屑，微微感到厌恶和愤怒,哼……,気に入らない感じ,フン！,Dia_Hero301_Story_MayVersion_09.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero101_Story_MayVersion_010,10,Story,in fighting,凯尔,Hero101,埋怨，同时也有一定潇洒意味,谁是叛徒，你们还欠我钱呢！,気に入らない感じ,誰が裏切り者だ？お前らはまだ俺に借金してるじゃないか！,Dia_Hero101_Story_MayVersion_010.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Story_MayVersion_011,11,Story,in fighting,龙夜,Hero301,拉高声量，带有威胁的语气,喂，我的族人在哪里！,敵に対して怒る、少し大声で,ねぇ！私の家族はどこなの？,Dia_Hero301_Story_MayVersion_011.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Mob_0100_Story_MayVersion_012,12,Story,in fighting,帝国士兵,Mob_0100,仇恨，同时也有紧张感的,你这野蛮人，还不投降吗！,敵に対して緊張、少し怒る,この野蛮人め、まだ投降しないのか！,Dia_Mob_0100_Story_MayVersion_012.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Story_MayVersion_013,13,Story,in fighting,龙夜,Hero301,对于状况不满的，感到有些棘手的,啧——！,少し厄介な状況,チェ！,Dia_Hero301_Story_MayVersion_013.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Mob_0100_Story_MayVersion_014,14,Story,Street fight end,帝国士兵,Mob_0100,失去意识前强打精神的，挣扎着的,帝国之魂……无悔，无惧！,死ぬ前に最後の力で喋る,帝国の魂！悔いも恐れもない！,Dia_Mob_0100_Story_MayVersion_014.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Story_MayVersion_015,15,Story,conversation on the road,龙夜,Hero301,疑惑，戒备,你……和他们不是一伙的吗？为什么会帮我？,少し疑惑、警戒,あなた、彼らの仲間じゃないの？なぜ私を助けてくれるの？,Dia_Hero301_Story_MayVersion_015.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero101_Story_MayVersion_016,16,Story,conversation on the road,凯尔,Hero101,调侃，轻松的,谁帮你，我不过刚好和你顺路罢了。,調子いい感じ,勘違いするな、俺はただお前と目的地が一緒なんだよ,Dia_Hero101_Story_MayVersion_016.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Story_MayVersion_017,17,Story,conversation on the road,龙夜,Hero301,疑惑，但是带有一定安心的情绪，心中的压力得到了舒缓,……真是怪人。,"疑惑なまま、
+でも少しい心が落ち着く感じ",。。。変な人,Dia_Hero301_Story_MayVersion_017.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero101_Story_MayVersion_018,18,Story,Dialogue on the road,凯尔,Hero101,自我盘算，低语，默念的,（不跟着你，怎么能找到昆仑呢？）,自分の心の中の声,（お前に付いて行かないと、クンルンが見つかるわけ無いだろ）,Dia_Hero101_Story_MayVersion_018.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Mob_0100_Story_MayVersion_019,19,Story,street fight start,帝国士兵,Mob_0100,焦躁，大声警告的,叛徒和蛮族啊，快投降吧！,イラつく、そして大声で,この裏切り者と蛮族よ！とっとと投降しろ！,Dia_Mob_0100_Story_MayVersion_019.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Story_MayVersion_020,20,Story,street fight start,龙夜,Hero301,不耐烦的，烦躁的,给我让开！,敵に対してうんざりな感じ,そこを退いて！,Dia_Hero301_Story_MayVersion_020.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Elite_0210_Story_MayVersion_021,21,Story,Boss Fight start,帝国精英,Elite_0210,突然杀出的凶狠，有威慑力的吼叫,鼠辈，去死吧！,とても力強く，凶悪な声,このネズミが！とっとと死ね！,Dia_Elite_0210_Story_MayVersion_021.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero101_Story_MayVersion_022,22,Story,Boss Fight start,凯尔,Hero101,不甘心的绝叫,臭家伙——！,悔しい感じ,くっそー！,Dia_Hero101_Story_MayVersion_022.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Elite_0210_Story_MayVersion_023,23,Story,In Battle,帝国精英,Elite_0210,带着杀意的低语，怨毒地,……鼠辈难缠，杀就要杀的彻底。,殺意が満ちる、小声で,…このネズミが！生きて帰れると思うな！,Dia_Elite_0210_Story_MayVersion_023.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Elite_0210_Story_MayVersion_024,24,Story,In Battle,帝国精英,Elite_0210,咒骂，带着恶意地,果然，这么点高摔不死你们这两只鼠辈！,ひどい言葉で悪口を言う,やはり、このくらいの高さでは死なないな？このネズミ共！,Dia_Elite_0210_Story_MayVersion_024.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero101_Story_MayVersion_025,25,Story,In Battle,凯尔,Hero101,嘲讽，带着恶意地,居然追到下面来，你也太痴情了吧！,皮肉、悪口を言う,こんなとこまで追いかけてくるなんて、しつこすぎるだろ！,Dia_Hero101_Story_MayVersion_025.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Elite_0210_Story_MayVersion_026,26,Story,In Battle,帝国精英,Elite_0210,被嫉妒，愤怒，咒骂地,两只背叛帝国恩惠的老鼠，别妄想能逃过审判！,ひどい言葉で悪口を言う,帝国の恩を裏切ったネズミ共が、万死に値する！,Dia_Elite_0210_Story_MayVersion_026.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Story_MayVersion_027,27,Story,In Battle,龙夜,Hero301,虽然声调不高，但是混合仇恨与愤怒的情绪,什么背叛……我根本就不认识你们。,怒りが満ちる感じ,何が裏切りよ、私は最初から貴方たちなんか知らないわ！,Dia_Hero301_Story_MayVersion_027.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Elite_0210_Story_MayVersion_028,28,Story,In Battle,帝国精英,Elite_0210,用怒气来掩盖心虚的，大声训斥地,蛮族，无知即是你的罪孽！,殺意が満ちる、大声で,蛮族、更に罪を重ねたな！,Dia_Elite_0210_Story_MayVersion_028.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Elite_0210_Story_MayVersion_029,29,Story,In Battle,帝国精英,Elite_0210,感到棘手，但依旧强行维持着凶狠的语气,鼠辈，还挺顽强……,手ごたえを感じる,ネズミ共、案外しぶといな！,Dia_Elite_0210_Story_MayVersion_029.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Story_MayVersion_030,30,Story,In Battle,龙夜,Hero301,堂堂正正地，正气凛然的宣言,把我的族人都放了！可以让你走！,正々堂々、力強く,私の一族を放しなさい！そうすれば逃がしてあげてもいいわ！,Dia_Hero301_Story_MayVersion_030.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Elite_0210_Story_MayVersion_031,31,Story,In Battle,帝国精英,Elite_0210,狂气，疯狂地,哈哈哈，休想！,狂気状態,ハハハ、戯れ言を！,Dia_Elite_0210_Story_MayVersion_031.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Elite_0210_Story_MayVersion_032,32,Story,Enemy Defeated,帝国精英,Elite_0210,暴怒，挫折和难以置信地,帝国的战甲，居然，居然——！,やられた時、怒りが満ちる感じ,帝国の鎧が、こうも簡単に。。。！,Dia_Elite_0210_Story_MayVersion_032.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero101_Story_MayVersion_033,33,Story,After Battle,凯尔,Hero101,松了一口气，放松下来地,总算解决了，这样的家伙再多几个可真受不了。,ホッとした,ハァ。。。ついにやっつけた！もしこんな奴いっぱい出てきたら、本当たまらないよ。,Dia_Hero101_Story_MayVersion_033.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Story_MayVersion_034,34,Story,After Battle,龙夜,Hero301,焦急，紧张地,……我要马上回去，绝不能让他们加害我的族人。,少しい焦る,私はすぐに帰りたい、彼らに一族を傷つけさせないわ、絶対！,Dia_Hero301_Story_MayVersion_034.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero101_Story_MayVersion_035,35,Story,After Battle,凯尔,Hero101,富有元气，给人打气地,怎么说，我们已经是一条船上的人啦。,元気、調子いい感じ,何と言うか、俺たちはもう同じ船の仲間だよな。,Dia_Hero101_Story_MayVersion_035.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Story_MayVersion_036,36,Story,After Battle,龙夜,Hero301,思索，认可地,唉……没办法，你说得也对。,少し考え、相手を認める,うん、そうね、あなたの言う通りかも。,Dia_Hero301_Story_MayVersion_036.wav,,,,,,,,,,,,,,,,,,
+MayVersion,,Dia_Hero301_Story_MayVersion_037,37,Story,After Battle,龙夜,Hero301,冷静，做出决定，也做出觉悟地,我就带你去吧，去昆仑。,冷静、決意を決める,私があなたを連れて行きます！クンルンへ！,Dia_Hero301_Story_MayVersion_037.wav,,,,,,,,,,,,,,,,,,
