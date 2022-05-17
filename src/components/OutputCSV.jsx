@@ -7,6 +7,7 @@ import { alphabetMap } from "../const/alphabet";
 import { numberArr } from "../const/number";
 import {BrowserRouter as Router, Route, Link, Routes} from "react-router-dom";
 import Dialogue from "../Dialogue";
+import axios from 'axios'
 
 function OncheckBox(e)
           {

@@ -62,6 +62,17 @@ button {
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
+
+.button2 {
+  padding: 15px 15px;
+  background:chocolate;
+  color: white;
+  border: 3px chocolate;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
 input[type="file"]::-webkit-file-upload-button:hover,
 button:hover {
   background: white;
@@ -85,4 +96,15 @@ button:hover {
 
 .line {
   margin: 10px 0;
+}
+
+div{
+  display: inline-block;
+  text-align: center;
+}
+
+.connect{
+  background-color:darkgrey;
+  width: 530px;
+  border-radius: 5px;
 }
