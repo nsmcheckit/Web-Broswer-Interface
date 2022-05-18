@@ -1,11 +1,10 @@
-import {BrowserRouter as Router, Route, Link, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link, Routes, useLinkClickHandler} from "react-router-dom";
 import { useState } from "react";
 import { flatMapDeep, flattenDeep, includes } from "lodash";
 import { saveAs } from "file-saver";
 import App from './App';
 import axios from 'axios'
 import waapi from "../src/AK/WwiseAuthoringAPI/js/waapi.js";
-
 // Show a generic message
 var showMessage = function (kind, message) {
     var e = document.getElementById(kind);
@@ -111,6 +110,7 @@ function Dialogue(){
     const [dialogueCsv, setDialogueCsv] = useState([]);
     const [audioFilesFolder, setAuidoFilesFolder] = useState("");
     const [audioFiles, setAudioFiles] = useState([]);
+    const [language, setLanguage] = useState("");
     //找到特定列
     const getColumns = (dialogueCsv) =>{
         const columns = (dialogueCsv || "")
@@ -245,7 +245,7 @@ function Dialogue(){
 
             importOperation: "createNew",
             default: {
-                importLanguage: "Chinese(CN)"
+                importLanguage: language
             },
             imports: []
         }
@@ -388,13 +388,16 @@ function Dialogue(){
             }
         )
     }
-    //console.log(dia);
+    if(language === ""){
+        alert("请选择语言");
+        return;
+    }
     
     const diaJson = {
 
         importOperation: "createNew",
         default: {
-            importLanguage: "Chinese(CN)"
+            importLanguage: language
         },
         imports: []
     }
@@ -421,7 +424,7 @@ function Dialogue(){
         null,
         null
     );
-
+    //console.log(diaJson);
     alert("已导入到Wwise")
     
     }
@@ -478,6 +481,14 @@ function Dialogue(){
         <input placeholder="语音文件夹路径" type="text" onChange={(e) => setAuidoFilesFolder(e.target.value)}/>
     <br/>
     <br/> 
+        <select class="select" onChange={(e) => setLanguage(e.target.value)}>
+            <option value="">选择语言</option>
+            <option value="Chinese(CN)">Chinese(CN)</option>
+            <option value="English(US)">English(US)</option>
+            <option value="Japanese(JP)">Japanese(JP)</option>
+        </select>
+    <br/> 
+    <br/>      
         <button type="button" onClick={handleOutputDiaCsv}>Output txt</button>
     <br/>
     <br/> 

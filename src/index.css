@@ -33,9 +33,6 @@ input[type="liltext"] {
   width: 580px;
 }
 
-.select {
-  margin-right: 10px;
-}
 .select,
 input[type="text"] {
   padding: 4px 8px;
