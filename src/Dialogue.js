@@ -395,7 +395,7 @@ function Dialogue(){
     
     const diaJson = {
 
-        importOperation: "createNew",
+        importOperation: "useExisting",
         default: {
             importLanguage: language
         },
