@@ -113,15 +113,20 @@ function Dialogue(){
     
     function remixReaperJson(data){
         data = JSON.parse(data);
+        console.log(data);
         //识别视频和音频轨, rework trigger time
         let montageTime = 0;
+        let montage = "";
         for(let i =0; i<data.length; i++){  
             if(data[i].Item.includes("AM_")){
                 montageTime = data[i].triggerTime;
+                montage = data[i].Item;
             }
             else{
                 data[i].triggerTime -= montageTime;
+                data[i].montage = montage;
             }
+            console.log(montage);
         }
         
         //识别视频和音频轨, rework Skill
