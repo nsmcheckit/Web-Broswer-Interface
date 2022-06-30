@@ -16,6 +16,7 @@ var showMessage = function (kind, message) {
     e.innerHTML = message;
 }
 
+
 function waapiCall(uri, args, options, onSuccess, onError) {
     (() => {
         const axios = require('axios');
@@ -98,6 +99,7 @@ function Dialogue(){
         }).then((response) => {
             handleResponse(response.status, response.headers, response.data);
         }).catch((err) => {
+
             if (err.response) {
                 handleResponse(err.response.status, err.response.headers, err.response.data);
             } else {
@@ -107,6 +109,93 @@ function Dialogue(){
         
     })();
     
+    const [reaperJson, setReaperJson] = useState([]);
+    
+    function remixReaperJson(data){
+        data = JSON.parse(data);
+        //识别视频和音频轨, rework trigger time
+        let montageTime = 0;
+        for(let i =0; i<data.length; i++){  
+            if(data[i].Item.includes("AM_")){
+                montageTime = data[i].triggerTime;
+            }
+            else{
+                data[i].triggerTime -= montageTime;
+            }
+        }
+        
+        //识别视频和音频轨, rework Skill
+        let skill = "";
+        for(let i =0; i<data.length; i++){
+            if(data[i].Item.includes("AM_")){
+                skill = data[i].Skill;
+                data[i].Event = data[i].Character + "_" + skill + "_" + data[i].Item + "_" + data[i].Type;
+            }
+            else{
+                data[i].Event = data[i].Character + "_" + skill + "_" + data[i].Item + "_" + data[i].Type;
+            }
+        }
+        
+        
+        //delete keys unuseful
+        for(let i =0; i<data.length; i++){
+            delete data[i].Character;
+            delete data[i].Skill;
+            delete data[i].Item;
+            delete data[i].Type;
+        }
+        //mix same events into an array
+        let remixJson = {};
+        let wwiseEventGroup = [];
+        for(let i = 0; i<data.length; i++){
+            if( !wwiseEventGroup.includes(data[i].Event)){
+                wwiseEventGroup.push(data[i].Event);
+                remixJson[data[i].Event] = [];
+                remixJson[data[i].Event].push(data[i]);
+            }
+            else{
+                remixJson[data[i].Event].unshift(data[i]);
+            }  
+        }    
+        
+        //delete unuseful events
+        for(let i = 0; i<wwiseEventGroup.length; i++){
+            if(wwiseEventGroup[i].includes("AM_")){
+                delete remixJson[wwiseEventGroup[i]];
+                wwiseEventGroup.splice(i,1);
+            }
+        }
+
+        let wwiseEventGroupWithEvent = [];
+
+        //even add "Event:" prefix
+        for(let i = 0; i<wwiseEventGroup.length; i++){
+            wwiseEventGroupWithEvent[i] = "Event:" + wwiseEventGroup[i]
+        }
+        console.log(wwiseEventGroupWithEvent);
+        console.log(remixJson)
+        
+        //call wappi
+        for(let i = 0; i<wwiseEventGroup.length; i++){
+        remixJson[wwiseEventGroup[i]] = { "config": remixJson[wwiseEventGroup[i]]};
+        //console.log(configGroup["config"])
+        waapiCall(
+            'ak.wwise.core.object.setNotes',
+            {
+
+                "object": wwiseEventGroupWithEvent[i],
+                "value": JSON.stringify(remixJson[wwiseEventGroup[i]],null,'\t')
+            
+            },
+            null,
+            null,
+            null
+        );
+    }
+    }
+    
+    
+
     const [dialogueCsv, setDialogueCsv] = useState([]);
     const [audioFilesFolder, setAuidoFilesFolder] = useState("");
     const [audioFiles, setAudioFiles] = useState([]);
@@ -119,7 +208,7 @@ function Dialogue(){
         .map((item) => item.replace(/"/g,""))
         .map((item) => item.replace(/\n/g,""));
 
-        //console.log(columns);
+        console.log(columns);
         // const titlefirst = (dialogueCsv || "").split(/\"/);//通过"分割文件
         // const titlesecond = flattenDeep(titlefirst.map((item) => item.split(",")))
         // .map((item) => item.trim())
@@ -194,6 +283,8 @@ function Dialogue(){
         }
         testAudioFilesTextture();
         //console.log(wrongAudioFilesTextture);
+
+        
 
         if ( wrongAudioFilesTextture.length !== 0){
             var a = window.confirm( wrongAudioFilesTextture+" 与本地命名不一致！是否仍要导出？");
@@ -460,6 +551,23 @@ function Dialogue(){
         reader.readAsText(file);
       }
 
+      function handleOutputJson() {
+        if (reaperJson.length === 0) {
+            alert("No files selected");
+            return;
+          }
+    
+          const file = reaperJson[0];
+              let reader = new FileReader();
+              reader.onload = function (e) {
+              const data = e.target.result;
+              remixReaperJson(data);
+              //console.log(data);
+          };
+          reader.readAsText(file);
+        
+      }
+
     return (       
     <div> 
         <h2 class="connect">
@@ -467,7 +575,7 @@ function Dialogue(){
         <span id="load_success_project"></span>
         </h2>
         {/*<a href ="nomal">Nomal Mode</a> */}
-        <h3>SoundTeam语音批量导入工具 </h3>
+        <h3>SoundTeam Web批量导入工具 </h3>
         <p id="background">
     <br/>  
         CSV表格:&nbsp;&nbsp;
@@ -494,11 +602,26 @@ function Dialogue(){
     <br/> 
         <button type="button" class="button2" onClick={sendToWwise}>sendToWwise</button>
     <br/>
-    <br/>   
+    <br/>
+    <br/> 
         </p>
+        <p class="p1"> 
+        <br/>
+        <br/>
+            reaperJson:&nbsp;&nbsp;
+            <input id="fileInput" type="file" multiple onChange={(e) => setReaperJson(e.target.files)}/>
+        <br/>   
+        <br/>
+        <br/> 
+            <button type="button" class="button2" onClick={handleOutputJson}>reaperJSON2Wwise</button>
+        <br/>
+        <br/> 
+            </p>
     </div>
 
     );
 }
+
+
 
 export default Dialogue;
