@@ -141,6 +141,12 @@ function Dialogue(){
             }
         }
         
+        //rework attachname
+        for(let i =0; i<data.length; i++){
+            if(data[i].attachName === ""){
+                data[i].attachName = "WeaponSocket";
+            }
+        }
         
         //delete keys unuseful
         for(let i =0; i<data.length; i++){
@@ -182,7 +188,7 @@ function Dialogue(){
         
         //call wappi
         for(let i = 0; i<wwiseEventGroup.length; i++){
-        remixJson[wwiseEventGroup[i]] = { "config": remixJson[wwiseEventGroup[i]]};
+        remixJson[wwiseEventGroup[i]] = { "Config": remixJson[wwiseEventGroup[i]]};
         //console.log(configGroup["config"])
         waapiCall(
             'ak.wwise.core.object.setNotes',
