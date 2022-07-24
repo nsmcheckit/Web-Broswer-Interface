@@ -2,9 +2,18 @@ import {BrowserRouter as Router, Route, Link, Routes, useLinkClickHandler} from 
 import { useState } from "react";
 import { flatMapDeep, flattenDeep, includes } from "lodash";
 import { saveAs } from "file-saver";
+import './test1.txt'
+import {wwr_run_update} from'./main'
+import {wwr_req_recur} from'./main'
+import fs from "fs";
 import App from './App';
 import axios from 'axios'
 import waapi from "../src/AK/WwiseAuthoringAPI/js/waapi.js";
+
+  
+wwr_run_update();
+wwr_req_recur("41075")
+alert("linked reaper")
 // Show a generic message
 var showMessage = function (kind, message) {
     var e = document.getElementById(kind);
@@ -65,7 +74,7 @@ function waapiCall(uri, args, options, onSuccess, onError) {
 }
 
 function Dialogue(){
-    document.title = "SoundTeam语音批量导入工具";
+    document.title = "SoundTeam Web Interface";
     //uri: ak.wwise.core.getInfo
     (() => {
         const axios = require('axios');
@@ -108,7 +117,7 @@ function Dialogue(){
         });
         
     })();
-    
+    //reaperJson
     const [reaperJson, setReaperJson] = useState([]);
     
     function remixReaperJson(data){
@@ -205,12 +214,30 @@ function Dialogue(){
     }
     }
     
+    //reaper
+    const [articyJson, setArticyJson] = useState([]);
+    const diaEvent =[];
+    function createTracks(articyJson){
+    articyJson = JSON.parse(articyJson);
+    for (let i = 1; i < articyJson.length; i++ ){
+        diaEvent[i-1] = articyJson[i]["Wwise Event (Do not edit manually)"];
+        console.log(diaEvent[i-1])
+        wwr_req_recur("40001","nihao")
+        wwr_req_recur("SET/TRACK/1/trackname/value")
+    }
     
 
+}
+
+
+    
+    //wwise
     const [dialogueCsv, setDialogueCsv] = useState([]);
     const [audioFilesFolder, setAuidoFilesFolder] = useState("");
     const [audioFiles, setAudioFiles] = useState([]);
     const [language, setLanguage] = useState("");
+
+
     //找到特定列
     const getColumns = (dialogueCsv) =>{
         const columns = (dialogueCsv || "")
@@ -548,6 +575,7 @@ function Dialogue(){
       }
 
       function sendToWwise() {
+        wwr_req_recur("_RSfc419379da3c8e35eeb01fd19731ccf4cc0a8fad")
         if (dialogueCsv.length === 0) {
           alert("No files selected");
           return;
@@ -561,7 +589,7 @@ function Dialogue(){
         };
         reader.readAsText(file);
       }
-
+    //reaper Json
       function handleOutputJson() {
         if (reaperJson.length === 0) {
             alert("No files selected");
@@ -578,7 +606,20 @@ function Dialogue(){
           reader.readAsText(file);
         
       }
-
+    //reaper
+      function handleVoiceFiles() {
+        if (articyJson.length === 0) {
+            alert("No files selected");
+            return;
+          }
+           const file = articyJson[0];
+               let reader = new FileReader();
+               reader.onload = function (e) {
+               const data = e.target.result;
+                createTracks(data);
+           };
+           reader.readAsText(file);
+      }
     return (       
     <div> 
         <h2 class="connect">
@@ -586,7 +627,7 @@ function Dialogue(){
         <span id="load_success_project"></span>
         </h2>
         {/*<a href ="nomal">Nomal Mode</a> */}
-        <h3>SoundTeam Web批量导入工具 </h3>
+        <h3>SoundTeam Web Interface</h3>
         <p id="background">
     <br/>  
         CSV表格:&nbsp;&nbsp;
@@ -616,7 +657,7 @@ function Dialogue(){
     <br/>
     <br/> 
         </p>
-        <p class="p1"> 
+    <p class="p1"> 
         <br/>
         <br/>
             reaperJson:&nbsp;&nbsp;
@@ -627,7 +668,18 @@ function Dialogue(){
             <button type="button" class="button2" onClick={handleOutputJson}>reaperJSON2Wwise</button>
         <br/>
         <br/> 
-            </p>
+    </p>
+    <p class="p1">
+    <br/>   
+        articyJson:&nbsp;&nbsp;
+        <input id="fileInput" type="file" multiple onChange={(e) => setArticyJson(e.target.files)}/>
+    <br/>
+    <br/>
+    <br/>
+        <button type="button" class="button2" onClick={handleVoiceFiles}>createTracks</button>
+    <br/> 
+    <br/> 
+    </p>
     </div>
 
     );
@@ -635,4 +687,4 @@ function Dialogue(){
 
 
 
-export default Dialogue;
+export default Dialogue
