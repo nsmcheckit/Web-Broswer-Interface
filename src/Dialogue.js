@@ -11,13 +11,10 @@ import App from './App';
 import axios from 'axios'
 import waapi from "../src/AK/WwiseAuthoringAPI/js/waapi.js";
 
-  
-wwr_run_update();
+
 alert("linked reaper");
-wwr_req("SET/PROJEXTSTATE/reaperWeb/trackname/" + "trackname");
-var script_command_ID = "_RSa06f9b6da150a2b4ad3415129a4bc3a4797b6f95"; 
-wwr_req(encodeURIComponent(script_command_ID));
-console.log("123")
+wwr_req(encodeURIComponent("_RS2c8ae3a590f03c49a57448d21a0eb76c999cc7f7"));
+
 // Show a generic message
 var showMessage = function (kind, message) {
     var e = document.getElementById(kind);
@@ -226,13 +223,25 @@ function Dialogue(){
     for (let i = 1; i < articyJson.length; i++ ){
         diaEvent[i-1] = articyJson[i]["Wwise Event (Do not edit manually)"];
         console.log(diaEvent[i-1])
-        wwr_req_recur("40001","nihao")
-        wwr_req_recur("SET/TRACK/1/trackname/value")
+        wwr_run_update();
+        setTimeout(() => {
+            wwr_req("SET/PROJEXTSTATE/reaperWeb/trackname/" + diaEvent[i-1]);
+                setTimeout(() => {
+                    wwr_req(encodeURIComponent("_RSa06f9b6da150a2b4ad3415129a4bc3a4797b6f95"));
+                },3000);
+            },3000);
+        console.log(i)
     }
-    
+    const rppp = require('rppp');
 
+    const project = new rppp.objects.ReaperProject();
+    project.addTrack(new rppp.objects.ReaperTrack()); // ReaperProject supports `addTrack`.
+    project.getOrCreateStructByToken('TRACK').add({
+      token: 'NAME',
+      params: [ 'hello' ],
+    }); 
+    console.log(project.dump());
 }
-
 
     
     //wwise
