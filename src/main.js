@@ -319,6 +319,15 @@ export function initxmlhttp() {
   return xmlhttp;
 }
 
+function wwr_onreply(results) {
+  var ar = results.split("\n");
+  var x;
+  for (x=0;x<ar.length;x++)
+  {
+    var tok = ar[x].split("\t");
+    // tok is a list of parameters, the first being the command
+  }
+}
 
 var g_wwr_timer_freq=100;
 var g_wwr_req_list = "", g_wwr_req_list2 = "";
@@ -349,7 +358,7 @@ export function wwr_run_update()
         if (g_wwr_timer2) { clearTimeout(g_wwr_timer2); g_wwr_timer2=null; }
         if (g_wwr_req.responseText != "") {
           g_wwr_errcnt=0;
-          //wwr_onreply(g_wwr_req.responseText,d);
+          wwr_onreply(g_wwr_req.responseText,d);
         } else if (g_wwr_req.getResponseHeader("Server") == null) {
           if (g_wwr_errcnt < 8) g_wwr_errcnt++;
         }

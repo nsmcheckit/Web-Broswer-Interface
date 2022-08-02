@@ -5,6 +5,7 @@ import { saveAs } from "file-saver";
 import './test1.txt'
 import {wwr_run_update} from'./main'
 import {wwr_req_recur} from'./main'
+import {wwr_req} from'./main'
 import fs from "fs";
 import App from './App';
 import axios from 'axios'
@@ -12,8 +13,11 @@ import waapi from "../src/AK/WwiseAuthoringAPI/js/waapi.js";
 
   
 wwr_run_update();
-wwr_req_recur("41075")
-alert("linked reaper")
+alert("linked reaper");
+wwr_req("SET/PROJEXTSTATE/reaperWeb/trackname/" + "trackname");
+var script_command_ID = "_RSa06f9b6da150a2b4ad3415129a4bc3a4797b6f95"; 
+wwr_req(encodeURIComponent(script_command_ID));
+console.log("123")
 // Show a generic message
 var showMessage = function (kind, message) {
     var e = document.getElementById(kind);
