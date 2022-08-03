@@ -234,19 +234,53 @@ function Dialogue(){
 }
 
     //rppp
-    const [emptyRpp, setEmptyRpp] = useState([]);
-    function creatDialogueRpp(emptyRpp){
-        const rppp = require('rppp');
-        const project = new rppp.objects.ReaperProject();
-        project.addTrack(new rppp.objects.ReaperTrack()); // ReaperProject supports `addTrack`.
-        project.getOrCreateStructByToken('TRACK').add({
-            token: 'NAME',
-            params: [ 'hello' ],
-        });
+    const [recordingSession, setRecordingSession] = useState([]);
+    function creatDialogueRpp(recordingSession){
+        recordingSession = JSON.parse(recordingSession);
+        let trackNameGroup = [];
+        let remixRecordingSession = {};
+        for (let i = 0; i < recordingSession.length; i++ ){
+            if (!trackNameGroup.includes(recordingSession[i]["TechnicalName"])){
+                trackNameGroup.push(recordingSession[i]["TechnicalName"])
+                remixRecordingSession[recordingSession[i]["TechnicalName"]]=[];
+                remixRecordingSession[recordingSession[i]["TechnicalName"]].push(recordingSession[i]);
+            }
+            else{
+                remixRecordingSession[recordingSession[i]["TechnicalName"]].push(recordingSession[i]);
+            }
+        }
 
+        console.log(remixRecordingSession);
+        let trackName="";
+        for (let i = 0; i < trackNameGroup.length; i++ ){
+            trackName = trackNameGroup[i];
+            console.log(trackName);
+            const rppp = require('rppp');
+            const project = new rppp.objects.ReaperProject();
+            project.addTrack(new rppp.objects.ReaperTrack()); // ReaperProject supports `addTrack`.
+            project.getOrCreateStructByToken('TRACK').add({
+                token: 'NAME',
+                params: [ trackName ],
+        });
+        for (let i = 0; i < remixRecordingSession[trackName].length; i++ ){
+            project.contents.push({
+             "token": "MARKER",
+             "params": [
+                 1,
+                 11.5+i,
+                 remixRecordingSession[trackName][i]["Action\r\n（模块/触发条件）"],
+                 0,
+                 0,
+                 1,
+                 "R",
+                 "{05F831CA-BC3B-4E10-AB10-557AFBDEB267}"
+             ]
+         },)   
+        }
         console.log(project.dump());
         let blob = new Blob(["\ufeff"+project.dump()], { type: "text/plain;charset=utf-8" });
-         saveAs(blob, `export.rpp`);
+         saveAs(blob, trackName+`.rpp`);
+        }
     }
     
     //wwise
@@ -640,11 +674,11 @@ function Dialogue(){
       }
       //rppp
       function handleEmptyRPP(){
-        if (emptyRpp.length === 0) {
+        if (recordingSession.length === 0) {
             alert("No files selected");
             return;
           }
-           const file = emptyRpp[0];
+           const file = recordingSession[0];
                let reader = new FileReader();
                reader.onload = function (e) {
                const data = e.target.result;
@@ -715,7 +749,7 @@ function Dialogue(){
     <p class="p1">
     <br/>   
         rppp:&nbsp;&nbsp;
-        <input id="fileInput" type="file" multiple onChange={(e) => setEmptyRpp(e.target.files)}/>
+        <input id="fileInput" type="file" multiple onChange={(e) => setRecordingSession(e.target.files)}/>
     <br/>
     <br/>
     <br/>
