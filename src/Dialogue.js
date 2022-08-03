@@ -14,7 +14,6 @@ import waapi from "../src/AK/WwiseAuthoringAPI/js/waapi.js";
 
 alert("linked reaper");
 wwr_req(encodeURIComponent("_RS2c8ae3a590f03c49a57448d21a0eb76c999cc7f7"));
-
 // Show a generic message
 var showMessage = function (kind, message) {
     var e = document.getElementById(kind);
@@ -232,17 +231,23 @@ function Dialogue(){
             },3000);
         console.log(i)
     }
-    const rppp = require('rppp');
-
-    const project = new rppp.objects.ReaperProject();
-    project.addTrack(new rppp.objects.ReaperTrack()); // ReaperProject supports `addTrack`.
-    project.getOrCreateStructByToken('TRACK').add({
-      token: 'NAME',
-      params: [ 'hello' ],
-    }); 
-    console.log(project.dump());
 }
 
+    //rppp
+    const [emptyRpp, setEmptyRpp] = useState([]);
+    function creatDialogueRpp(emptyRpp){
+        const rppp = require('rppp');
+        const project = new rppp.objects.ReaperProject();
+        project.addTrack(new rppp.objects.ReaperTrack()); // ReaperProject supports `addTrack`.
+        project.getOrCreateStructByToken('TRACK').add({
+            token: 'NAME',
+            params: [ 'hello' ],
+        });
+
+        console.log(project.dump());
+        let blob = new Blob(["\ufeff"+project.dump()], { type: "text/plain;charset=utf-8" });
+         saveAs(blob, `export.rpp`);
+    }
     
     //wwise
     const [dialogueCsv, setDialogueCsv] = useState([]);
@@ -633,6 +638,20 @@ function Dialogue(){
            };
            reader.readAsText(file);
       }
+      //rppp
+      function handleEmptyRPP(){
+        if (emptyRpp.length === 0) {
+            alert("No files selected");
+            return;
+          }
+           const file = emptyRpp[0];
+               let reader = new FileReader();
+               reader.onload = function (e) {
+               const data = e.target.result;
+               creatDialogueRpp(data);
+           };
+           reader.readAsText(file);
+      }
     return (       
     <div> 
         <h2 class="connect">
@@ -693,7 +712,19 @@ function Dialogue(){
     <br/> 
     <br/> 
     </p>
+    <p class="p1">
+    <br/>   
+        rppp:&nbsp;&nbsp;
+        <input id="fileInput" type="file" multiple onChange={(e) => setEmptyRpp(e.target.files)}/>
+    <br/>
+    <br/>
+    <br/>
+        <button type="button" class="button2" onClick={handleEmptyRPP}>createTracks</button>
+    <br/> 
+    <br/> 
+    </p>
     </div>
+    
 
     );
 }
