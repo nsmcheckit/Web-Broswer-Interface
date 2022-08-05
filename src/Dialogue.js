@@ -11,9 +11,7 @@ import App from './App';
 import axios from 'axios'
 import waapi from "../src/AK/WwiseAuthoringAPI/js/waapi.js";
 
-
-alert("linked reaper");
-wwr_req(encodeURIComponent("_RS2c8ae3a590f03c49a57448d21a0eb76c999cc7f7"));
+wwr_req(encodeURIComponent("_RS2c8ae3a590f03c49a57448d21a0eb76c999cc7f7"));//open reaper console
 // Show a generic message
 var showMessage = function (kind, message) {
     var e = document.getElementById(kind);
@@ -75,7 +73,7 @@ function waapiCall(uri, args, options, onSuccess, onError) {
 
 function Dialogue(){
     document.title = "SoundTeam Web Interface";
-    //uri: ak.wwise.core.getInfo
+    //uri: ak.wwise.core.getInfo, show wwise infomation
     (() => {
         const axios = require('axios');
         const ak = require('..\\src\\AK\\WwiseAuthoringAPI\\js\\waapi.js').ak;
@@ -117,9 +115,8 @@ function Dialogue(){
         });
         
     })();
-    //reaperJson
+    //reaperJson, react hook for reaperJson 
     const [reaperJson, setReaperJson] = useState([]);
-    
     function remixReaperJson(data){
         data = JSON.parse(data);
         console.log(data);
@@ -214,7 +211,7 @@ function Dialogue(){
     }
     }
     
-    //reaper
+    //this is a test for Web broswer interface run reaper script, remote insert new tracks and rename them
     const [articyJson, setArticyJson] = useState([]);
     const diaEvent =[];
     function createTracks(articyJson){
@@ -233,7 +230,7 @@ function Dialogue(){
     }
 }
 
-    //rppp
+    //rppp, remixRecordingSession Json, new a rpp project for each speaker
     const [recordingSession, setRecordingSession] = useState([]);
     function creatDialogueRpp(recordingSession){
         recordingSession = JSON.parse(recordingSession);
@@ -249,7 +246,6 @@ function Dialogue(){
                 remixRecordingSession[recordingSession[i]["TechnicalName"]].push(recordingSession[i]);
             }
         }
-
         console.log(remixRecordingSession);
         let trackName = "";
         for (let i = 0; i < trackNameGroup.length; i++ ){
@@ -312,13 +308,12 @@ function Dialogue(){
         }
     }
     
-    //wwise
+    //wwise waapi react hook 
     const [dialogueCsv, setDialogueCsv] = useState([]);
     const [audioFilesFolder, setAuidoFilesFolder] = useState("");
     const [audioFiles, setAudioFiles] = useState([]);
     const [language, setLanguage] = useState("");
-
-
+    //waapi import
     //找到特定列
     const getColumns = (dialogueCsv) =>{
         const columns = (dialogueCsv || "")
@@ -479,8 +474,8 @@ function Dialogue(){
         let blob = new Blob(["\ufeff"+diaTxt], { type: "text/plain;charset=utf-8" });
         saveAs(blob, `export.txt`);
     }
-   
-   const getJson = (dialogueCsv) =>{
+    
+    const getJson = (dialogueCsv) =>{
     const columns = (dialogueCsv || "")
     .replace(/,\n/g,'#')
     .split("#")
@@ -639,7 +634,7 @@ function Dialogue(){
     
     }
    
-
+    //handle funcs
     function handleOutputDiaCsv() {
         if (dialogueCsv.length === 0) {
           alert("No files selected");
@@ -655,7 +650,7 @@ function Dialogue(){
         reader.readAsText(file);
       }
 
-      function sendToWwise() {
+    function sendToWwise() {
         wwr_req_recur("_RSfc419379da3c8e35eeb01fd19731ccf4cc0a8fad")
         if (dialogueCsv.length === 0) {
           alert("No files selected");
@@ -670,8 +665,9 @@ function Dialogue(){
         };
         reader.readAsText(file);
       }
-    //reaper Json
-      function handleOutputJson() {
+
+    //handle reaperJson from Giant_Export_ItemList.lua
+    function handleOutputJson() {
         if (reaperJson.length === 0) {
             alert("No files selected");
             return;
@@ -687,8 +683,9 @@ function Dialogue(){
           reader.readAsText(file);
         
       }
-    //reaper
-      function handleVoiceFiles() {
+
+    //handle articy json to insert new tracks and rename them
+    function handleVoiceFiles() {
         if (articyJson.length === 0) {
             alert("No files selected");
             return;
@@ -701,8 +698,9 @@ function Dialogue(){
            };
            reader.readAsText(file);
       }
-      //rppp
-      function handleEmptyRPP(){
+
+    //rppp: handle articy json to create rpp
+    function handleEmptyRPP(){
         if (recordingSession.length === 0) {
             alert("No files selected");
             return;
@@ -717,12 +715,12 @@ function Dialogue(){
       }
     return (       
     <div> 
+        <h3>SoundTeam Web Interface</h3>
         <h2 class="connect">
         <span class="connect" id="load_success_message">Connecting...</span>
         <span id="load_success_project"></span>
         </h2>
         {/*<a href ="nomal">Nomal Mode</a> */}
-        <h3>SoundTeam Web Interface</h3>
         <p id="background">
     <br/>  
         CSV表格:&nbsp;&nbsp;
@@ -787,8 +785,6 @@ function Dialogue(){
     <br/> 
     </p>
     </div>
-    
-
     );
 }
 
