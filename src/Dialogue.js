@@ -1,5 +1,8 @@
+import $ from 'jquery'
 import {BrowserRouter as Router, Route, Link, Routes, useLinkClickHandler} from "react-router-dom";
 import { useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap';
 import { flatMapDeep, flattenDeep, includes } from "lodash";
 import { saveAs } from "file-saver";
 import './test1.txt'
@@ -713,77 +716,113 @@ function Dialogue(){
            };
            reader.readAsText(file);
       }
-    return (       
-    <div> 
-        <h3>SoundTeam Web Interface</h3>
-        <h2 class="connect">
-        <span class="connect" id="load_success_message">Connecting...</span>
-        <span id="load_success_project"></span>
-        </h2>
+    return (     
+          
+    <div class="text-center row"> 
+    <h3 class="alert alert-primary" role="alert">SoundTeam Web Interface</h3>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    #Convert Dialogue CSV to Json and send to Wwise
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                    <p>
+                        <span id="load_success_message">Connecting...</span><span id="load_success_project"></span>
+                        <br/><br/> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-filetype-csv" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM3.517 14.841a1.13 1.13 0 0 0 .401.823c.13.108.289.192.478.252.19.061.411.091.665.091.338 0 .624-.053.859-.158.236-.105.416-.252.539-.44.125-.189.187-.408.187-.656 0-.224-.045-.41-.134-.56a1.001 1.001 0 0 0-.375-.357 2.027 2.027 0 0 0-.566-.21l-.621-.144a.97.97 0 0 1-.404-.176.37.37 0 0 1-.144-.299c0-.156.062-.284.185-.384.125-.101.296-.152.512-.152.143 0 .266.023.37.068a.624.624 0 0 1 .246.181.56.56 0 0 1 .12.258h.75a1.092 1.092 0 0 0-.2-.566 1.21 1.21 0 0 0-.5-.41 1.813 1.813 0 0 0-.78-.152c-.293 0-.551.05-.776.15-.225.099-.4.24-.527.421-.127.182-.19.395-.19.639 0 .201.04.376.122.524.082.149.2.27.352.367.152.095.332.167.539.213l.618.144c.207.049.361.113.463.193a.387.387 0 0 1 .152.326.505.505 0 0 1-.085.29.559.559 0 0 1-.255.193c-.111.047-.249.07-.413.07-.117 0-.223-.013-.32-.04a.838.838 0 0 1-.248-.115.578.578 0 0 1-.255-.384h-.765ZM.806 13.693c0-.248.034-.46.102-.633a.868.868 0 0 1 .302-.399.814.814 0 0 1 .475-.137c.15 0 .283.032.398.097a.7.7 0 0 1 .272.26.85.85 0 0 1 .12.381h.765v-.072a1.33 1.33 0 0 0-.466-.964 1.441 1.441 0 0 0-.489-.272 1.838 1.838 0 0 0-.606-.097c-.356 0-.66.074-.911.223-.25.148-.44.359-.572.632-.13.274-.196.6-.196.979v.498c0 .379.064.704.193.976.131.271.322.48.572.626.25.145.554.217.914.217.293 0 .554-.055.785-.164.23-.11.414-.26.55-.454a1.27 1.27 0 0 0 .226-.674v-.076h-.764a.799.799 0 0 1-.118.363.7.7 0 0 1-.272.25.874.874 0 0 1-.401.087.845.845 0 0 1-.478-.132.833.833 0 0 1-.299-.392 1.699 1.699 0 0 1-.102-.627v-.495Zm8.239 2.238h-.953l-1.338-3.999h.917l.896 3.138h.038l.888-3.138h.879l-1.327 4Z"/>
+                        </svg> : &nbsp;&nbsp;
+                            <input id="fileInput" type="file" multiple onChange={(e) => setDialogueCsv(e.target.files)}/>
+                        <br/><br/>   
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-badge-vo" viewBox="0 0 16 16">
+                        <path d="M4.508 11h1.429l1.99-5.999H6.61L5.277 9.708H5.22L3.875 5.001H2.5L4.508 11zM13.5 8.39v-.77c0-1.696-.962-2.733-2.566-2.733-1.604 0-2.571 1.029-2.571 2.734v.769c0 1.691.967 2.724 2.57 2.724 1.605 0 2.567-1.033 2.567-2.724zm-1.204-.778v.782c0 1.156-.571 1.732-1.362 1.732-.796 0-1.363-.576-1.363-1.732v-.782c0-1.156.567-1.736 1.363-1.736.79 0 1.362.58 1.362 1.736z"/>
+                        <path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
+                        </svg> : &nbsp;&nbsp;
+                            <input id="fileInput" type="file" multiple onChange={(e) => setAudioFiles(e.target.files)}/>
+                        <br/><br/>
+                            <input placeholder="语音文件夹路径" type="text" onChange={(e) => setAuidoFilesFolder(e.target.value)}/>
+                        <br/><br/> 
+                            <select class="select" onChange={(e) => setLanguage(e.target.value)}>
+                                <option value="">选择语言</option>
+                                <option value="Chinese(CN)">Chinese(CN)</option>
+                                <option value="English(US)">English(US)</option>
+                                <option value="Japanese(JP)">Japanese(JP)</option>
+                            </select>
+                        <br/><br/>      
+                            <button type="button" onClick={handleOutputDiaCsv}>Output txt</button>
+                        <br/><br/> 
+                            <button type="button" class="button2" onClick={sendToWwise}>sendToWwise</button>
+                        <br/><br/><br/> 
+                    </p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    #Set Wwise notes for each Montage from "Giant_Export_ItemList.lua"
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                    <p class="p1"> 
+                    <span id="load_success_message">Connecting...</span><span id="load_success_project"></span>
+                        <br/><br/> 
+                            reaperJson:&nbsp;&nbsp;
+                            <input id="fileInput" type="file" multiple onChange={(e) => setReaperJson(e.target.files)}/>
+                        <br/><br/><br/> 
+                            <button type="button" class="button2" onClick={handleOutputJson}>reaperJSON2Wwise</button>
+                        <br/><br/> 
+                    </p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        #Remote run actions in reaper (still building)
+                        </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                    <p class="p1">
+                        <br/><br/>  
+                            articyJson:&nbsp;&nbsp;
+                            <input id="fileInput" type="file" multiple onChange={(e) => setArticyJson(e.target.files)}/>
+                        <br/><br/><br/>
+                            <button type="button" class="button2" onClick={handleVoiceFiles}>createTracks</button>
+                        <br/><br/> 
+                    </p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                        #Articy - Reaper Pipeline
+                        </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                    <p class="p1">
+                        <br/><br/>  
+                            rppp:&nbsp;&nbsp;
+                            <input id="fileInput" type="file" multiple onChange={(e) => setRecordingSession(e.target.files)}/>
+                        <br/>
+                        <br/>
+                        <br/>
+                            <button type="button" class="button2" onClick={handleEmptyRPP}>createTracks</button>
+                        <br/> 
+                        <br/> 
+                    </p>
+                    </div>
+                </div>
+            </div>
+        </div>       
         {/*<a href ="nomal">Nomal Mode</a> */}
-        <p id="background">
-    <br/>  
-        CSV表格:&nbsp;&nbsp;
-        <input id="fileInput" type="file" multiple onChange={(e) => setDialogueCsv(e.target.files)}/>
-    <br/>
-    <br/>   
-        语音文件:&nbsp;&nbsp;
-        <input id="fileInput" type="file" multiple onChange={(e) => setAudioFiles(e.target.files)}/>
-    <br/>
-    <br/>
-        <input placeholder="语音文件夹路径" type="text" onChange={(e) => setAuidoFilesFolder(e.target.value)}/>
-    <br/>
-    <br/> 
-        <select class="select" onChange={(e) => setLanguage(e.target.value)}>
-            <option value="">选择语言</option>
-            <option value="Chinese(CN)">Chinese(CN)</option>
-            <option value="English(US)">English(US)</option>
-            <option value="Japanese(JP)">Japanese(JP)</option>
-        </select>
-    <br/> 
-    <br/>      
-        <button type="button" onClick={handleOutputDiaCsv}>Output txt</button>
-    <br/>
-    <br/> 
-        <button type="button" class="button2" onClick={sendToWwise}>sendToWwise</button>
-    <br/>
-    <br/>
-    <br/> 
-        </p>
-    <p class="p1"> 
-        <br/>
-        <br/>
-            reaperJson:&nbsp;&nbsp;
-            <input id="fileInput" type="file" multiple onChange={(e) => setReaperJson(e.target.files)}/>
-        <br/>   
-        <br/>
-        <br/> 
-            <button type="button" class="button2" onClick={handleOutputJson}>reaperJSON2Wwise</button>
-        <br/>
-        <br/> 
-    </p>
-    <p class="p1">
-    <br/>   
-        articyJson:&nbsp;&nbsp;
-        <input id="fileInput" type="file" multiple onChange={(e) => setArticyJson(e.target.files)}/>
-    <br/>
-    <br/>
-    <br/>
-        <button type="button" class="button2" onClick={handleVoiceFiles}>createTracks</button>
-    <br/> 
-    <br/> 
-    </p>
-    <p class="p1">
-    <br/>   
-        rppp:&nbsp;&nbsp;
-        <input id="fileInput" type="file" multiple onChange={(e) => setRecordingSession(e.target.files)}/>
-    <br/>
-    <br/>
-    <br/>
-        <button type="button" class="button2" onClick={handleEmptyRPP}>createTracks</button>
-    <br/> 
-    <br/> 
-    </p>
     </div>
     );
 }

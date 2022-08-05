@@ -1,4 +1,13 @@
-body {
+.button2 {
+  padding: 15px 15px;
+  background:chocolate;
+  color: white;
+  border: 3px chocolate;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+/* body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -104,4 +113,4 @@ div{
   background-color:darkgrey;
   width: 530px;
   border-radius: 5px;
-}
+} */
