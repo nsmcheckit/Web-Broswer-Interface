@@ -257,7 +257,13 @@ function Dialogue(){
     //rppp, remixRecordingSession Json, new a rpp project for each speaker
     const [recordingSession, setRecordingSession] = useState([]);
     function creatDialogueRpp(recordingSession){
-        recordingSession = JSON.parse(recordingSession);
+        try{
+            recordingSession = JSON.parse(recordingSession);
+        } catch (e){
+            alert("JSON不符合规范");
+            return;
+        } 
+        
         let trackNameGroup = [];
         let remixRecordingSession = {};//将TechnicalName提取出作为键
         for (let i = 0; i < recordingSession.length; i++ ){
@@ -284,47 +290,48 @@ function Dialogue(){
                 params: [ trackName ],
         });
         for (let i = 0; i < remixRecordingSession[trackName].length; i++ ){
-            project.contents.push({
-             "token": "MARKER",
-             "params": [
-                 1,
-                 time,
-                 remixRecordingSession[trackName][i]["No.\r\n(序号）"],
-                 0,
-                 0,
-                 1,
-                 "R",
-                 "{05F831CA-BC3B-4E10-AB10-557AFBDEB267}" //marker
-             ]
-         },)  //insert marker
+        //     project.contents.push({
+        //      "token": "MARKER",
+        //      "params": [
+        //          1,
+        //          time,
+        //          remixRecordingSession[trackName][i]["No.(序号)"],
+        //          0,
+        //          0,
+        //          1,
+        //          "R",
+        //          "{05F831CA-BC3B-4E10-AB10-557AFBDEB267}" //marker
+        //      ]
+        //  },)  //insert marker
             project.contents.push({
             "token": "MARKER",
             "params": [
+                i,//id
+                time,//标记点
+                remixRecordingSession[trackName][i]["Dialogue(CN)(台词)"],//region名称
                 1,
-                time,
-                remixRecordingSession[trackName][i]["Dialogue (CN)\r\n（台词）"],
                 1,
-                0,
                 1,
                 "R",
-                "{1171F644-29E1-41B0-BBAD-F131D78F1582}" //region
+                "{00000000-0000-0000-0000-" + (i.toString(10)).padStart(12, "0") + "}"//idx {1171F644-29E1-41B0-BBAD-F131D78F1582}
+                //region
             ]
         },)
         project.contents.push({
             "token": "MARKER",
             "params": [
+                i,
+                time + (remixRecordingSession[trackName][i]["Dialogue(CN)(台词)"]).length/4,
+                "",
                 1,
-                time + (remixRecordingSession[trackName][i]["Dialogue (CN)\r\n（台词）"]).length/4,
-                remixRecordingSession[trackName][i]["Dialogue (CN)\r\n（台词）"],
                 1,
-                0,
                 1,
                 "R",
                 "" //region
             ]
         },)
             
-            time += (remixRecordingSession[trackName][i]["Dialogue (CN)\r\n（台词）"]).length/4 + 1;
+            time += (remixRecordingSession[trackName][i]["Dialogue(CN)(台词)"]).length/4 + 5;
         }
         //console.log(project.dump());
         let blob = new Blob(["\ufeff"+project.dump()], { type: "text/plain;charset=utf-8" });
@@ -834,7 +841,7 @@ function Dialogue(){
                         <br/>
                         <br/>
                         <br/>
-                            <button type="button" class="button2" onClick={handleEmptyRPP}>createTracks</button>
+                            <button type="button" class="button2" onClick={handleEmptyRPP}>creatRpp</button>
                         <br/> 
                         <br/> 
                     </p>
