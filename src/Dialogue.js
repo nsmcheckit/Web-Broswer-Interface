@@ -139,7 +139,22 @@ function Dialogue(){
         });
         
     })();
-    //reaperJson, react hook for reaperJson 
+    //remote Act Reaper
+    const [reaScript, setReaScript] = useState("");
+    $("#exampleDataList").change(function() {
+        if (reaScript == "Giant_MoveWithCursor"){
+            wwr_req(encodeURIComponent("_RS00f968458d44a5b9b4516c4963b700e85537bac9"));
+        }
+        else if (reaScript == "Giant_moveItemStartPosition"){
+            alert("功能开发中")
+        }
+        else if(reaScript == "Giant_Export_ItemList"){
+            wwr_req(encodeURIComponent("_RS00f968458d44a5b9b4516c4963b700e85537bac9"));
+        }
+    })
+    
+
+    //reaperJson, react hook for reaperMontageJson 
     const [reaperJson, setReaperJson] = useState([]);
     function remixReaperJson(data){
         data = JSON.parse(data);
@@ -752,7 +767,7 @@ function Dialogue(){
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    #Convert Dialogue CSV to Json and send to Wwise
+                    #Dialogue CSV To Wwise
                     </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -790,7 +805,7 @@ function Dialogue(){
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    #Set Wwise notes for each Montage from "Giant_Export_ItemList.lua"
+                    #Reaper Json To Wwise Note
                     </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -810,12 +825,24 @@ function Dialogue(){
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        #Remote run actions in reaper (still building)
+                        #Remote Act Reaper (still building)
                         </button>
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                     <p class="p1">
+                        <br/><br/> 
+                        <div class="row justify-content-center">
+                            <div class="col-sm-4">
+                                <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." onChange={(e) => setReaScript(e.target.value)}></input>
+                                <datalist id="datalistOptions">
+                                    <option value="Giant_MoveWithCursor">Giant_MoveWithCursor</option>
+                                    <option value="Giant_moveItemStartPosition">Giant_moveItemStartPosition</option>
+                                    <option value="Giant_Export_ItemList">Giant_Export_ItemList</option>
+                                    <option value="insert new track from articyJson">insert new track from articyJson</option>
+                                </datalist>
+                            </div>
+                        </div>
                         <br/><br/>  
                             articyJson:&nbsp;&nbsp;
                             <input id="fileInput" type="file" multiple onChange={(e) => setArticyJson(e.target.files)}/>
@@ -829,7 +856,7 @@ function Dialogue(){
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingFour">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-                        #Articy - Reaper Pipeline
+                        #Json To Rpp
                         </button>
                 </h2>
                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
