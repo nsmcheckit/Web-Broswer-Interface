@@ -278,7 +278,7 @@ function Dialogue(){
             alert("JSON不符合规范");
             return;
         } 
-        
+        console.log(recordingSession);
         let trackNameGroup = [];
         let remixRecordingSession = {};//将TechnicalName提取出作为键
         for (let i = 0; i < recordingSession.length; i++ ){
@@ -292,66 +292,78 @@ function Dialogue(){
             }
         }
         console.log(remixRecordingSession);
+        console.log(trackNameGroup)
+        var remixRecordingSessionLength = 0;//计算remixRecordingSession的长度
+        for (var ever in remixRecordingSession){
+            remixRecordingSessionLength++;
+        }
         let trackName = "";
+        let time = 0;
+        let id = 0;
+        const rppp = require('rppp');
+        const project = new rppp.objects.ReaperProject();
         for (let i = 0; i < trackNameGroup.length; i++ ){
-            let time = 0;
-            trackName = trackNameGroup[i];
-            console.log(trackName);
-            const rppp = require('rppp');
-            const project = new rppp.objects.ReaperProject();
             project.addTrack(new rppp.objects.ReaperTrack()); // ReaperProject supports `addTrack`.
-            project.getOrCreateStructByToken('TRACK').add({
-                token: 'NAME',
-                params: [ trackName ],
+            trackName = JSON.stringify(trackNameGroup[i]).replace(/"/g,"");
+            //console.log(trackName);
+            project.getOrCreateStructByToken("TRACK",i).add({
+                token: "NAME",
+                params: [trackName],
         });
-        for (let i = 0; i < remixRecordingSession[trackName].length; i++ ){
-        //     project.contents.push({
-        //      "token": "MARKER",
-        //      "params": [
-        //          1,
-        //          time,
-        //          remixRecordingSession[trackName][i]["No.(序号)"],
-        //          0,
-        //          0,
-        //          1,
-        //          "R",
-        //          "{05F831CA-BC3B-4E10-AB10-557AFBDEB267}" //marker
-        //      ]
-        //  },)  //insert marker
-            project.contents.push({
-            "token": "MARKER",
-            "params": [
-                i,//id
-                time,//标记点
-                remixRecordingSession[trackName][i]["Dialogue(CN)(台词)"],//region名称
-                1,
-                1,
-                1,
-                "R",
-                "{00000000-0000-0000-0000-" + (i.toString(10)).padStart(12, "0") + "}"//idx {1171F644-29E1-41B0-BBAD-F131D78F1582}
-                //region
-            ]
-        },)
-        project.contents.push({
-            "token": "MARKER",
-            "params": [
-                i,
-                time + (remixRecordingSession[trackName][i]["Dialogue(CN)(台词)"]).length/4,
-                "",
-                1,
-                1,
-                1,
-                "R",
-                "" //region
-            ]
-        },)
-            
-            time += (remixRecordingSession[trackName][i]["Dialogue(CN)(台词)"]).length/4 + 5;
         }
-        //console.log(project.dump());
+        
+        for (let i = 0; i < trackNameGroup.length; i++ ){
+                project.contents.push({
+                "token": "MARKER",
+                "params": [
+                    id,
+                    time == 0 ? time : time - 0.1,
+                    JSON.stringify(trackNameGroup[i]).replace(/"/g,""),
+                    0,
+                    0,
+                    1,
+                    "R",
+                    "{05F831CA-BC3B-4E10-AB10-557AFBDEB267}" //marker
+                ]
+            },)  //insert marker
+            id++;
+            for (let j = 0; j < remixRecordingSession[trackNameGroup[i]].length; j++ ){
+                remixRecordingSession[trackNameGroup[i]][j]["Dialogue(CN)(台词)"].replace(/[\r\n]/g, "");//reaper的region不能识别回车
+                project.contents.push({
+                    "token": "MARKER",
+                    "params": [
+                        id,//id
+                        time,//标记点
+                        remixRecordingSession[trackNameGroup[i]][j]["Dialogue(CN)(台词)"].replace(/[\r\n]/g, ""),//region名称
+                        1,
+                        1,
+                        1,
+                        "R",
+                        "{00000000-0000-0000-0000-" + (i.toString(10)).padStart(12, "0") + "}"//idx {1171F644-29E1-41B0-BBAD-F131D78F1582}
+                        //region
+                    ]
+                },)
+                project.contents.push({
+                    "token": "MARKER",
+                    "params": [
+                        id,
+                        time + (remixRecordingSession[trackNameGroup[i]][j]["Dialogue(CN)(台词)"].replace(/[\r\n]/g, "")).length/4,
+                        "",
+                        1,
+                        1,
+                        1,
+                        "R",
+                        "" //region
+                    ]
+                },)
+                    
+                    time += (remixRecordingSession[trackNameGroup[i]][j]["Dialogue(CN)(台词)"].replace(/[\r\n]/g, "")).length/4 + 5;
+                    id ++;
+            }       
+        }
+        console.log(project);
         let blob = new Blob(["\ufeff"+project.dump()], { type: "text/plain;charset=utf-8" });
-         saveAs(blob, trackName+`.rpp`);
-        }
+        saveAs(blob, 1+`.rpp`);
     }
     
     //wwise waapi react hook 
