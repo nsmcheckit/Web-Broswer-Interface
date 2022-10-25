@@ -301,7 +301,13 @@ function Dialogue(){
         let time = 0;
         let id = 0;
         const rppp = require('rppp');
-        const project = new rppp.objects.ReaperProject();
+        const project = new rppp.objects.ReaperProject();//新建一个rpp项目
+        const diaTrack = new rppp.objects.ReaperTrack();//新建一个显示字幕的track
+        let diaItem = new rppp.objects.ReaperItem();//每个region下的台词Item
+        let diaNotes;//每个台词Item里的notes
+        project.add(diaTrack);
+
+        //创建speakers track
         for (let i = 0; i < trackNameGroup.length; i++ ){
             project.addTrack(new rppp.objects.ReaperTrack()); // ReaperProject supports `addTrack`.
             trackName = JSON.stringify(trackNameGroup[i]).replace(/"/g,"");
@@ -311,7 +317,7 @@ function Dialogue(){
                 params: [trackName],
         });
         }
-        
+        //打region和marker
         for (let i = 0; i < trackNameGroup.length; i++ ){
                 project.contents.push({
                 "token": "MARKER",
@@ -329,6 +335,15 @@ function Dialogue(){
             id++;
             for (let j = 0; j < remixRecordingSession[trackNameGroup[i]].length; j++ ){
                 remixRecordingSession[trackNameGroup[i]][j]["Dialogue(CN)(台词)"].replace(/[\r\n]/g, "");//reaper的region不能识别回车
+                console.log(remixRecordingSession[trackNameGroup[i]][j]["Dialogue(CN)(台词)"].replace(/[\r\n]/g, ""));
+                diaNotes = rppp.specialize(rppp.parse(`<NOTES
+                |${remixRecordingSession[trackNameGroup[i]][j]["Dialogue(CN)(台词)"].replace(/[\r\n]/g, "")}
+                >`));//把台词写进每一个Note里
+                diaItem = new rppp.objects.ReaperItem();//刷新diaItem
+                diaItem.add(diaNotes);
+                diaItem.add({ token: "POSITION", params: [time] });//empty item position
+                diaItem.add({ token: "LENGTH", params: [(remixRecordingSession[trackNameGroup[i]][j]["Dialogue(CN)(台词)"].replace(/[\r\n]/g, "")).length/4]});//empty item length
+                diaTrack.add(diaItem);
                 project.contents.push({
                     "token": "MARKER",
                     "params": [
