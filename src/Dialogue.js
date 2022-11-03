@@ -278,7 +278,9 @@ function Dialogue(){
             alert("JSON不符合规范");
             return;
         } 
-        console.log(recordingSession);
+
+        const keyWordsNum = Object.keys(recordingSession[0]).length;//keywordsnum
+        const keyWords = Object.keys(recordingSession[0]);//keywords
         let trackNameGroup = [];
         let remixRecordingSession = {};//将TechnicalName提取出作为键
         for (let i = 0; i < recordingSession.length; i++ ){
@@ -291,8 +293,8 @@ function Dialogue(){
                 remixRecordingSession[recordingSession[i]["TechnicalName"]].push(recordingSession[i]);
             }
         }
-        console.log(remixRecordingSession);
-        console.log(trackNameGroup)
+            // console.log(remixRecordingSession);
+            // console.log(trackNameGroup)
         var remixRecordingSessionLength = 0;//计算remixRecordingSession的长度
         for (var ever in remixRecordingSession){
             remixRecordingSessionLength++;
@@ -302,22 +304,35 @@ function Dialogue(){
         let id = 0;
         const rppp = require('rppp');
         const project = new rppp.objects.ReaperProject();//新建一个rpp项目
-        const diaTrack = new rppp.objects.ReaperTrack();//新建一个显示字幕的track
+        const projectNotes = new rppp.objects.ReaperNotes();
+        projectNotes.params = [JSON.stringify(remixRecordingSession)];
+        console.log(projectNotes.params);
+        console.log(JSON.parse(projectNotes.params));
+        project.add(projectNotes);
+        const diaTrack = new rppp.objects.ReaperTrack();//新建一个显示字幕的track: diaTrack
         let diaItem = new rppp.objects.ReaperItem();//每个region下的台词Item
         let diaNotes;//每个台词Item里的notes
-        project.add(diaTrack);
+        project.addTrack(diaTrack);
+        project.getOrCreateStructByToken("TRACK", 0).add({
+            token: "NAME",
+            params: ["Dialogue Lines"],
+    });//目前speaker track之前有1个track
 
         //创建speakers track
         for (let i = 0; i < trackNameGroup.length; i++ ){
-            project.addTrack(new rppp.objects.ReaperTrack()); // ReaperProject supports `addTrack`.
+            //speaker tracks
+            project.addTrack(new rppp.objects.ReaperTrack());
             trackName = JSON.stringify(trackNameGroup[i]).replace(/"/g,"");
-            //console.log(trackName);
-            project.getOrCreateStructByToken("TRACK",i).add({
-                token: "NAME",
-                params: [trackName],
-        });
+            project.getOrCreateStructByToken("TRACK",(i * 2) + 1).add({ token: "NAME", params: [trackName]});
+            project.getOrCreateStructByToken("TRACK",(i * 2) + 1).add({ token: "ISBUS", params: [1, 1]});
+            //speaker track out
+            project.addTrack(new rppp.objects.ReaperTrack());
+            trackName = JSON.stringify(trackNameGroup[i]).replace(/"/g,"");
+            project.getOrCreateStructByToken("TRACK",(i * 2 + 1) + 1).add({ token: "NAME",params: [`${trackName} OUT`]});
+            project.getOrCreateStructByToken("TRACK",(i * 2 + 1) + 1).add({ token: "ISBUS", params: [2, -1]});   
         }
-        //打region和marker
+
+        //打region和marker,item
         for (let i = 0; i < trackNameGroup.length; i++ ){
                 project.contents.push({
                 "token": "MARKER",
@@ -335,10 +350,8 @@ function Dialogue(){
             id++;
             for (let j = 0; j < remixRecordingSession[trackNameGroup[i]].length; j++ ){
                 remixRecordingSession[trackNameGroup[i]][j]["Dialogue(CN)(台词)"].replace(/[\r\n]/g, "");//reaper的region不能识别回车
-                console.log(remixRecordingSession[trackNameGroup[i]][j]["Dialogue(CN)(台词)"].replace(/[\r\n]/g, ""));
-                diaNotes = rppp.specialize(rppp.parse(`<NOTES
-                |${remixRecordingSession[trackNameGroup[i]][j]["Dialogue(CN)(台词)"].replace(/[\r\n]/g, "")}
-                >`));//把台词写进每一个Note里
+                diaNotes = new rppp.objects.ReaperNotes();
+                diaNotes.params = [`${remixRecordingSession[trackNameGroup[i]][j]["Dialogue(CN)(台词)"].replace(/[\r\n]/g, "")}`] ;
                 diaItem = new rppp.objects.ReaperItem();//刷新diaItem
                 diaItem.add(diaNotes);
                 diaItem.add({ token: "POSITION", params: [time] });//empty item position
@@ -349,7 +362,7 @@ function Dialogue(){
                     "params": [
                         id,//id
                         time,//标记点
-                        remixRecordingSession[trackNameGroup[i]][j]["Dialogue(CN)(台词)"].replace(/[\r\n]/g, ""),//region名称
+                        remixRecordingSession[trackNameGroup[i]][j]["Audio File Name"].replace(/[\r\n]/g, ""),//region名称
                         1,
                         1,
                         1,
