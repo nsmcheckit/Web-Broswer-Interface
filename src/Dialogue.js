@@ -328,7 +328,7 @@ function Dialogue(){
             //speaker track out
             project.addTrack(new rppp.objects.ReaperTrack());
             trackName = JSON.stringify(trackNameGroup[i]).replace(/"/g,"");
-            project.getOrCreateStructByToken("TRACK",(i * 2 + 1) + 1).add({ token: "NAME",params: [`${trackName} OUT`]});
+            project.getOrCreateStructByToken("TRACK",(i * 2 + 1) + 1).add({ token: "NAME",params: [`${trackName} OUT 01`]});
             project.getOrCreateStructByToken("TRACK",(i * 2 + 1) + 1).add({ token: "ISBUS", params: [2, -1]});   
         }
 
@@ -367,7 +367,7 @@ function Dialogue(){
                         1,
                         1,
                         "R",
-                        "{00000000-0000-0000-0000-" + (i.toString(10)).padStart(12, "0") + "}"//idx {1171F644-29E1-41B0-BBAD-F131D78F1582}
+                        "{00000000-0000-0000-0000-" + (j.toString(10)).padStart(12, "0") + "}"//idx {1171F644-29E1-41B0-BBAD-F131D78F1582}
                         //region
                     ]
                 },)
