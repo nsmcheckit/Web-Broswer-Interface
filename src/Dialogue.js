@@ -271,6 +271,8 @@ function Dialogue(){
 
     //rppp, remixRecordingSession Json, new a rpp project for each speaker
     const [recordingSession, setRecordingSession] = useState([]);
+    const [recordingSession2, setRecordingSession2] = useState([]);
+    let recordingSessionTemp = [];//[0]recordingSession+[1]recordingSession2
     function creatDialogueRpp(recordingSession){
         try{
             recordingSession = JSON.parse(recordingSession);
@@ -394,6 +396,23 @@ function Dialogue(){
         saveAs(blob, 1+`.rpp`);
     }
     
+    function mergeJson(){
+        console.log(recordingSessionTemp)
+        recordingSessionTemp[2] = [];
+        for (let i = 0; i < recordingSessionTemp[0].length; i++){
+            for (let j = 0; j < recordingSessionTemp[1].length; j++){
+                if (recordingSessionTemp[0][i]["Audio File Name"] == recordingSessionTemp[1][j]["Audio File Name"]){
+                    recordingSessionTemp[2].push(Object.assign(recordingSessionTemp[0][i],recordingSessionTemp[1][j]));
+                    break;
+                }
+                recordingSessionTemp[2].push(recordingSessionTemp[0][i]);
+            }
+        }
+        setTimeout(() => {
+            console.log(recordingSessionTemp[2]);
+        }, 3000);
+        
+    }
     //wwise waapi react hook 
     const [dialogueCsv, setDialogueCsv] = useState([]);
     const [audioFilesFolder, setAuidoFilesFolder] = useState("");
@@ -799,6 +818,48 @@ function Dialogue(){
            };
            reader.readAsText(file);
       }
+    
+    //rppp: merge rpp json and articy json
+    function handleMergeJson(){
+        if (recordingSession.length === 0 && recordingSession2.length === 0) {
+            alert("Should select two files");
+            return;
+          }
+        else{
+            recordingSessionTemp = [];
+            var data1,data2;
+            const file = recordingSession[0];
+            let reader1 = new FileReader();
+            reader1.readAsText(file);
+            reader1.onload = function (e) {
+                data1 = e.target.result;
+                try{
+                    data1 = JSON.parse(data1);
+                } catch (e){
+                    alert("JSON不符合规范");
+                    return;
+                } 
+                recordingSessionTemp[0] = (data1);
+           };
+            const file2 = recordingSession2[0];
+            let reader2 = new FileReader();
+            reader2.readAsText(file2);
+            reader2.onload = function (e) {
+                data2 = e.target.result;
+                try{
+                    data2 = JSON.parse(data2);
+                } catch (e){
+                    alert("JSON不符合规范");
+                    return;
+                } 
+                recordingSessionTemp[1] = (data2);
+           };
+        } 
+        setTimeout(() => {
+            mergeJson();  
+        }, 300); 
+    }
+
     return (     
           
     <div class="text-center row"> 
@@ -901,17 +962,22 @@ function Dialogue(){
                 </h2>
                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                    <p class="p1">
-                        <br/><br/>  
-                            rppp:&nbsp;&nbsp;
-                            <input id="fileInput" type="file" multiple onChange={(e) => setRecordingSession(e.target.files)}/>
-                        <br/>
-                        <br/>
-                        <br/>
-                            <button type="button" class="button2" onClick={handleEmptyRPP}>creatRpp</button>
-                        <br/> 
-                        <br/> 
-                    </p>
+                        <div class="container text-center">
+                        <div class="row">
+                            <div class="col">
+                                <input class="form-control" type="file" id="formFile" multiple onChange={(e) => setRecordingSession(e.target.files)}/>
+                                <div id="emailHelp" class="form-text">选择由Excel转换来的Json</div>
+                                <button type="button" class="button2" onClick={handleEmptyRPP}>creatRpp</button>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="file" id="formFile" multiple onChange={(e) => setRecordingSession(e.target.files)}/>
+                                <div id="emailHelp" class="form-text">选择由Excel转换来的Json</div>
+                                <input class="form-control" type="file" id="formFile" multiple onChange={(e) => setRecordingSession2(e.target.files)}/>
+                                <div id="emailHelp" class="form-text">选择由Reaper导出的Json</div>
+                                <button type="button" class="button2" onClick={handleMergeJson}>mergeJson</button>
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,16 @@
+[
+  {
+    "编号\r\n(可填角色ID)": null,
+    "TechnicalName": "张岳",
+    "语音类型\r\n(功能/战斗/引导等)": "剧情语音",
+    "情绪": "激昂",
+    "播放场景/触发条件": "入场",
+    "Dialogue(CN)(台词)": "冲锋！",
+    "备注": null,
+    "Character": "ShadowImp",
+    "Type": "Story",
+    "Trigger": "Entry",
+    "Audio File Name": "Vo_Story_Entry_ShadowImp",
+    "音频文件命名": "Vo_Story_Entry_ShadowImp"
+  }
+]
