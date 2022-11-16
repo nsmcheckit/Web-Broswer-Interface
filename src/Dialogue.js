@@ -410,7 +410,10 @@ function Dialogue(){
         }
         setTimeout(() => {
             console.log(recordingSessionTemp[2]);
+            let blob = new Blob(["\ufeff"+ JSON.stringify(recordingSessionTemp[2])], { type: "text/plain;charset=utf-8" });
+            saveAs(blob, "newJson"+`.json`);
         }, 3000);
+
         
     }
     //wwise waapi react hook 
