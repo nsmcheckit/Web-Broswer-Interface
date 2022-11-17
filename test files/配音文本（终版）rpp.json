@@ -1,1 +1,882 @@
-[{"Audio File Name":"Vo_Story_Entry_ShadowImp","Dialogue(CN)(台词)":"冲锋！"},{"Audio File Name":"Vo_Story_Exit_ShadowImp","Dialogue(CN)(台词)":"我们似乎总是高估那些自己还不拥有的东西。"},{"Audio File Name":"Vo_Efforts_OnStage_ShadowImp","Dialogue(CN)(台词)":"（轻笑一声，哼，嘿，提示上场开始战斗）"},{"Audio File Name":"Vo_Efforts_Attack_ShadowImp","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_ShadowImp","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_ShadowImp","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_Pinocchio","Dialogue(CN)(台词)":"你有的，我也有。"},{"Audio File Name":"Vo_Story_Exit_Pinocchio","Dialogue(CN)(台词)":"一旦你撒了第一个谎，就注定要用无数个谎来圆。"},{"Audio File Name":"Vo_Efforts_OnStage_Pinocchio","Dialogue(CN)(台词)":"(短促笑声，哈哈哈哈~，提示上场准备战斗)"},{"Audio File Name":"Vo_Efforts_Attack_Pinocchio","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_Pinocchio","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_Pinocchio","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_RatGrandma","Dialogue(CN)(台词)":"子子孙孙，生生不息。"},{"Audio File Name":"Vo_Story_Exit_RatGrandma","Dialogue(CN)(台词)":"还想要去往更深处？缺少一段记忆对于大多数人来说并没有什么差别。"},{"Audio File Name":"Vo_Efforts_OnStage_RatGrandma","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_RatGrandma","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_RatGrandma","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_RatGrandma","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_SnowWhite","Dialogue(CN)(台词)":"歌声给你力量。"},{"Audio File Name":"Vo_Story_Exit_SnowWhite","Dialogue(CN)(台词)":"为什么如此匆忙？留下来，让我为你歌唱。（退场）"},{"Audio File Name":"Vo_Efforts_OnStage_SnowWhite","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_SnowWhite","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_SnowWhite","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_SnowWhite","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_HappyClown","Dialogue(CN)(台词)":"好戏开场了~"},{"Audio File Name":"Vo_Story_Exit_HappyClown","Dialogue(CN)(台词)":"当笑容被标注价格，它就和快乐不再有任何关系。"},{"Audio File Name":"Vo_Efforts_OnStage_HappyClown","Dialogue(CN)(台词)":"（哇、哦、 提示上阵准备战斗，兴奋感）"},{"Audio File Name":"Vo_Efforts_Attack_HappyClown","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_HappyClown","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_HappyClown","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_Cupid","Dialogue(CN)(台词)":"正中红心"},{"Audio File Name":"Vo_Story_Exit_Cupid","Dialogue(CN)(台词)":"爱情使人盲目？还是盲目的人才能获得爱情。"},{"Audio File Name":"Vo_Efforts_OnStage_Cupid","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_Cupid","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_Cupid","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_Cupid","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_ImprisonedMemories","Dialogue(CN)(台词)":"时光屏障。"},{"Audio File Name":"Vo_Story_Exit_ImprisonedMemories","Dialogue(CN)(台词)":"记忆或许已经模糊，他们的身影却仍在我心中徘徊。"},{"Audio File Name":"Vo_Efforts_OnStage_ImprisonedMemories","Dialogue(CN)(台词)":"（低沉的笑声，嗬嗬嗬嗬...提示上阵准备战斗）"},{"Audio File Name":"Vo_Efforts_Attack_ImprisonedMemories","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_ImprisonedMemories","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_ImprisonedMemories","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_BewitchingSnake","Dialogue(CN)(台词)":"石化凝视。"},{"Audio File Name":"Vo_Story_Exit_BewitchingSnake","Dialogue(CN)(台词)":"事实往往比故事更离奇，但是谁会在乎呢？"},{"Audio File Name":"Vo_Efforts_OnStage_BewitchingSnake","Dialogue(CN)(台词)":"（嘶~）"},{"Audio File Name":"Vo_Efforts_Attack_BewitchingSnake","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_BewitchingSnake","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_BewitchingSnake","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_SilentStatue","Dialogue(CN)(台词)":"记忆汲取！"},{"Audio File Name":"Vo_Efforts_OnStage_SilentStatue","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_SilentStatue","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_SilentStatue","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_SilentStatue","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_MirrorWitch","Dialogue(CN)(台词)":"镜像之力。"},{"Audio File Name":"Vo_Story_Exit_MirrorWitch","Dialogue(CN)(台词)":"原谅我……"},{"Audio File Name":"Vo_Efforts_OnStage_MirrorWitch","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_MirrorWitch","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_MirrorWitch","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_MirrorWitch","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_ChurchDoctor","Dialogue(CN)(台词)":"紧急治疗！"},{"Audio File Name":"Vo_Efforts_OnStage_ChurchDoctor","Dialogue(CN)(台词)":"（哼、嘁，表现对敌方不屑，挑衅）"},{"Audio File Name":"Vo_Efforts_Attack_ChurchDoctor","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_ChurchDoctor","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_ChurchDoctor","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_FeralChild","Dialogue(CN)(台词)":"来打我呀~"},{"Audio File Name":"Vo_Efforts_OnStage_FeralChild","Dialogue(CN)(台词)":"（略略略~挑衅敌方）"},{"Audio File Name":"Vo_Efforts_Attack_FeralChild","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_FeralChild","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_FeralChild","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_MightyWizard","Dialogue(CN)(台词)":"全员圣盾！"},{"Audio File Name":"Vo_Efforts_OnStage_MightyWizard","Dialogue(CN)(台词)":"（嘿！ 提示释放技能）"},{"Audio File Name":"Vo_Efforts_Attack_MightyWizard","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_MightyWizard","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_MightyWizard","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_MadWolf","Dialogue(CN)(台词)":"感受狼群之力吧！"},{"Audio File Name":"Vo_Efforts_OnStage_MadWolf","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_MadWolf","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_MadWolf","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_MadWolf","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_SnakeQueen","Dialogue(CN)(台词)":"再多的血量也逃不过我的毒液！"},{"Audio File Name":"Vo_Efforts_OnStage_SnakeQueen","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_SnakeQueen","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_SnakeQueen","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_SnakeQueen","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_MasterfulArcher","Dialogue(CN)(台词)":"躲到后面是没有用的哟~"},{"Audio File Name":"Vo_Efforts_OnStage_MasterfulArcher","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_MasterfulArcher","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_MasterfulArcher","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_MasterfulArcher","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_TreeWitch","Dialogue(CN)(台词)":"枝繁叶茂！"},{"Audio File Name":"Vo_Efforts_OnStage_TreeWitch","Dialogue(CN)(台词)":"（哼~提示上阵入场）"},{"Audio File Name":"Vo_Efforts_Attack_TreeWitch","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_TreeWitch","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_TreeWitch","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_Candle","Dialogue(CN)(台词)":"燃烧自己，点亮他人。"},{"Audio File Name":"Vo_Efforts_OnStage_Candle","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_Candle","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_Candle","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_Candle","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_WebSpinner","Dialogue(CN)(台词)":"啊哦~你的武器黏住了我的网。"},{"Audio File Name":"Vo_Efforts_OnStage_WebSpinner","Dialogue(CN)(台词)":"（耶、呀  提示上阵入场）"},{"Audio File Name":"Vo_Efforts_Attack_WebSpinner","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_WebSpinner","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_WebSpinner","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_HiddenThief","Dialogue(CN)(台词)":"暗影才是朋友！"},{"Audio File Name":"Vo_Efforts_OnStage_HiddenThief","Dialogue(CN)(台词)":"（嘿嘿、嘻嘻； 提示上阵入场）"},{"Audio File Name":"Vo_Efforts_Attack_HiddenThief","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_HiddenThief","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_HiddenThief","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_Stitches","Dialogue(CN)(台词)":"灵魂汲取！"},{"Audio File Name":"Vo_Efforts_OnStage_Stitches","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_Stitches","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_Stitches","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_Stitches","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_Magician","Dialogue(CN)(台词)":"洗牌时间到~"},{"Audio File Name":"Vo_Efforts_OnStage_Magician","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_Magician","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_Magician","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_Magician","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_FireElemental","Dialogue(CN)(台词)":"熊熊怒火！"},{"Audio File Name":"Vo_Efforts_OnStage_FireElemental","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_FireElemental","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_FireElemental","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_FireElemental","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_Cheat","Dialogue(CN)(台词)":"我偷~"},{"Audio File Name":"Vo_Efforts_OnStage_Cheat","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_Cheat","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_Cheat","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_Cheat","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_ToughGuy","Dialogue(CN)(台词)":"没吃饭吗？"},{"Audio File Name":"Vo_Efforts_OnStage_ToughGuy","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_ToughGuy","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_ToughGuy","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_ToughGuy","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_Disarmer","Dialogue(CN)(台词)":"谁的武器不见啦？"},{"Audio File Name":"Vo_Efforts_OnStage_Disarmer","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_Disarmer","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_Disarmer","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_Disarmer","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_PokerSoldier","Dialogue(CN)(台词)":"报告！发现弱点。"},{"Audio File Name":"Vo_Efforts_OnStage_PokerSoldier","Dialogue(CN)(台词)":"（呵呵呵呵...）"},{"Audio File Name":"Vo_Efforts_Attack_PokerSoldier","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_PokerSoldier","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_PokerSoldier","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_PigWidow","Dialogue(CN)(台词)":"魅惑之术~"},{"Audio File Name":"Vo_Efforts_OnStage_PigWidow","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_PigWidow","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_PigWidow","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_PigWidow","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_CraftyMerchant","Dialogue(CN)(台词)":"和气生财。"},{"Audio File Name":"Vo_Efforts_OnStage_CraftyMerchant","Dialogue(CN)(台词)":"（呦~提示上阵入场）"},{"Audio File Name":"Vo_Efforts_Attack_CraftyMerchant","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_CraftyMerchant","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_CraftyMerchant","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Entry_Death","Dialogue(CN)(台词)":"生命如流水般逝去……"},{"Audio File Name":"Vo_Efforts_OnStage_Death","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Attack_Death","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Hurt_Death","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Efforts_Death_Death","Dialogue(CN)(台词)":"（根据情境和状态表演）"},{"Audio File Name":"Vo_Story_Click_KittyShop_1","Dialogue(CN)(台词)":"挑一个吧，他会成为你的得力助手。"},{"Audio File Name":"Vo_Story_Click_KittyShop_2","Dialogue(CN)(台词)":"别担心，我一直在这里。"},{"Audio File Name":"Vo_Story_Click_KittyShop_3","Dialogue(CN)(台词)":"还没拿定主意？"},{"Audio File Name":"Vo_Story_Click_WholesaleStore_1","Dialogue(CN)(台词)":"不要因为低廉的价格，而低估真正的价值。"},{"Audio File Name":"Vo_Story_Click_WholesaleStore_2","Dialogue(CN)(台词)":"你来得正是时候，我们正在打折。"},{"Audio File Name":"Vo_Story_Click_WholesaleStore_3","Dialogue(CN)(台词)":"金币对死人可没什么用。"},{"Audio File Name":"Vo_Story_Click_GeneralStore_1","Dialogue(CN)(台词)":"货真价实，童叟无欺。"},{"Audio File Name":"Vo_Story_Click_GeneralStore_2","Dialogue(CN)(台词)":"你想要的，应有尽有。"},{"Audio File Name":"Vo_Story_Click_GeneralStore_3","Dialogue(CN)(台词)":"金钱能使猫卖货。"},{"Audio File Name":"Vo_Story_Click_PeaceHut_1","Dialogue(CN)(台词)":"合适的装备让你事半功倍。"},{"Audio File Name":"Vo_Story_Click_PeaceHut_2","Dialogue(CN)(台词)":"想要趁手的装备？来我这儿看看。"},{"Audio File Name":"Vo_Story_Click_PeaceHut_3","Dialogue(CN)(台词)":"最暴力的地方，和平被提及最多。"},{"Audio File Name":"Vo_Story_Click_MysteryBoxShop_1","Dialogue(CN)(台词)":"两个伙伴，外加一个惊喜。"},{"Audio File Name":"Vo_Story_Click_MysteryBoxShop_2","Dialogue(CN)(台词)":"猜猜看，盒子里有什么？"},{"Audio File Name":"Vo_Story_Click_MysteryBoxShop_3","Dialogue(CN)(台词)":"总有一天，主人会想起我的。"},{"Audio File Name":"Vo_Story_Click_LuckyTheater_1","Dialogue(CN)(台词)":"买……买两个……送……送一张"},{"Audio File Name":"Vo_Story_Click_LuckyTheater_2","Dialogue(CN)(台词)":"没……没有人……想要消失……"},{"Audio File Name":"Vo_Story_Click_LuckyTheater_3","Dialogue(CN)(台词)":"趁……趁着……消失之前，我要买到……自己的……框……"},{"Audio File Name":"Vo_Story_Click_BlackMarket_1","Dialogue(CN)(台词)":"我知道你想要什么。"},{"Audio File Name":"Vo_Story_Click_BlackMarket_2","Dialogue(CN)(台词)":"来一张？"},{"Audio File Name":"Vo_Story_Click_BlackMarket_3","Dialogue(CN)(台词)":"买不了吃亏，买不了上当。"},{"Audio File Name":"Vo_Story_Click_AstrologyParlor_1","Dialogue(CN)(台词)":"被遗忘的星星也一样明亮耀眼。"},{"Audio File Name":"Vo_Story_Click_AstrologyParlor_2","Dialogue(CN)(台词)":"想要一颗属于你的星星吗？"},{"Audio File Name":"Vo_Story_Click_AstrologyParlor_3","Dialogue(CN)(台词)":"我能感受到，你的身体里流动着神奇的能量。"},{"Audio File Name":"Vo_Story_Click_PotionWorkshop_1","Dialogue(CN)(台词)":"想来一只振奋精神的药水吗？"},{"Audio File Name":"Vo_Story_Click_PotionWorkshop_2","Dialogue(CN)(台词)":"有人痛苦的存在，有人幸福的消失，你怎么想？"},{"Audio File Name":"Vo_Story_Click_PotionWorkshop_3","Dialogue(CN)(台词)":"每段记忆都有自己特别的颜色，想看看你的吗？"},{"Audio File Name":"Vo_Story_Click_StrengthWorkshop_1","Dialogue(CN)(台词)":"上好的画框，使你充满力量。"},{"Audio File Name":"Vo_Story_Click_StrengthWorkshop_2","Dialogue(CN)(台词)":"进攻才是最好的防守。"},{"Audio File Name":"Vo_Story_Click_StrengthWorkshop_3","Dialogue(CN)(台词)":"没能进入画框的记忆，最终将会像从没出现过一样消逝。"},{"Audio File Name":"Vo_Story_Click_HPWorkshop_1","Dialogue(CN)(台词)":"在这里，画框可是身份的象征。"},{"Audio File Name":"Vo_Story_Click_HPWorkshop_2","Dialogue(CN)(台词)":"防守才是最好的进攻。"},{"Audio File Name":"Vo_Story_Click_HPWorkshop_3","Dialogue(CN)(台词)":"并不是每个记忆都能负担得起画框。"},{"Audio File Name":"Vo_Story_Click_PortraitWorkshop_1","Dialogue(CN)(台词)":"一分价钱，一分货。"},{"Audio File Name":"Vo_Story_Click_PortraitWorkshop_2","Dialogue(CN)(台词)":"进攻和防守，同样重要。"},{"Audio File Name":"Vo_Story_Click_PortraitWorkshop_3","Dialogue(CN)(台词)":"选好了吗？我还有很多订单排队。"},{"Audio File Name":"Vo_Story_Click_MagicGallery_1","Dialogue(CN)(台词)":"大家都希望我能把他们的画框变得，嗯，更完美一些。"},{"Audio File Name":"Vo_Story_Click_MagicGallery_2","Dialogue(CN)(台词)":"只是做了一点微不足道的工作。"},{"Audio File Name":"Vo_Story_Click_MagicGallery_3","Dialogue(CN)(台词)":"我一向应承所有对于魔法的乞求。"},{"Audio File Name":"Vo_Story_Click_MagicTheater_1","Dialogue(CN)(台词)":"想看看神奇的魔法吗？"},{"Audio File Name":"Vo_Story_Click_MagicTheater_2","Dialogue(CN)(台词)":"啊哈，被我猜中了！"},{"Audio File Name":"Vo_Story_Click_MagicTheater_3","Dialogue(CN)(台词)":"这是给优秀观众的奖励。"},{"Audio File Name":"Vo_Story_Click_FairyShop_1","Dialogue(CN)(台词)":"许个愿吧。"},{"Audio File Name":"Vo_Story_Click_FairyShop_2","Dialogue(CN)(台词)":"愿光芒指引你前进的路。"},{"Audio File Name":"Vo_Story_Click_FairyShop_3","Dialogue(CN)(台词)":"这好像是……非常重要的记忆……"},{"Audio File Name":"Vo_Sys_Cutscene_MirrorWitch_1","Dialogue(CN)(台词)":"哎呀呀，你总算醒来了。"},{"Audio File Name":"Vo_Sys_Cutscene_MirrorWitch_2","Dialogue(CN)(台词)":"想要离开？别担心，我会帮你的。"},{"Audio File Name":"Vo_Sys_Cutscene_MirrorWitch_3","Dialogue(CN)(台词)":"作为交换，用你的力量帮我收集那些记忆吧。"},{"Audio File Name":"Vo_Sys_Cutscene_MirrorWitch_4","Dialogue(CN)(台词)":"但首先，你需要学习如何在这个世界生存下去，跟我来~"},{"Audio File Name":"Vo_Sys_Cutscene_MirrorWitch_5","Dialogue(CN)(台词)":"小心，这些被封印在镜像框中的记忆多数已经失去神智，它们将会主动攻击靠近的任何生物。"},{"Audio File Name":"Vo_Sys_Guide_MirrorWitch_1","Dialogue(CN)(台词)":"想要取得胜利，你需要雇佣几个尚未迷失的记忆作为伙伴。"},{"Audio File Name":"Vo_Sys_Guide_MirrorWitch_2","Dialogue(CN)(台词)":"雇佣每个伙伴只需要花费3金币，十分公道的价格对吧？"},{"Audio File Name":"Vo_Sys_Guide_MirrorWitch_3","Dialogue(CN)(台词)":"每个伙伴都有自己的专长，谨慎挑选。"},{"Audio File Name":"Vo_Sys_Guide_MirrorWitch_4","Dialogue(CN)(台词)":"应付更强力的敌人，你需要更多的伙伴。"},{"Audio File Name":"Vo_Sys_Guide_MirrorWitch_5","Dialogue(CN)(台词)":"合理的布阵有时候会影响着整场战局"},{"Audio File Name":"Vo_Sys_Guide_MirrorWitch_6","Dialogue(CN)(台词)":"别担心，没花完的金币将会为你保留下来"},{"Audio File Name":"Vo_Sys_Guide_MirrorWitch_7","Dialogue(CN)(台词)":"去吧，小姑娘！"},{"Audio File Name":"Vo_Sys_Guide_MirrorWitch_8","Dialogue(CN)(台词)":"还没想好挑选哪个伙伴？谨慎是好事。"},{"Audio File Name":"Vo_Sys_Guide_MirrorWitch_9","Dialogue(CN)(台词)":"现在，让我们来看看金色伙伴的威力。"},{"Audio File Name":"Vo_Sys_Guide_MirrorWitch_10","Dialogue(CN)(台词)":"干的漂亮！接下来，去通关游戏吧！我会在最后一关等着你"},{"Audio File Name":"Vo_Sys_Guide_MirrorWitch_11","Dialogue(CN)(台词)":"啊，抱歉，这是你刚刚升级商店的奖励，差点就忘记了。"}]
+[
+  {
+    "Audio File Name": "Vo_Story_Entry_ShadowImp",
+    "Dialogue(CN)(台词)": "冲锋！"
+  },
+  {
+    "Audio File Name": "Vo_Story_Exit_ShadowImp",
+    "Dialogue(CN)(台词)": "我们似乎总是高估那些自己还不拥有的东西。"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_ShadowImp",
+    "Dialogue(CN)(台词)": "（轻笑一声，哼，嘿，提示上场开始战斗）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_ShadowImp",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_ShadowImp",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_ShadowImp",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_Pinocchio",
+    "Dialogue(CN)(台词)": "你有的，我也有。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Exit_Pinocchio",
+    "Dialogue(CN)(台词)": "一旦你撒了第一个谎，就注定要用无数个谎来圆。"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_Pinocchio",
+    "Dialogue(CN)(台词)": "(短促笑声，哈哈哈哈~，提示上场准备战斗)"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_Pinocchio",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_Pinocchio",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_Pinocchio",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_RatGrandma",
+    "Dialogue(CN)(台词)": "子子孙孙，生生不息。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Exit_RatGrandma",
+    "Dialogue(CN)(台词)": "还想要去往更深处？缺少一段记忆对于大多数人来说并没有什么差别。"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_RatGrandma",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_RatGrandma",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_RatGrandma",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_RatGrandma",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_SnowWhite",
+    "Dialogue(CN)(台词)": "歌声给你力量。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Exit_SnowWhite",
+    "Dialogue(CN)(台词)": "为什么如此匆忙？留下来，让我为你歌唱。（退场）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_SnowWhite",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_SnowWhite",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_SnowWhite",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_SnowWhite",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_HappyClown",
+    "Dialogue(CN)(台词)": "好戏开场了~"
+  },
+  {
+    "Audio File Name": "Vo_Story_Exit_HappyClown",
+    "Dialogue(CN)(台词)": "当笑容被标注价格，它就和快乐不再有任何关系。"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_HappyClown",
+    "Dialogue(CN)(台词)": "（哇、哦、 提示上阵准备战斗，兴奋感）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_HappyClown",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_HappyClown",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_HappyClown",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_Cupid",
+    "Dialogue(CN)(台词)": "正中红心"
+  },
+  {
+    "Audio File Name": "Vo_Story_Exit_Cupid",
+    "Dialogue(CN)(台词)": "爱情使人盲目？还是盲目的人才能获得爱情。"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_Cupid",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_Cupid",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_Cupid",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_Cupid",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_ImprisonedMemories",
+    "Dialogue(CN)(台词)": "时光屏障。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Exit_ImprisonedMemories",
+    "Dialogue(CN)(台词)": "记忆或许已经模糊，他们的身影却仍在我心中徘徊。"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_ImprisonedMemories",
+    "Dialogue(CN)(台词)": "（低沉的笑声，嗬嗬嗬嗬...提示上阵准备战斗）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_ImprisonedMemories",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_ImprisonedMemories",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_ImprisonedMemories",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_BewitchingSnake",
+    "Dialogue(CN)(台词)": "石化凝视。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Exit_BewitchingSnake",
+    "Dialogue(CN)(台词)": "事实往往比故事更离奇，但是谁会在乎呢？"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_BewitchingSnake",
+    "Dialogue(CN)(台词)": "（嘶~）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_BewitchingSnake",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_BewitchingSnake",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_BewitchingSnake",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_SilentStatue",
+    "Dialogue(CN)(台词)": "记忆汲取！"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_SilentStatue",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_SilentStatue",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_SilentStatue",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_SilentStatue",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_MirrorWitch",
+    "Dialogue(CN)(台词)": "镜像之力。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Exit_MirrorWitch",
+    "Dialogue(CN)(台词)": "原谅我……"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_MirrorWitch",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_MirrorWitch",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_MirrorWitch",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_MirrorWitch",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_ChurchDoctor",
+    "Dialogue(CN)(台词)": "紧急治疗！"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_ChurchDoctor",
+    "Dialogue(CN)(台词)": "（哼、嘁，表现对敌方不屑，挑衅）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_ChurchDoctor",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_ChurchDoctor",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_ChurchDoctor",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_FeralChild",
+    "Dialogue(CN)(台词)": "来打我呀~"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_FeralChild",
+    "Dialogue(CN)(台词)": "（略略略~挑衅敌方）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_FeralChild",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_FeralChild",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_FeralChild",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_MightyWizard",
+    "Dialogue(CN)(台词)": "全员圣盾！"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_MightyWizard",
+    "Dialogue(CN)(台词)": "（嘿！ 提示释放技能）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_MightyWizard",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_MightyWizard",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_MightyWizard",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_MadWolf",
+    "Dialogue(CN)(台词)": "感受狼群之力吧！"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_MadWolf",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_MadWolf",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_MadWolf",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_MadWolf",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_SnakeQueen",
+    "Dialogue(CN)(台词)": "再多的血量也逃不过我的毒液！"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_SnakeQueen",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_SnakeQueen",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_SnakeQueen",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_SnakeQueen",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_MasterfulArcher",
+    "Dialogue(CN)(台词)": "躲到后面是没有用的哟~"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_MasterfulArcher",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_MasterfulArcher",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_MasterfulArcher",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_MasterfulArcher",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_TreeWitch",
+    "Dialogue(CN)(台词)": "枝繁叶茂！"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_TreeWitch",
+    "Dialogue(CN)(台词)": "（哼~提示上阵入场）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_TreeWitch",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_TreeWitch",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_TreeWitch",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_Candle",
+    "Dialogue(CN)(台词)": "燃烧自己，点亮他人。"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_Candle",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_Candle",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_Candle",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_Candle",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_WebSpinner",
+    "Dialogue(CN)(台词)": "啊哦~你的武器黏住了我的网。"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_WebSpinner",
+    "Dialogue(CN)(台词)": "（耶、呀  提示上阵入场）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_WebSpinner",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_WebSpinner",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_WebSpinner",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_HiddenThief",
+    "Dialogue(CN)(台词)": "暗影才是朋友！"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_HiddenThief",
+    "Dialogue(CN)(台词)": "（嘿嘿、嘻嘻； 提示上阵入场）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_HiddenThief",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_HiddenThief",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_HiddenThief",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_Stitches",
+    "Dialogue(CN)(台词)": "灵魂汲取！"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_Stitches",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_Stitches",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_Stitches",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_Stitches",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_Magician",
+    "Dialogue(CN)(台词)": "洗牌时间到~"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_Magician",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_Magician",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_Magician",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_Magician",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_FireElemental",
+    "Dialogue(CN)(台词)": "熊熊怒火！"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_FireElemental",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_FireElemental",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_FireElemental",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_FireElemental",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_Cheat",
+    "Dialogue(CN)(台词)": "我偷~"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_Cheat",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_Cheat",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_Cheat",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_Cheat",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_ToughGuy",
+    "Dialogue(CN)(台词)": "没吃饭吗？"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_ToughGuy",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_ToughGuy",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_ToughGuy",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_ToughGuy",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_Disarmer",
+    "Dialogue(CN)(台词)": "谁的武器不见啦？"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_Disarmer",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_Disarmer",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_Disarmer",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_Disarmer",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_PokerSoldier",
+    "Dialogue(CN)(台词)": "报告！发现弱点。"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_PokerSoldier",
+    "Dialogue(CN)(台词)": "（呵呵呵呵...）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_PokerSoldier",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_PokerSoldier",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_PokerSoldier",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_PigWidow",
+    "Dialogue(CN)(台词)": "魅惑之术~"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_PigWidow",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_PigWidow",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_PigWidow",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_PigWidow",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_CraftyMerchant",
+    "Dialogue(CN)(台词)": "和气生财。"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_CraftyMerchant",
+    "Dialogue(CN)(台词)": "（呦~提示上阵入场）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_CraftyMerchant",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_CraftyMerchant",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_CraftyMerchant",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Entry_Death",
+    "Dialogue(CN)(台词)": "生命如流水般逝去……"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_OnStage_Death",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Attack_Death",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Hurt_Death",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Efforts_Death_Death",
+    "Dialogue(CN)(台词)": "（根据情境和状态表演）"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_KittyShop_1",
+    "Dialogue(CN)(台词)": "挑一个吧，他会成为你的得力助手。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_KittyShop_2",
+    "Dialogue(CN)(台词)": "别担心，我一直在这里。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_KittyShop_3",
+    "Dialogue(CN)(台词)": "还没拿定主意？"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_WholesaleStore_1",
+    "Dialogue(CN)(台词)": "不要因为低廉的价格，而低估真正的价值。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_WholesaleStore_2",
+    "Dialogue(CN)(台词)": "你来得正是时候，我们正在打折。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_WholesaleStore_3",
+    "Dialogue(CN)(台词)": "金币对死人可没什么用。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_GeneralStore_1",
+    "Dialogue(CN)(台词)": "货真价实，童叟无欺。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_GeneralStore_2",
+    "Dialogue(CN)(台词)": "你想要的，应有尽有。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_GeneralStore_3",
+    "Dialogue(CN)(台词)": "金钱能使猫卖货。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_PeaceHut_1",
+    "Dialogue(CN)(台词)": "合适的装备让你事半功倍。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_PeaceHut_2",
+    "Dialogue(CN)(台词)": "想要趁手的装备？来我这儿看看。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_PeaceHut_3",
+    "Dialogue(CN)(台词)": "最暴力的地方，和平被提及最多。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_MysteryBoxShop_1",
+    "Dialogue(CN)(台词)": "两个伙伴，外加一个惊喜。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_MysteryBoxShop_2",
+    "Dialogue(CN)(台词)": "猜猜看，盒子里有什么？"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_MysteryBoxShop_3",
+    "Dialogue(CN)(台词)": "总有一天，主人会想起我的。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_LuckyTheater_1",
+    "Dialogue(CN)(台词)": "买……买两个……送……送一张"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_LuckyTheater_2",
+    "Dialogue(CN)(台词)": "没……没有人……想要消失……"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_LuckyTheater_3",
+    "Dialogue(CN)(台词)": "趁……趁着……消失之前，我要买到……自己的……框……"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_BlackMarket_1",
+    "Dialogue(CN)(台词)": "我知道你想要什么。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_BlackMarket_2",
+    "Dialogue(CN)(台词)": "来一张？"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_BlackMarket_3",
+    "Dialogue(CN)(台词)": "买不了吃亏，买不了上当。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_AstrologyParlor_1",
+    "Dialogue(CN)(台词)": "被遗忘的星星也一样明亮耀眼。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_AstrologyParlor_2",
+    "Dialogue(CN)(台词)": "想要一颗属于你的星星吗？"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_AstrologyParlor_3",
+    "Dialogue(CN)(台词)": "我能感受到，你的身体里流动着神奇的能量。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_PotionWorkshop_1",
+    "Dialogue(CN)(台词)": "想来一只振奋精神的药水吗？"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_PotionWorkshop_2",
+    "Dialogue(CN)(台词)": "有人痛苦的存在，有人幸福的消失，你怎么想？"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_PotionWorkshop_3",
+    "Dialogue(CN)(台词)": "每段记忆都有自己特别的颜色，想看看你的吗？"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_StrengthWorkshop_1",
+    "Dialogue(CN)(台词)": "上好的画框，使你充满力量。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_StrengthWorkshop_2",
+    "Dialogue(CN)(台词)": "进攻才是最好的防守。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_StrengthWorkshop_3",
+    "Dialogue(CN)(台词)": "没能进入画框的记忆，最终将会像从没出现过一样消逝。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_HPWorkshop_1",
+    "Dialogue(CN)(台词)": "在这里，画框可是身份的象征。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_HPWorkshop_2",
+    "Dialogue(CN)(台词)": "防守才是最好的进攻。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_HPWorkshop_3",
+    "Dialogue(CN)(台词)": "并不是每个记忆都能负担得起画框。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_PortraitWorkshop_1",
+    "Dialogue(CN)(台词)": "一分价钱，一分货。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_PortraitWorkshop_2",
+    "Dialogue(CN)(台词)": "进攻和防守，同样重要。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_PortraitWorkshop_3",
+    "Dialogue(CN)(台词)": "选好了吗？我还有很多订单排队。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_MagicGallery_1",
+    "Dialogue(CN)(台词)": "大家都希望我能把他们的画框变得，嗯，更完美一些。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_MagicGallery_2",
+    "Dialogue(CN)(台词)": "只是做了一点微不足道的工作。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_MagicGallery_3",
+    "Dialogue(CN)(台词)": "我一向应承所有对于魔法的乞求。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_MagicTheater_1",
+    "Dialogue(CN)(台词)": "想看看神奇的魔法吗？"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_MagicTheater_2",
+    "Dialogue(CN)(台词)": "啊哈，被我猜中了！"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_MagicTheater_3",
+    "Dialogue(CN)(台词)": "这是给优秀观众的奖励。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_FairyShop_1",
+    "Dialogue(CN)(台词)": "许个愿吧。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_FairyShop_2",
+    "Dialogue(CN)(台词)": "愿光芒指引你前进的路。"
+  },
+  {
+    "Audio File Name": "Vo_Story_Click_FairyShop_3",
+    "Dialogue(CN)(台词)": "这好像是……非常重要的记忆……"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Cutscene_MirrorWitch_1",
+    "Dialogue(CN)(台词)": "哎呀呀，你总算醒来了。"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Cutscene_MirrorWitch_2",
+    "Dialogue(CN)(台词)": "想要离开？别担心，我会帮你的。"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Cutscene_MirrorWitch_3",
+    "Dialogue(CN)(台词)": "作为交换，用你的力量帮我收集那些记忆吧。"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Cutscene_MirrorWitch_4",
+    "Dialogue(CN)(台词)": "但首先，你需要学习如何在这个世界生存下去，跟我来~"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Cutscene_MirrorWitch_5",
+    "Dialogue(CN)(台词)": "小心，这些被封印在镜像框中的记忆多数已经失去神智，它们将会主动攻击靠近的任何生物。"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Guide_MirrorWitch_1",
+    "Dialogue(CN)(台词)": "想要取得胜利，你需要雇佣几个尚未迷失的记忆作为伙伴。"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Guide_MirrorWitch_2",
+    "Dialogue(CN)(台词)": "雇佣每个伙伴只需要花费3金币，十分公道的价格对吧？"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Guide_MirrorWitch_3",
+    "Dialogue(CN)(台词)": "每个伙伴都有自己的专长，谨慎挑选。"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Guide_MirrorWitch_4",
+    "Dialogue(CN)(台词)": "应付更强力的敌人，你需要更多的伙伴。"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Guide_MirrorWitch_5",
+    "Dialogue(CN)(台词)": "合理的布阵有时候会影响着整场战局"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Guide_MirrorWitch_6",
+    "Dialogue(CN)(台词)": "别担心，没花完的金币将会为你保留下来"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Guide_MirrorWitch_7",
+    "Dialogue(CN)(台词)": "去吧，小姑娘！"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Guide_MirrorWitch_8",
+    "Dialogue(CN)(台词)": "还没想好挑选哪个伙伴？谨慎是好事。"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Guide_MirrorWitch_9",
+    "Dialogue(CN)(台词)": "现在，让我们来看看金色伙伴的威力。"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Guide_MirrorWitch_10",
+    "Dialogue(CN)(台词)": "干的漂亮！接下来，去通关游戏吧！我会在最后一关等着你"
+  },
+  {
+    "Audio File Name": "Vo_Sys_Guide_MirrorWitch_11",
+    "Dialogue(CN)(台词)": "啊，抱歉，这是你刚刚升级商店的奖励，差点就忘记了。"
+  },
+]
