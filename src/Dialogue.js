@@ -405,16 +405,15 @@ function Dialogue(){
                     recordingSessionTemp[2].push(Object.assign(recordingSessionTemp[0][i],recordingSessionTemp[1][j]));
                     break;
                 }
-                recordingSessionTemp[2].push(recordingSessionTemp[0][i]);
             }
+                if (recordingSessionTemp[2][i] == ""){
+                    recordingSessionTemp[2][i] = recordingSessionTemp[0][i];
+                }
+            //recordingSessionTemp[2].push(recordingSessionTemp[0][i]);
         }
-        setTimeout(() => {
-            console.log(recordingSessionTemp[2]);
-            let blob = new Blob(["\ufeff"+ JSON.stringify(recordingSessionTemp[2])], { type: "text/plain;charset=utf-8" });
-            saveAs(blob, "newJson"+`.json`);
-        }, 3000);
-
-        
+        console.log(recordingSessionTemp[2]);
+        let blob = new Blob(["\ufeff"+ JSON.stringify(recordingSessionTemp[2])], { type: "text/plain;charset=utf-8" });
+        saveAs(blob, "newJson"+`.json`);     
     }
     //wwise waapi react hook 
     const [dialogueCsv, setDialogueCsv] = useState([]);
@@ -824,6 +823,22 @@ function Dialogue(){
     
     //rppp: merge rpp json and articy json
     function handleMergeJson(){
+        class MergeData {
+            mergeJsonWhenDataExist() {
+              if (this.data1 && this.data2) {
+                mergeJson();
+              }
+            }
+            setData1(data1) {
+              this.data1 = data1;
+              this.mergeJsonWhenDataExist();
+            }
+            setData2(data2) {
+              this.data2 = data2;
+              this.mergeJsonWhenDataExist();
+            }
+        }
+        MergeData = new MergeData();
         if (recordingSession.length === 0 && recordingSession2.length === 0) {
             alert("Should select two files");
             return;
@@ -843,6 +858,7 @@ function Dialogue(){
                     return;
                 } 
                 recordingSessionTemp[0] = (data1);
+                MergeData.setData1(data1);
            };
             const file2 = recordingSession2[0];
             let reader2 = new FileReader();
@@ -856,11 +872,12 @@ function Dialogue(){
                     return;
                 } 
                 recordingSessionTemp[1] = (data2);
+                MergeData.setData2(data2);
            };
         } 
-        setTimeout(() => {
-            mergeJson();  
-        }, 300); 
+        // setTimeout(() => {
+        //     mergeJson();  
+        // }, 300); 
     }
 
     return (     

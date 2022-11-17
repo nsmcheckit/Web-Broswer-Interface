@@ -1,7 +1,7 @@
 ﻿[
     {
         "编号\r\n(可填角色ID)": null,
-        "TechnicalName": "张岳",
+        "TechnicalName": "暗影小鬼",
         "语音类型\r\n(功能/战斗/引导等)": "剧情语音",
         "情绪": "激昂",
         "播放场景/触发条件": "入场",
@@ -2126,20 +2126,6 @@
         "Trigger": "Attack",
         "Audio File Name": "Vo_Efforts_Attack_CraftyMerchant",
         "音频文件命名": "Vo_Efforts_Attack_CraftyMerchant"
-    },
-    {
-        "编号\r\n(可填角色ID)": null,
-        "TechnicalName": "奸商",
-        "语音类型\r\n(功能/战斗/引导等)": "呼喝声",
-        "情绪": null,
-        "播放场景/触发条件": "受击",
-        "Dialogue(CN)(台词)": "（根据情境和状态表演）",
-        "备注": "三个随机",
-        "Character": "CraftyMerchant",
-        "Type": "Efforts",
-        "Trigger": "Hurt",
-        "Audio File Name": "Vo_Efforts_Hurt_CraftyMerchant",
-        "音频文件命名": "Vo_Efforts_Hurt_CraftyMerchant"
     },
     {
         "编号\r\n(可填角色ID)": null,
